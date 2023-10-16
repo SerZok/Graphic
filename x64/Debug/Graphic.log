@@ -1,2 +1,17 @@
-﻿  Graphic.cpp
+﻿  Camera.cpp
+C:\Projects\AOKG\4\Graphic\Camera.cpp(10,21): warning C4244: =: преобразование "double" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Projects\AOKG\4\Graphic\Camera.cpp(11,21): warning C4244: =: преобразование "double" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Projects\AOKG\4\Graphic\Camera.cpp(12,12): warning C4244: =: преобразование "double" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
   Graphic.vcxproj -> C:\Projects\AOKG\4\Graphic\x64\Debug\Graphic.exe
