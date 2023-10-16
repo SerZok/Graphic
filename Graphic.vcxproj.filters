@@ -18,12 +18,18 @@
     <ClCompile Include="Graphic.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Users\SergeyZ\Desktop\3\Project1\Object.cpp">
+    <ClCompile Include="Object.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Users\SergeyZ\Desktop\3\Project1\Object.h">
+    <ClInclude Include="Object.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>

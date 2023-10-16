@@ -33,3 +33,5 @@
 /.vs/Graphic/v17/ipch/AutoPCH/b3b38ba7aaa6b7d3/GRAPHIC.ipch
 /.vs/Graphic/v17/ipch/AutoPCH/a305529036c67e80/OBJECT.ipch
 /.vs/Graphic/v17/Browse.VC.opendb
+*.ipch
+/.vs/Graphic/v17/Browse.VC.db

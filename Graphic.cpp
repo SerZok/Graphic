@@ -9,17 +9,21 @@
 #include <glm/gtc/type_ptr.hpp> 
 
 #include "Object.h"
+#include "Camera.h"
 
 using namespace std;
 using namespace glm;
 
-const int mSIMULATION_TIME = 30;
+const int mSIMULATION_TIME = 20;
 
 int mCurrentTick = 0;
 
 vector<vec3> mTeapotColors;
 vector<Object> GrObjects;
 Object obj_test;
+
+vec3 positionC(20,10,10);
+Camera cam1(positionC);
 
 char mCurrentScalar = 0;
 float myTick = 0.0f;
@@ -45,9 +49,12 @@ void display(void)
 	glEnable(GL_DEPTH_TEST);
 
 	// устанавливаем камеру
+	/*
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	gluLookAt(-15, 15, 20, 0, 0, 0, 0, 1, 0);
+	*/
+	cam1.apply();
 
 	//vec3 c = mTeapotColors[mCurrentScalar];
 	//glColor3f(c.r, c.g, c.b);

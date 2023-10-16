@@ -142,11 +142,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Users\SergeyZ\Desktop\3\Project1\Object.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Graphic.cpp" />
+    <ClCompile Include="Object.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Users\SergeyZ\Desktop\3\Project1\Object.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Object.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
