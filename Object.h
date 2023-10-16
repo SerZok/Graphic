@@ -1,0 +1,34 @@
+#pragma once
+#include <windows.h>
+#include <stdio.h>
+#include <iostream>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include "GL/freeglut.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+using namespace glm;
+// КЛАСС ДЛЯ ПРЕДСТАВЛЕНИЯ ОДНОГО ГРАФИЧЕСКОГО ОБЪЕКТА
+
+class Object {
+private:
+	vec3 position;
+	float angle;
+	vec3 color;
+	GLfloat modelMatrix[16] = {
+		 1.0, 0.0, 0.0, 0.0, // ось Ox
+		 0.0, 1.0, 0.0, 0.0, // ось Oy
+		 0.0, 0.0, 1.0, 0.0, // ось Oz
+		 0.0, 0.0, 0.0, 1.0 // позиция объекта (начало системы координат)
+	};
+	void recalculateModelMatrix();
+public:
+	void set_angle(float grad);
+	void set_position(vec3 postition);
+	void set_color(vec3 color);
+	void draw();
+	vec3 get_position();
+	vec3 get_color();
+	float get_angle();
+};
