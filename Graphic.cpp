@@ -1,7 +1,6 @@
 ﻿#include <windows.h>
 #include <iostream>
 #include <vector>
-
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include "GL/freeglut.h"
@@ -14,7 +13,7 @@
 using namespace std;
 using namespace glm;
 
-const int mSIMULATION_TIME = 20;
+const int mSIMULATION_TIME = 30;
 
 int mCurrentTick = 0;
 
