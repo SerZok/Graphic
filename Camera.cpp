@@ -4,7 +4,7 @@ void Camera::apply() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	recalcPos(r,angleX,angleY);
+	//recalcPos(r,angleX,angleY);
 	gluLookAt(position.x, position.y, position.z, 0, 0, 0, 0, 1, 0);
 }
 
