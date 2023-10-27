@@ -22,6 +22,7 @@ extern POINT MouseXY;
 extern const int SizeWindowX;
 extern const int SizeWindowY;
 
-extern float myTick;
+
+extern int myTick;
 
 void initData();

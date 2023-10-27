@@ -6,8 +6,8 @@ void simulation() {
 	glutPostRedisplay();
 	if (GetAsyncKeyState(VK_LBUTTON)) {
 		if (GetCursorPos(&MouseXY)) {
-			cam1.rotateLeftRight((SizeWindowX - MouseXY.x) / SizeWindowX/4);
-			cam1.rotateUpDown((SizeWindowY - MouseXY.y) / SizeWindowY/4);
+			cam1.rotateLeftRight(float(SizeWindowX - MouseXY.x) / (SizeWindowX));
+			cam1.rotateUpDown(float(SizeWindowY - MouseXY.y) / (SizeWindowY));
 			SetCursorPos(MouseXY.x, MouseXY.y);
 		}
 	}

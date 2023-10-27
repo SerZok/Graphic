@@ -4,10 +4,11 @@
 int mCurrentTick=0;
 Camera cam1(vec3(10,15,15));
 int mSIMULATION_TIME = 20;
-float myTick = 0.0f;
+int myTick = 0;
 vector<vec3> mTeapotColors;
 vector<Object> GrObjects;
 POINT MouseXY;
+
 
 const int SizeWindowX=600;
 const int SizeWindowY=600;
