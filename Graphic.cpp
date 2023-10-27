@@ -45,15 +45,15 @@ int main(int argc, char** argv)
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);
 
 	// СОЗДАНИЕ ОКНА:
-	glutInitWindowPosition(500, 100);
-	glutInitWindowSize(700, 700);
+	glutInitWindowPosition(50, 10);
+	glutInitWindowSize(SizeWindowX, SizeWindowY);
 	glutCreateWindow("Teapot");
 
 	initData();
 
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
-	glutTimerFunc(mSIMULATION_TIME, simulation, 0);
+	glutIdleFunc(simulation);
 
 	glutMainLoop();
 

@@ -1,13 +1,16 @@
 #include "Data.h"
 
-vec3 positionC(20, 15, 10);
+
 int mCurrentTick=0;
-Camera cam1(positionC);
+Camera cam1(vec3(10,15,15));
 int mSIMULATION_TIME = 20;
 float myTick = 0.0f;
 vector<vec3> mTeapotColors;
 vector<Object> GrObjects;
+POINT MouseXY;
 
+const int SizeWindowX=600;
+const int SizeWindowY=600;
 
 void initData() {
 	Object obj1, obj2, obj3, obj4;

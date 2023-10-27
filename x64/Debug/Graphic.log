@@ -1,5 +1,10 @@
-﻿  Display.cpp
-  Graphic.cpp
-  Simulation.cpp
-  Создание кода...
-  Graphic.vcxproj -> C:\STUDY\АОКГ\4\GL\Graphic\x64\Debug\Graphic.exe
+﻿  Simulation.cpp
+C:\STUDY\АОКГ\4\GL\Graphic\Simulation.cpp(9,64): warning C4244: аргумент: преобразование "LONG" в "float", возможна потеря данных
+C:\STUDY\АОКГ\4\GL\Graphic\Simulation.cpp(10,63): error C2143: синтаксическая ошибка: отсутствие ")" перед ";"
+C:\STUDY\АОКГ\4\GL\Graphic\Simulation.cpp(10,61): warning C4244: аргумент: преобразование "LONG" в "float", возможна потеря данных
+C:\STUDY\АОКГ\4\GL\Graphic\Simulation.cpp(15,54): warning C4305: аргумент: усечение из "double" в "float"
+C:\STUDY\АОКГ\4\GL\Graphic\Simulation.cpp(16,56): warning C4305: аргумент: усечение из "double" в "float"
+C:\STUDY\АОКГ\4\GL\Graphic\Simulation.cpp(17,48): warning C4305: аргумент: усечение из "double" в "float"
+C:\STUDY\АОКГ\4\GL\Graphic\Simulation.cpp(18,52): warning C4305: аргумент: усечение из "double" в "float"
+C:\STUDY\АОКГ\4\GL\Graphic\Simulation.cpp(19,50): warning C4305: аргумент: усечение из "double" в "float"
+C:\STUDY\АОКГ\4\GL\Graphic\Simulation.cpp(20,51): warning C4305: аргумент: усечение из "double" в "float"

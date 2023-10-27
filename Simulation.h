@@ -6,4 +6,4 @@
 #include <GL/glu.h>
 #include "GL/freeglut.h"
 
-void simulation(int value);
+void simulation();

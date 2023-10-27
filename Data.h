@@ -18,6 +18,9 @@ extern int mCurrentTick;
 extern vector<vec3> mTeapotColors;
 extern vector<Object> GrObjects;
 extern Camera cam1;
+extern POINT MouseXY;
+extern const int SizeWindowX;
+extern const int SizeWindowY;
 
 extern float myTick;
 
