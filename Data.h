@@ -12,15 +12,14 @@
 #include "Camera.h"
 #include "Object.h"
 
-extern int mSIMULATION_TIME;
-extern int mCurrentTick;
+extern float mCurrentTick;
 
 extern vector<vec3> mTeapotColors;
 extern vector<Object> GrObjects;
 extern Camera cam1;
 extern POINT MouseXY;
-extern const int SizeWindowX;
-extern const int SizeWindowY;
+extern int SizeWindowX;
+extern int SizeWindowY;
 
 
 extern int myTick;

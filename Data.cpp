@@ -1,7 +1,6 @@
 #include "Data.h"
 
-
-int mCurrentTick=0;
+float mCurrentTick=0.0;
 Camera cam1(vec3(10,15,15));
 int mSIMULATION_TIME = 20;
 int myTick = 0;
@@ -9,12 +8,11 @@ vector<vec3> mTeapotColors;
 vector<Object> GrObjects;
 POINT MouseXY;
 
-
-const int SizeWindowX=600;
-const int SizeWindowY=600;
+int SizeWindowX=1000;
+int SizeWindowY=800;
 
 void initData() {
-	Object obj1, obj2, obj3, obj4;
+	Object obj1, obj2, obj3, obj4,obj5;
 
 	obj1.set_color(vec3(1, 0, 0));	//Красный
 	obj1.set_angle(180.0f);
@@ -32,8 +30,12 @@ void initData() {
 	obj4.set_angle(90.0f);
 	obj4.set_position(vec3(0, 0, -4));
 
+	obj5.set_color(vec3(1, 1, 0));
+	obj5.set_position(vec3(0, 0, 0));
+
 	GrObjects.push_back(obj1);
 	GrObjects.push_back(obj2);
 	GrObjects.push_back(obj3);
 	GrObjects.push_back(obj4);
+	GrObjects.push_back(obj5);
 }

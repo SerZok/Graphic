@@ -5,7 +5,7 @@ void Object::draw() {
 	glPushMatrix();
 	recalculateModelMatrix();
 	glMultMatrixf(modelMatrix);
-	glutWireTeapot(1.0);
+	glutSolidTeapot(1.0);
 	glPopMatrix();
 }
 

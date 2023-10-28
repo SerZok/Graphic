@@ -15,10 +15,8 @@
 using namespace std;
 using namespace glm;
 
-
 // функция, вызываемая при изменении размеров окна
-void reshape(int w, int h)
-{
+void reshape(int w, int h){
 	// установить новую область просмотра, равную всей области окна
 	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 
@@ -34,9 +32,7 @@ void keyboardFunc(unsigned char key, int x, int y) {
 	std::cout << "KEY: " << (short)key << " " << key << "\n";
 };
 
-
-int main(int argc, char** argv)
-{
+int main(int argc, char** argv){
 	setlocale(LC_ALL, "ru");
 
 	// инициализация библиотеки GLUT
@@ -45,7 +41,7 @@ int main(int argc, char** argv)
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);
 
 	// СОЗДАНИЕ ОКНА:
-	glutInitWindowPosition(50, 10);
+	glutInitWindowPosition(400, 100);
 	glutInitWindowSize(SizeWindowX, SizeWindowY);
 	glutCreateWindow("Teapot");
 

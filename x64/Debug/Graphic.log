@@ -1,4 +1,2 @@
-﻿  Display.cpp
-C:\STUDY\АОКГ\4\GL\Graphic\Display.cpp(5,15): warning C4244: инициализация: преобразование "time_t" в "int", возможна потеря данных
-C:\STUDY\АОКГ\4\GL\Graphic\Display.cpp(8,19): warning C4244: =: преобразование "time_t" в "int", возможна потеря данных
-  Graphic.vcxproj -> C:\STUDY\АОКГ\4\GL\Graphic\x64\Debug\Graphic.exe
+﻿  Graphic.cpp
+  Graphic.vcxproj -> C:\Projects\AOKG\4\Graphic\x64\Debug\Graphic.exe

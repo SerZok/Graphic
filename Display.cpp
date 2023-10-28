@@ -2,7 +2,7 @@
 #include "Data.h"
 #include <string>
 
-int init_time = time(NULL),final_time,FPS;
+int init_time = time(NULL), final_time,FPS;
 
 void getFPS() {
 	final_time = time(NULL);
@@ -15,7 +15,7 @@ void getFPS() {
 void display(void)
 {
 	// отчищаем буфер цвета и буфер глубины
-	glClearColor(0.0, 0.0, 0.0, 0.0);
+	glClearColor(0.3, 0.7, 0.8, 0.3);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
 
@@ -24,8 +24,8 @@ void display(void)
 
 	for (auto& obj : GrObjects) { obj.draw(); }
 
+
 	// смена переднего и заднего буферов
 	glutSwapBuffers();
 	mCurrentTick++;
-
 };
