@@ -2,11 +2,11 @@
 
 float mCurrentTick=0.0;
 Camera cam1(vec3(10,15,15));
-int mSIMULATION_TIME = 20;
 int myTick = 0;
 vector<vec3> mTeapotColors;
 vector<Object> GrObjects;
 POINT MouseXY;
+Light mLight;
 
 int SizeWindowX=1000;
 int SizeWindowY=800;
@@ -30,7 +30,7 @@ void initData() {
 	obj4.set_angle(90.0f);
 	obj4.set_position(vec3(0, 0, -4));
 
-	obj5.set_color(vec3(1, 1, 0));
+	obj5.set_color(vec3(0, 0, 0));
 	obj5.set_position(vec3(0, 0, 0));
 
 	GrObjects.push_back(obj1);

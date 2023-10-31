@@ -13,9 +13,9 @@ using namespace glm;
 class Light {
 private:
 	vec4 position;
-	vec4 ambient;
-	vec4 diffuse;
-	vec4 specular;
+	vec4 ambient;	//фон
+	vec4 diffuse;	//диффуз
+	vec4 specular;	//зеркало
 public:
 	Light();
 	Light(vec3);
@@ -29,5 +29,5 @@ public:
 	// установка всех параметров источника света с заданным номером
 	// данная функция должна вызываться после установки камеры,
 	// т.к. здесь устанавливается позиция источника света
-	void apply(GLenum LightNumber = GL_LIGHT0);
+	void apply(GLenum LightNumber);
 };

@@ -11,6 +11,7 @@
 
 #include "Camera.h"
 #include "Object.h"
+#include "Light.h"
 
 extern float mCurrentTick;
 
@@ -20,8 +21,7 @@ extern Camera cam1;
 extern POINT MouseXY;
 extern int SizeWindowX;
 extern int SizeWindowY;
-
-
 extern int myTick;
+extern Light mLight;
 
 void initData();

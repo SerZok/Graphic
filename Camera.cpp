@@ -32,7 +32,7 @@ void Camera::rotateLeftRight(float degree){
 
 void Camera::rotateUpDown(float degree){
 	angleY += degree;
-	if (angleY > 90) angleY = 90;
+	if (angleY > 179) angleY = 179;
 	if (angleY < 5) angleY = 5;
 	recalculatePosition();
 }
@@ -40,7 +40,7 @@ void Camera::rotateUpDown(float degree){
 void Camera::zoomInOut(float distance){
 	r += distance;
 	if (r > 60) r = 60;
-	if (r < 10) r = 10;
+	if (r < 5) r = 5;
 	recalculatePosition();
 }
 

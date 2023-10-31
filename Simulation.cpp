@@ -16,6 +16,6 @@ void simulation() {
 	if (GetAsyncKeyState(VK_RIGHT))		cam1.rotateLeftRight(-0.5);
 	if (GetAsyncKeyState(VK_ADD))		cam1.zoomInOut(-0.5);
 	if (GetAsyncKeyState(VK_SUBTRACT))	cam1.zoomInOut(0.5);
-	if (GetAsyncKeyState(VK_UP))		cam1.rotateUpDown(-0.5);
-	if (GetAsyncKeyState(VK_DOWN))		cam1.rotateUpDown(0.5);
+	if (GetAsyncKeyState(VK_UP))		cam1.rotateUpDown(-0.8);
+	if (GetAsyncKeyState(VK_DOWN))		cam1.rotateUpDown(0.8);
 };

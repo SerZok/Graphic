@@ -24,6 +24,7 @@ private:
 	};
 	void recalculateModelMatrix();
 public:
+	Object(){}
 	void set_angle(float grad);
 	void set_position(vec3 postition);
 	void set_color(vec3 color);
