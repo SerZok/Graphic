@@ -1,4 +1,9 @@
 #include "Object.h"
+Object::Object() {
+	position = vec3(0, 0, 0);
+	angle = 0;
+	color = vec3(0, 0, 0);
+}
 
 void Object::draw() {
 	glColor3f(color.r, color.g, color.b);
