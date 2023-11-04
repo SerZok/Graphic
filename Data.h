@@ -13,17 +13,13 @@
 #include "Object.h"
 #include "Light.h"
 
-extern float mCurrentTick;
-
 extern vector<vec3> mTeapotColors;
 extern vector<Object> GrObjects;
-extern Camera cam1;
+extern Camera mCam;
 extern POINT MouseXY;
 extern int SizeWindowX;
 extern int SizeWindowY;
-extern int myTick;
+extern float mCurrentTick;
 extern Light mLight;
-
-
 
 void initData();

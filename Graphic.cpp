@@ -35,10 +35,6 @@ void keyboardFunc(unsigned char key, int x, int y) {
 int main(int argc, char** argv){
 	setlocale(LC_ALL, "ru");
 
-	//PhongMaterial  mat1;
-	//mat1.load("Materials\\test.txt");
-	//mat1.apply();
-
 	// инициализация библиотеки GLUT
 	glutInit(&argc, argv);
 	// инициализация дисплея (формат вывода)

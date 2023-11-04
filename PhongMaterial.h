@@ -18,7 +18,6 @@ private:
 	vec4 specular;	// зеркальная составляющая
 	vec4 emission;	// самосвечение
 	float shininess;// степень отполированности
-
 public:
 	PhongMaterial();
 	void setAmbient(vec4);
@@ -27,5 +26,14 @@ public:
 	void setEmission(vec4);
 	void setShininess(float );
 	void load(std::string filename);
-	void apply(void);
+	void apply();
+
+	void Show(){
+		cout << "\nMaterial: "<<this << endl;
+		cout << "ambient :" << ambient.r << ' ' << ambient.g << ' ' << ambient.b << ' ' << ambient.a << endl;
+		cout << "diffuse :" << diffuse.r << ' ' << diffuse.g << ' ' << diffuse.b << ' ' << diffuse.a << endl;
+		cout << "specular :" << specular.r << ' ' << specular.g << ' ' << specular.b << ' ' << specular.a << endl;
+		cout << "emission :" << emission.r << ' ' << emission.g << ' ' << emission.b << ' ' << emission.a << endl;
+		cout << "shiness :" << shininess << endl;
+	}
 };

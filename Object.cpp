@@ -7,17 +7,17 @@ Object::Object() {
 }
 
 void Object:: set_material(PhongMaterial* mat) {
-	cout << mat <<endl;
 	material = mat;
+	material->apply();
 }
 
 void Object::draw() {
 	glColor3f(color.r, color.g, color.b);
-
+	
 	if (material != nullptr) {
-		material->apply();
+		//material->apply();
 	}
-
+	
 	glPushMatrix();
 	recalculateModelMatrix();
 	glMultMatrixf(modelMatrix);
@@ -39,27 +39,13 @@ void Object::recalculateModelMatrix() {
 	modelMatrix[10] = cos(rad);
 }
 
-void Object::set_angle(float rad) {
-	Object::angle = rad;
-}
-
-void Object::set_color(vec3 color) {
-	Object::color = color;
-}
-
+void Object::set_angle(float rad) { Object::angle = rad; }
+void Object::set_color(vec3 color) {Object::color = color;}
 void Object::set_position(vec3 position) {
 	Object::position = position;
 	recalculateModelMatrix();
 }
 
-float Object::get_angle() {
-	return Object::angle;
-}
-
-vec3 Object::get_color() {
-	return Object::color;
-}
-
-vec3 Object::get_position() {
-	return Object::position;
-}
+float Object::get_angle() {	return Object::angle;}
+vec3 Object::get_color() {	return Object::color;}
+vec3 Object::get_position() {	return Object::position;}
