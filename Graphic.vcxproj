@@ -148,12 +148,16 @@
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Simulation.cpp" />
+    <ClCompile Include="Light.cpp" />
+    <ClCompile Include="PhongMaterial.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="Display.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="PhongMaterial.h" />
     <ClInclude Include="Simulation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

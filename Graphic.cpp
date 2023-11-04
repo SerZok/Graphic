@@ -15,10 +15,8 @@
 using namespace std;
 using namespace glm;
 
-
 // функция, вызываемая при изменении размеров окна
-void reshape(int w, int h)
-{
+void reshape(int w, int h){
 	// установить новую область просмотра, равную всей области окна
 	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 
@@ -34,20 +32,21 @@ void keyboardFunc(unsigned char key, int x, int y) {
 	std::cout << "KEY: " << (short)key << " " << key << "\n";
 };
 
-
-int main(int argc, char** argv)
-{
+int main(int argc, char** argv){
 	setlocale(LC_ALL, "ru");
+
+	//PhongMaterial  mat1;
+	//mat1.load("Materials\\test.txt");
+	//mat1.apply();
 
 	// инициализация библиотеки GLUT
 	glutInit(&argc, argv);
 	// инициализация дисплея (формат вывода)
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);
 
-	// СОЗДАНИЕ ОКНА:
-	glutInitWindowPosition(50, 10);
+	glutInitWindowPosition(50, 50);
 	glutInitWindowSize(SizeWindowX, SizeWindowY);
-	glutCreateWindow("Teapot");
+	glutCreateWindow("AOKG");
 
 	initData();
 

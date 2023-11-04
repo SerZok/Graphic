@@ -1,11 +1,28 @@
 #include "Object.h"
+Object::Object() {
+	material=nullptr;
+	position = vec3(0, 0, 0);
+	angle = 0;
+	color = vec3(0, 0, 0);
+}
+
+void Object:: set_material(PhongMaterial* mat) {
+	//cout << mat <<endl;
+	material = mat;
+	material->apply();
+}
 
 void Object::draw() {
 	glColor3f(color.r, color.g, color.b);
+
+	if (material != nullptr) {
+		//material->apply();
+	}
+
 	glPushMatrix();
 	recalculateModelMatrix();
 	glMultMatrixf(modelMatrix);
-	glutWireTeapot(1.0);
+	glutSolidTeapot(1.0);
 	glPopMatrix();
 }
 

@@ -1,12 +1,12 @@
 #include "Camera.h"
 
-Camera::Camera()
-{
+Camera::Camera(){
 	position = vec3(0, 0, 0);
 	r = 1.0f;
 	angleX = 0.0f;
 	angleY = 0.0f;
 }
+
 Camera::Camera(vec3 pos) {
 	setPosition(pos);
 }
@@ -17,8 +17,7 @@ void Camera::apply() {
 	gluLookAt(position.x, position.y, position.z, 0, 0, 0, 0, 1, 0);
 }
 
-void Camera::recalculatePosition()
-{
+void Camera::recalculatePosition(){
 	float rad_y = radians(angleY);
 	float rad_x = radians(angleX);
 	position.x = r * sin(rad_y) * cos(rad_x);
@@ -26,37 +25,22 @@ void Camera::recalculatePosition()
 	position.z = r * sin(rad_y) * sin(rad_x);
 }
 
-void Camera::rotateLeftRight(float degree)
-{
+void Camera::rotateLeftRight(float degree){
 	angleX += degree;
 	recalculatePosition();
 }
-void Camera::rotateUpDown(float degree)
-{
+
+void Camera::rotateUpDown(float degree){
 	angleY += degree;
-	if (angleY > 80)
-	{
-		angleY = 80;
-	}
-	if (angleY < 5)
-	{
-		angleY = 5;
-	}
+	if (angleY > 179) angleY = 179;
+	if (angleY < 5) angleY = 5;
 	recalculatePosition();
 }
 
-void Camera::zoomInOut(float distance)
-{
+void Camera::zoomInOut(float distance){
 	r += distance;
-	std::cout << "Distance = " << r << std::endl;
-	if (r > 60)
-	{
-		r = 60;
-	}
-	if (r < 10)
-	{
-		r = 10;
-	}
+	if (r > 60) r = 60;
+	if (r < 5) r = 5;
 	recalculatePosition();
 }
 
