@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 ﻿  Data.cpp
 Light.obj : warning LNK4205: в "" отсутствует текущие отладочные данные для ссылок на модуль; компоновка объекта выполняется как при отсутствии отладочных данных
   Graphic.vcxproj -> C:\STUDY\АОКГ\4\GL\Graphic\x64\Debug\Graphic.exe
+=======
+﻿  Object.cpp
+C:\Projects\AOKG\5\Graphic\Object.cpp(34,12): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+  Graphic.vcxproj -> C:\Projects\AOKG\5\Graphic\x64\Debug\Graphic.exe
+>>>>>>> 92be44369172a7bb7108788e4360bef0f3d66760

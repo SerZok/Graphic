@@ -2,7 +2,11 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
+<<<<<<< HEAD
       <FullPath>C:\STUDY\АОКГ\4\GL\Graphic\x64\Debug\Graphic.exe</FullPath>
+=======
+      <FullPath>C:\Projects\AOKG\5\Graphic\x64\Debug\Graphic.exe</FullPath>
+>>>>>>> 92be44369172a7bb7108788e4360bef0f3d66760
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

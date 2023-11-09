@@ -21,7 +21,12 @@ void Light::setAmbient(vec4 amb) {ambient = amb;}
 void Light::setDiffuse(vec4 dif) {diffuse = dif;}
 void Light::setSpecular(vec4 spec) {specular = spec;}
 
+<<<<<<< HEAD
 void Light::apply(GLenum LightNumber) {
+=======
+
+void Light::apply(GLenum LightNumber=GL_LIGHT0) {
+>>>>>>> 92be44369172a7bb7108788e4360bef0f3d66760
 	glEnable(LightNumber);
 	GLfloat AMBIENT[4] = { ambient.r, ambient.g, ambient.b, ambient.a };
 	GLfloat DIFFUSE[4] = { diffuse.r, diffuse.g, diffuse.b, diffuse.a };
