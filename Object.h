@@ -18,7 +18,7 @@ private:
 	vec3 position;
 	float angle;
 	vec3 color;
-	PhongMaterial* material;
+	shared_ptr <PhongMaterial> material;
 
 	GLfloat modelMatrix[16] = {
 		 1.0, 0.0, 0.0, 0.0, // ось Ox
@@ -36,5 +36,5 @@ public:
 	vec3 get_position();
 	vec3 get_color();
 	float get_angle();
-	void set_material(PhongMaterial *);
+	void set_material(shared_ptr <PhongMaterial>);
 };
