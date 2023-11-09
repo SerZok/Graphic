@@ -36,4 +36,7 @@ public:
 		cout << specular.r << ' ' << specular.g << ' ' << specular.b << ' ' << specular.a<<endl;
 		cout << emission.r << ' ' << emission.g << ' ' << emission.b << ' ' << emission.a << endl;
 	}
+	~PhongMaterial() {
+		cout << "Distructor material" << endl;
+	}
 };

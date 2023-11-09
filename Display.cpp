@@ -27,8 +27,7 @@ void display(void)
 	cam1.apply();
 
 	mLight.apply(GL_LIGHT0);
-
-
+	
 	for (auto& obj : GrObjects) { obj.draw(); }
 
 	// смена переднего и заднего буферов

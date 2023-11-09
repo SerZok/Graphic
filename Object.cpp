@@ -6,18 +6,15 @@ Object::Object() {
 	color = vec3(0, 0, 0);
 }
 
-void Object:: set_material(PhongMaterial* mat) {
-	//cout << mat <<endl;
+void Object:: set_material( shared_ptr <PhongMaterial> mat) {
+	cout << material<<' '<<mat<<endl;
 	material = mat;
-	material->apply();
 }
 
 void Object::draw() {
 	glColor3f(color.r, color.g, color.b);
 
-	if (material != nullptr) {
-		//material->apply();
-	}
+	if (material!=nullptr) material->apply();
 
 	glPushMatrix();
 	recalculateModelMatrix();

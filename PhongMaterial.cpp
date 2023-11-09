@@ -44,8 +44,8 @@ void PhongMaterial::load(std::string filename) {
 	}
 }
 
-void PhongMaterial::apply(void) {
-	Show();
+void PhongMaterial::apply() {
+	//Show();
 
 	GLfloat AMBIENT[4] = { ambient.r, ambient.g, ambient.b, ambient.a };
 	GLfloat DIFFUSE[4] = { diffuse.r, diffuse.g, diffuse.b, diffuse.a };
