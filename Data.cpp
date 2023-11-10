@@ -26,6 +26,7 @@ void initData() {
 
 	Mesh m1;
 	m1.load("data//Meshes//Box.obj");
+	m1.Show();
 
 	pmat1 = make_shared <PhongMaterial>();
 	pmat2 = make_shared <PhongMaterial>();

@@ -24,6 +24,7 @@ public:
 	Mesh();
 	void load(std::string);
 	void draw();
+	void Show();
 private:
 	std::vector<Vertex>vertices;
 };
