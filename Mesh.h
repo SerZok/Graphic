@@ -22,6 +22,8 @@ struct Vertex {
 class Mesh {
 public:
 	Mesh();
+	//show vertex params
+	void Show();
 	void load(std::string);
 	void draw();
 private:

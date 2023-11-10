@@ -13,7 +13,6 @@
 #include "Camera.h"
 #include "Object.h"
 #include "Light.h"
-#include "Mesh.h"
 
 extern float mCurrentTick;
 
