@@ -14,7 +14,7 @@ int SizeWindowY=600;
 void initData() {
 	Object obj1, obj2, obj3, obj4;
 
-	mLight.setAmbient(vec4(1, 1, 1, 1));
+	mLight.setAmbient(vec4(0, 0, 0, 1));
 	mLight.setDiffuse(vec4(1, 1, 1, 1));
 	mLight.setSpecular(vec4(1, 1, 1, 1));
 	mLight.setPosition(vec4(0, 10, 0, 1));
@@ -22,17 +22,20 @@ void initData() {
 	PhongMaterial mat1, mat2, mat3, mat4;
 
 	vector< shared_ptr <PhongMaterial>> Materials;
-
 	shared_ptr <PhongMaterial> pmat1,pmat2,pmat3,pmat4;
+
+	Mesh m1;
+	m1.load("data//Meshes//Box.obj");
+
 	pmat1 = make_shared <PhongMaterial>();
 	pmat2 = make_shared <PhongMaterial>();
 	pmat3 = make_shared <PhongMaterial>();
 	pmat4 = make_shared <PhongMaterial>();
 
-	pmat1->load("Materials//Material1.txt");
-	pmat2->load("Materials//Material2.txt");
-	pmat3->load("Materials//Material3.txt");
-	pmat4->load("Materials//Material4.txt");
+	pmat1->load("data//Materials//Material1.txt");
+	pmat2->load("data//Materials//Material2.txt");
+	pmat3->load("data//Materials//Material3.txt");
+	pmat4->load("data//Materials//Material4.txt");
 
 	Materials.push_back(pmat1);
 	Materials.push_back(pmat2);

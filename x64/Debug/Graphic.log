@@ -1,9 +1,2 @@
-﻿  Display.cpp
-C:\STUDY\АОКГ\4\GL\Graphic\Display.cpp(5,15): warning C4244: инициализация: преобразование "time_t" в "int", возможна потеря данных
-C:\STUDY\АОКГ\4\GL\Graphic\Display.cpp(8,19): warning C4244: =: преобразование "time_t" в "int", возможна потеря данных
-C:\STUDY\АОКГ\4\GL\Graphic\Display.cpp(10,22): warning C4244: =: преобразование "float" в "int", возможна потеря данных
-C:\STUDY\АОКГ\4\GL\Graphic\Display.cpp(18,30): warning C4305: аргумент: усечение из "double" в "GLclampf"
-C:\STUDY\АОКГ\4\GL\Graphic\Display.cpp(18,25): warning C4305: аргумент: усечение из "double" в "GLclampf"
-C:\STUDY\АОКГ\4\GL\Graphic\Display.cpp(18,20): warning C4305: аргумент: усечение из "double" в "GLclampf"
-C:\STUDY\АОКГ\4\GL\Graphic\Display.cpp(18,15): warning C4305: аргумент: усечение из "double" в "GLclampf"
+﻿  Mesh.cpp
   Graphic.vcxproj -> C:\STUDY\АОКГ\4\GL\Graphic\x64\Debug\Graphic.exe

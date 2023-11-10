@@ -1,6 +1,6 @@
 #include "Display.h"
 #include "Data.h"
-#include <string>
+
 
 int init_time = time(NULL),final_time, FPS;
 
