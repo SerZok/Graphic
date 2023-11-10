@@ -1,2 +1,19 @@
-﻿  Graphic.cpp
-  Graphic.vcxproj -> C:\Projects\AOKG\4\Graphic\x64\Debug\Graphic.exe
+﻿  Data.cpp
+  Display.cpp
+C:\STUDY\АОКГ\4\GL\Graphic\Display.cpp(5,15): warning C4244: инициализация: преобразование "time_t" в "int", возможна потеря данных
+C:\STUDY\АОКГ\4\GL\Graphic\Display.cpp(8,19): warning C4244: =: преобразование "time_t" в "int", возможна потеря данных
+C:\STUDY\АОКГ\4\GL\Graphic\Display.cpp(10,22): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+C:\STUDY\АОКГ\4\GL\Graphic\Display.cpp(18,30): warning C4305: аргумент: усечение из "double" в "GLclampf"
+C:\STUDY\АОКГ\4\GL\Graphic\Display.cpp(18,25): warning C4305: аргумент: усечение из "double" в "GLclampf"
+C:\STUDY\АОКГ\4\GL\Graphic\Display.cpp(18,20): warning C4305: аргумент: усечение из "double" в "GLclampf"
+C:\STUDY\АОКГ\4\GL\Graphic\Display.cpp(18,15): warning C4305: аргумент: усечение из "double" в "GLclampf"
+  Graphic.cpp
+  Object.cpp
+C:\STUDY\АОКГ\4\GL\Graphic\Object.cpp(31,12): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+  PhongMaterial.cpp
+  Simulation.cpp
+C:\STUDY\АОКГ\4\GL\Graphic\Simulation.cpp(19,51): warning C4305: аргумент: усечение из "double" в "float"
+C:\STUDY\АОКГ\4\GL\Graphic\Simulation.cpp(20,52): warning C4305: аргумент: усечение из "double" в "float"
+  Создание кода...
+  LINK : не найден или не выполнена сборка C:\STUDY\АОКГ\4\GL\Graphic\x64\Debug\Graphic.exe при последней инкрементной компоновке; выполняется полная компоновка
+  Graphic.vcxproj -> C:\STUDY\АОКГ\4\GL\Graphic\x64\Debug\Graphic.exe
