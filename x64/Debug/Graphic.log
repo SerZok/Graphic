@@ -1,3 +1,3 @@
-﻿  Mesh.cpp
-C:\Projects\AOKG\Graphic\Mesh.cpp(105,45): warning C4267: аргумент: преобразование из "size_t" в "GLsizei"; возможна потеря данных
-  Graphic.vcxproj -> C:\Projects\AOKG\Graphic\x64\Debug\Graphic.exe
+﻿  Object.cpp
+C:\STUDY\АОКГ\Graphic\Object.cpp(35,12): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+  Graphic.vcxproj -> C:\STUDY\АОКГ\Graphic\x64\Debug\Graphic.exe

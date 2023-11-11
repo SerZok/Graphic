@@ -33,3 +33,14 @@
 /.vs/Graphic/v17/Browse.VC.opendb
 *.ipch
 *.vsidx
+/.vs/Graphic/v17/.suo
+/.vs/Graphic/v17/Browse.VC.db
+/.vs/Graphic/v17/Browse.VC.db-shm
+/x64/Debug/Graphic.tlog/CL.command.1.tlog
+/x64/Debug/Graphic.tlog/Cl.items.tlog
+/x64/Debug/Graphic.tlog/CL.read.1.tlog
+/x64/Debug/Graphic.tlog/CL.write.1.tlog
+/x64/Debug/Graphic.tlog/Graphic.lastbuildstate
+/x64/Debug/Graphic.tlog/link.command.1.tlog
+/x64/Debug/Graphic.tlog/link.read.1.tlog
+/x64/Debug/Graphic.tlog/link.write.1.tlog

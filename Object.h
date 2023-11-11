@@ -12,8 +12,8 @@
 #include "Mesh.h"
 
 using namespace glm;
-// йкюяя дкъ опедярюбкемхъ ндмнцн цпютхвеяйнцн назейрю
 
+// йкюяя дкъ опедярюбкемхъ ндмнцн цпютхвеяйнцн назейрю
 class Object {
 private:
 	vec3 position;

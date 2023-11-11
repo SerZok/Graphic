@@ -52,6 +52,7 @@ void Mesh::load(std::string filename) {
 				iss >> num21 >> slash >> num22 >> slash >> num23;
 				iss >> num31 >> slash >> num32 >> slash >> num33;
 
+
 				fPoints.push_back(ivec3(num11, num12, num13));
 				fPoints.push_back(ivec3(num21, num22, num23));
 				fPoints.push_back(ivec3(num31, num32, num33));
@@ -67,13 +68,13 @@ void Mesh::load(std::string filename) {
 					vert.coord[2] = v[fPoints[i].x - 1].z;
 				}
 				else if (j == 1) {
-					vert.normal[0] = n[fPoints[i].y - 1].x;
-					vert.normal[1] = n[fPoints[i].y - 1].y;
-					vert.normal[2] = n[fPoints[i].y - 1].z;
+					vert.texCoord[0] = t[fPoints[i].y - 1].x;
+					vert.texCoord[1] = t[fPoints[i].y - 1].y;
 				}
 				else{
-					vert.texCoord[0] = t[fPoints[i].z - 1].x;
-					vert.texCoord[1] = t[fPoints[i].z - 1].y;
+					vert.normal[0] = n[fPoints[i].z - 1].x;
+					vert.normal[1] = n[fPoints[i].z - 1].y;
+					vert.normal[2] = n[fPoints[i].z - 1].z;
 				}
 			}
 			vertices.push_back(vert);
@@ -99,10 +100,10 @@ void Mesh::draw() {
 	//”казатель на первую координату первого элемента в массиве.
 	GLfloat* t = &vertices[0].texCoord[0];
 	
-	glVertexPointer	(3, GL_FLOAT, 0, x);
-	glNormalPointer	(GL_FLOAT, 0, n);
-	glTexCoordPointer(2, GL_FLOAT, 0, t);
-	glDrawArrays(GL_TRIANGLES,0,vertices.size());
+	glVertexPointer		(3, GL_FLOAT, sizeof(Vertex), x);
+	glNormalPointer		(GL_FLOAT, sizeof(Vertex), n);
+	glTexCoordPointer	(2, GL_FLOAT, sizeof(Vertex), t);
+	glDrawArrays		(GL_TRIANGLES,0,vertices.size());
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_NORMAL_ARRAY);

@@ -25,5 +25,4 @@ extern int SizeWindowY;
 extern int myTick;
 extern Light mLight;
 
-
 void initData();

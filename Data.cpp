@@ -12,6 +12,31 @@ int SizeWindowX=800;
 int SizeWindowY=600;
 
 void initData() {
+	// карта проходимости
+	int passabilityMap[21][21] = {
+	 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
+	 3,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,0,0,3,
+	 3,0,2,1,2,0,2,0,2,2,2,1,2,0,2,0,2,0,2,2,3,
+	 3,0,2,0,2,0,0,0,2,0,2,0,0,0,2,0,1,0,0,0,3,
+	 3,0,1,0,2,2,1,2,2,0,2,0,2,2,2,1,2,0,2,0,3,
+	 3,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,2,0,2,0,3,
+	 3,0,2,2,1,1,2,0,2,0,2,2,2,2,2,0,2,2,2,0,3,
+	 3,0,2,0,0,0,2,0,2,0,0,0,0,0,2,0,0,0,0,0,3,
+	 3,0,2,0,2,2,2,0,2,0,2,2,1,2,2,2,1,2,2,0,3,
+	 3,0,0,0,2,0,0,0,2,0,2,0,0,0,0,0,0,0,1,0,3,
+	 3,2,2,2,2,0,2,2,2,0,2,0,2,2,2,2,2,2,2,0,3,
+	 3,0,0,0,2,0,0,0,1,0,2,0,0,0,2,0,0,0,0,0,3,
+	 3,0,2,0,2,2,2,0,2,1,2,0,2,2,2,0,2,2,2,2,3,
+	 3,0,2,0,0,0,2,0,0,0,2,0,0,0,2,0,2,0,0,0,3,
+	 3,2,2,2,2,0,2,2,2,0,2,2,2,0,1,0,2,2,2,0,3,
+	 3,0,0,0,0,0,2,0,2,0,0,0,2,0,1,0,0,0,2,0,3,
+	 3,0,2,0,2,1,2,0,2,0,2,2,2,0,2,2,2,0,2,0,3,
+	 3,0,1,0,1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,3,
+	 3,0,2,1,2,0,2,2,2,2,2,0,2,0,2,0,2,2,2,2,3,
+	 3,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,3,
+	 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
+	};
+
 	Object obj1, obj2, obj3, obj4;
 
 	mLight.setAmbient(vec4(0, 0, 0, 1));
@@ -19,6 +44,7 @@ void initData() {
 	mLight.setSpecular(vec4(1, 1, 1, 1));
 	mLight.setPosition(vec4(0, 10, 0, 1));
 
+	vector<shared_ptr<Mesh>> Meshes;
 	vector< shared_ptr <PhongMaterial>> Materials;
 	shared_ptr <PhongMaterial> pmat1,pmat2,pmat3,pmat4;
 
@@ -35,7 +61,6 @@ void initData() {
 	Materials.push_back(pmat3);
 	Materials.push_back(pmat4);
 
-	vector<shared_ptr<Mesh>> meshes;
 	shared_ptr <Mesh> mesh1, mesh2, mesh3, mesh4;
 
 	mesh1 = make_shared <Mesh>();
@@ -43,31 +68,30 @@ void initData() {
 	mesh3 = make_shared <Mesh>();
 	mesh4 = make_shared <Mesh>();
 	mesh1->load("data//Meshes//Box.obj");
-	//mesh2->load("data//Meshes//ChamferBox.obj");
-	//mesh3->load("data//Meshes//SimplePlane.obj");
-	//mesh4->load("data//Meshes//Sphere.obj");
-	meshes.push_back(mesh1);
-	meshes.push_back(mesh2);
-	meshes.push_back(mesh3);
-	meshes.push_back(mesh4);
+	mesh2->load("data//Meshes//ChamferBox.obj");
+	mesh3->load("data//Meshes//SimplePlane.obj");
+	mesh4->load("data//Meshes//Sphere.obj");
+	Meshes.push_back(mesh1);
+	Meshes.push_back(mesh2);
+	Meshes.push_back(mesh3);
+	Meshes.push_back(mesh4);
 
-	//mesh3.get()->Show();
-
+	//materials
 	obj1.set_material(Materials[0]);
-	obj1.set_mesh(meshes[0]);
-	obj1.set_angle(180.0f);
-	obj1.set_position(vec3(4, 0, 0));
-
 	obj2.set_material(Materials[1]);
-	obj2.set_angle(0.0f);
-	obj2.set_position(vec3(-4, 0, 0));
-
 	obj3.set_material(Materials[2]);
-	obj3.set_angle(-90.0f);
-	obj3.set_position(vec3(0, 0, 4));
-
 	obj4.set_material(Materials[3]);
-	obj4.set_angle(90.0f);
+
+	//meshes
+	obj1.set_mesh(Meshes[0]);
+	obj2.set_mesh(Meshes[1]);
+	obj3.set_mesh(Meshes[2]);
+	obj4.set_mesh(Meshes[3]);
+
+	//postions
+	obj1.set_position(vec3(4, 10, 0));
+	obj2.set_position(vec3(-4, 5, 0));
+	obj3.set_position(vec3(0, -10, 4));
 	obj4.set_position(vec3(0, 0, -4));
 
 	GrObjects.push_back(obj1);

@@ -17,13 +17,12 @@ void Object::set_mesh(shared_ptr <Mesh> mesh) {
 void Object::draw() {
 	glColor3f(color.r, color.g, color.b);
 
+	recalculateModelMatrix();
 	if (material!=nullptr) material->apply();
-	if (mesh != nullptr)   mesh->draw();
 
 	glPushMatrix();
-	recalculateModelMatrix();
 	glMultMatrixf(modelMatrix);
-	glutSolidTeapot(1.0);
+	if (mesh != nullptr)   mesh->draw();
 	glPopMatrix();
 }
 
@@ -51,7 +50,7 @@ void Object::set_color(vec3 color) {
 
 void Object::set_position(vec3 position) {
 	Object::position = position;
-	recalculateModelMatrix();
+	//recalculateModelMatrix();
 }
 
 float Object::get_angle() {
