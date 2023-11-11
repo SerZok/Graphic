@@ -25,7 +25,10 @@ void display(){
 	cam1.apply();
 	mLight.apply(GL_LIGHT0);
 
-	for (auto& obj : GrObjects) { obj.draw(); }
+	for (auto& obj : GrObjects) { 
+		obj.set_angle(cam1.getAngleX());//Чайники смотрят в камеру отосительно X
+		obj.draw(); 
+	}
 
 	// смена переднего и заднего буферов
 	glutSwapBuffers();

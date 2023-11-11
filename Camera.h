@@ -21,6 +21,7 @@ public:
 	void apply();
 	void setPosition(vec3 pos);
 	vec3 getPostion() { return position; };
+	float getAngleX() { return angleX; };
 
 	void rotateLeftRight(float degree);
 	void rotateUpDown(float degree);
