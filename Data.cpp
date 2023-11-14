@@ -1,21 +1,24 @@
 #include "Data.h"
 
+int SizeWindowX=800;
+int SizeWindowY=600;
 float mCurrentTick=0.0;
-Camera cam1(vec3(10,15,15));
 int myTick = 0;
+Camera cam1(vec3(0,30,40));
 vector<vec3> mTeapotColors;
-vector<Object> GrObjects;
 POINT MouseXY;
 Light mLight;
 
-int SizeWindowX=800;
-int SizeWindowY=600;
+// список игровых объектов расположенных на карте
+shared_ptr<GameObject>mapObjects[21][21];
+vector<shared_ptr<Mesh>> Meshes;
+vector<shared_ptr<PhongMaterial>> Materials;
+Object planeGrObject;//Для полскости
 
-void initData() {
 	// карта проходимости
-	int passabilityMap[21][21] = {
+int passabilityMap[21][21] = {
 	 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
-	 3,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,0,0,3,
+	 3,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,4,0,3,
 	 3,0,2,1,2,0,2,0,2,2,2,1,2,0,2,0,2,0,2,2,3,
 	 3,0,2,0,2,0,0,0,2,0,2,0,0,0,2,0,1,0,0,0,3,
 	 3,0,1,0,2,2,1,2,2,0,2,0,2,2,2,1,2,0,2,0,3,
@@ -37,32 +40,33 @@ void initData() {
 	 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
 	};
 
-	Object obj1, obj2, obj3, obj4;
-
+void initData() {
+	//Свет
 	mLight.setAmbient(vec4(0, 0, 0, 1));
 	mLight.setDiffuse(vec4(1, 1, 1, 1));
 	mLight.setSpecular(vec4(1, 1, 1, 1));
-	mLight.setPosition(vec4(0, 10, 0, 1));
-
-	vector<shared_ptr<Mesh>> Meshes;
-	vector< shared_ptr <PhongMaterial>> Materials;
-	shared_ptr <PhongMaterial> pmat1,pmat2,pmat3,pmat4;
-
+	mLight.setPosition(vec4(0, 20, 0, 1));
+	 
+	//Материал
+	shared_ptr <PhongMaterial> pmat1,pmat2,pmat3, pmat4, pmat5;
 	pmat1 = make_shared <PhongMaterial>();
 	pmat2 = make_shared <PhongMaterial>();
 	pmat3 = make_shared <PhongMaterial>();
 	pmat4 = make_shared <PhongMaterial>();
-	pmat1->load("data//Materials//Material1.txt");
-	pmat2->load("data//Materials//Material2.txt");
-	pmat3->load("data//Materials//Material3.txt");
-	pmat4->load("data//Materials//Material4.txt");
+	pmat5 = make_shared <PhongMaterial>();
+	pmat1->load("data//Materials//Border.txt");
+	pmat2->load("data//Materials//Box.txt");
+	pmat3->load("data//Materials//ChamferBox.txt");
+	pmat4->load("data//Materials//Plane.txt");
+	pmat5->load("data//Materials//Sphere.txt");
 	Materials.push_back(pmat1);
 	Materials.push_back(pmat2);
 	Materials.push_back(pmat3);
 	Materials.push_back(pmat4);
+	Materials.push_back(pmat5);
 
+	//Меши
 	shared_ptr <Mesh> mesh1, mesh2, mesh3, mesh4;
-
 	mesh1 = make_shared <Mesh>();
 	mesh2 = make_shared <Mesh>();
 	mesh3 = make_shared <Mesh>();
@@ -76,26 +80,56 @@ void initData() {
 	Meshes.push_back(mesh3);
 	Meshes.push_back(mesh4);
 
-	//materials
-	obj1.set_material(Materials[0]);
-	obj2.set_material(Materials[1]);
-	obj3.set_material(Materials[2]);
-	obj4.set_material(Materials[3]);
+	Object Box, ChamferBox, Sphere;
 
-	//meshes
-	obj1.set_mesh(Meshes[0]);
-	obj2.set_mesh(Meshes[1]);
-	obj3.set_mesh(Meshes[2]);
-	obj4.set_mesh(Meshes[3]);
+	Box.set_mesh(Meshes[0]);
+	ChamferBox.set_mesh(Meshes[1]);
+	planeGrObject.set_mesh(Meshes[2]);
+	Sphere.set_mesh(Meshes[3]);
+	Sphere.set_material(Materials[3]);
+	Sphere.set_position(vec3(0, 0, 0));
 
-	//postions
-	obj1.set_position(vec3(4, 10, 0));
-	obj2.set_position(vec3(-4, 5, 0));
-	obj3.set_position(vec3(0, -10, 4));
-	obj4.set_position(vec3(0, 0, -4));
 
-	GrObjects.push_back(obj1);
-	GrObjects.push_back(obj2);
-	GrObjects.push_back(obj3);
-	GrObjects.push_back(obj4);
+	/*
+	pmat1->load("data//Materials//Border.txt");			0
+	pmat2->load("data//Materials//Box.txt");			1
+	pmat3->load("data//Materials//ChamferBox.txt");		2
+	pmat4->load("data//Materials//Plane.txt");			3
+	pmat5->load("data//Materials//Sphere.txt");			4
+
+	else if (passabilityMap[i][j] == 4) {
+				mapObjects[i][j] = make_shared<GameObject>();
+				mapObjects[i][j]->setGraphicObject(Sphere);
+				mapObjects[i][j]->setPosition(j, i);
+			}
+	*/
+
+	for (int i = 0; i < 21; i++) {
+		for (int j = 0; j < 21; j++) {
+			if (passabilityMap[i][j] == 0) {
+				mapObjects[i][j] = nullptr;
+				planeGrObject.set_material(Materials[3]);
+			}
+			else if (passabilityMap[i][j] == 1) {//ChamferBox
+				mapObjects[i][j] = make_shared<GameObject>();
+				ChamferBox.set_material(Materials[2]);
+				mapObjects[i][j]->setGraphicObject(ChamferBox);
+				mapObjects[i][j]->setPosition(i, j);
+			}
+			else if(passabilityMap[i][j] == 2){//simple box
+				mapObjects[i][j] = make_shared<GameObject>();
+				Box.set_material(Materials[1]);
+				mapObjects[i][j]->setGraphicObject(Box);
+				mapObjects[i][j]->setPosition(i, j);
+			}
+			else if (passabilityMap[i][j] == 3) {//crainiy box
+				mapObjects[i][j] = make_shared<GameObject>();
+				Box.set_material(Materials[0]);
+				mapObjects[i][j]->setGraphicObject(Box);
+				mapObjects[i][j]->setPosition(i, j);
+			}
+			
+		}
+	}
+
 }
