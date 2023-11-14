@@ -17,8 +17,6 @@ void GameObject::setPosition(ivec2 pos) {
 	position = pos;
 	graphicObject.set_position(vec3(pos.x - 10, 0, pos.y - 10));
 }
-ivec2 GameObject::getPosition() {return position;}
 
-void GameObject::draw() {
-	graphicObject.draw();
-}
+ivec2 GameObject::getPosition() { return position; }
+void GameObject::draw() { graphicObject.draw(); }
