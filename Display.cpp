@@ -24,8 +24,19 @@ void display(){
 
 	cam1.apply();
 	mLight.apply(GL_LIGHT0);
+	planeGrObject.draw();
 
-	for (auto& obj : GrObjects) { obj.draw(); }
+	
+	//for (auto& obj : GrObjects) { obj.draw(); }
+	for (int i = 0; i < 21; i++) {
+		for (int j = 0; j < 21; j++) {
+			if (mapObjects[i][j] != nullptr)
+			{
+				mapObjects[i][j]->draw();
+			}
+		}
+	}
+
 
 	// смена переднего и заднего буферов
 	glutSwapBuffers();

@@ -14,7 +14,7 @@ public:
 	// происходит копирование переданного объекта для последующего использования
 	void setGraphicObject(const Object& graphicObject);
 
-	// установка логических координат (два перегруженных метода для удобства)
+	// установка логических координат
 	void setPosition(int x, int y);
 	void setPosition(ivec2 position);
 
