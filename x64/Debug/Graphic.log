@@ -1,4 +1,9 @@
-﻿  Data.cpp
-  GameObject.cpp
-  Создание кода...
-  Graphic.vcxproj -> C:\STUDY\АОКГ\Graphic\x64\Debug\Graphic.exe
+﻿  Mesh.cpp
+C:\Projects\AOKG\Graphic\Mesh.cpp(38,42): warning C4101: 'num23': unreferenced local variable
+C:\Projects\AOKG\Graphic\Mesh.cpp(38,63): warning C4101: 'num33': unreferenced local variable
+C:\Projects\AOKG\Graphic\Mesh.cpp(38,28): warning C4101: 'num21': unreferenced local variable
+C:\Projects\AOKG\Graphic\Mesh.cpp(38,56): warning C4101: 'num32': unreferenced local variable
+C:\Projects\AOKG\Graphic\Mesh.cpp(38,49): warning C4101: 'num31': unreferenced local variable
+C:\Projects\AOKG\Graphic\Mesh.cpp(38,35): warning C4101: 'num22': unreferenced local variable
+C:\Projects\AOKG\Graphic\Mesh.cpp(155,43): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Graphic.vcxproj -> C:\Projects\AOKG\Graphic\x64\Debug\Graphic.exe
