@@ -5,9 +5,16 @@
 void simulation() {
 	glutPostRedisplay();
 	if (GetAsyncKeyState(VK_LBUTTON)) {
+		int CenterW= glutGet(GLUT_WINDOW_WIDTH)/2;
+		int CenertH= glutGet(GLUT_WINDOW_HEIGHT)/2;
+
+		float mAngleX = CenterW - MouseXY.x;
+		float mAngleY = CenertH - MouseXY.y;
+		float speed = 0.005;
+
 		if (GetCursorPos(&MouseXY)) {
-			cam1.rotateLeftRight(float(SizeWindowX - MouseXY.x) / (SizeWindowX));
-			cam1.rotateUpDown(float(SizeWindowY - MouseXY.y) / (SizeWindowY));
+			cam1.rotateLeftRight(mAngleX*speed);
+			cam1.rotateUpDown(mAngleY*speed);
 			SetCursorPos(MouseXY.x, MouseXY.y);
 		}
 	}
