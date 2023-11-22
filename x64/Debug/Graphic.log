@@ -1,4 +1,3 @@
-﻿  Data.cpp
-  GameObject.cpp
-  Создание кода...
-  Graphic.vcxproj -> C:\STUDY\АОКГ\Graphic\x64\Debug\Graphic.exe
+﻿  Mesh.cpp
+C:\Projects\AOKG\Graphic\Mesh.cpp(134,45): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Graphic.vcxproj -> C:\Projects\AOKG\Graphic\x64\Debug\Graphic.exe

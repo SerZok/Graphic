@@ -15,7 +15,7 @@ void getFPS() {
 
 void display(){
 	// отчищаем буфер цвета и буфер глубины
-	glClearColor(0.1, 0.1, 0.2, 0.3);
+	glClearColor(0.7, 0.7, 0.7, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
@@ -36,7 +36,6 @@ void display(){
 			}
 		}
 	}
-
 
 	// смена переднего и заднего буферов
 	glutSwapBuffers();
