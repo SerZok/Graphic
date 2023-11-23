@@ -4,7 +4,7 @@ int SizeWindowX=800;
 int SizeWindowY=600;
 float mCurrentTick=0.0;
 int myTick = 0;
-Camera cam1(vec3(0,1,50));
+Camera cam1(vec3(50,1,0));
 vector<vec3> mTeapotColors;
 POINT MouseXY;
 Light mLight;
@@ -44,8 +44,8 @@ void initData() {
 	//Свет
 	mLight.setAmbient(vec4(0, 0, 0, 1));
 	mLight.setDiffuse(vec4(1, 1, 1, 1));
-	mLight.setSpecular(vec4(1, 1, 1, 1));
-	mLight.setPosition(vec4(0, 20, 0, 1));
+	mLight.setSpecular(vec4(0, 0, 0, 1));
+	mLight.setPosition(vec4(20, 30, 0, 1));
 	 
 	//Материал
 	shared_ptr <PhongMaterial> pmat1,pmat2,pmat3, pmat4, pmat5;

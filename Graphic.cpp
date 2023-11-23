@@ -26,18 +26,8 @@ void reshape(int w, int h){
 	gluPerspective(25.0, (float)w / h, 0.2, 70.0);
 };
 
-// Функция обработки нажатия клавиш
-void keyboardFunc(unsigned char key, int x, int y) {
-	//printf("Key code is %i\n", key);
-	std::cout << "KEY: " << (short)key << " " << key << "\n";
-};
-
 int main(int argc, char** argv){
 	setlocale(LC_ALL, "ru");
-
-	//PhongMaterial  mat1;
-	//mat1.load("Materials\\test.txt");
-	//mat1.apply();
 
 	// инициализация библиотеки GLUT
 	glutInit(&argc, argv);

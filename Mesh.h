@@ -9,6 +9,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <map>
 
 using namespace glm;
 using namespace std;
@@ -27,5 +28,7 @@ public:
 	void load(std::string);
 	void draw();
 private:
+	//массив вершин
 	std::vector<Vertex>vertices;
+	std::vector<GLuint>indexes;
 };

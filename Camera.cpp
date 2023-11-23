@@ -32,8 +32,8 @@ void Camera::rotateLeftRight(float degree){
 
 void Camera::rotateUpDown(float degree){
 	angleY += degree;
-	if (angleY > 179) angleY = 179;
 	if (angleY < 5) angleY = 5;
+	if (angleY > 150) angleY = 150;
 	recalculatePosition();
 }
 
