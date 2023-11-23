@@ -12,7 +12,7 @@
 
 #include "Camera.h"
 #include "Light.h"
-#include "GameObject.h"
+#include "GameObjectFactory.h"
 
 extern float mCurrentTick;
 extern int SizeWindowX;
@@ -23,7 +23,7 @@ extern int passabilityMap[21][21];
 extern Camera cam1;
 extern POINT MouseXY;
 extern Light mLight;
-extern Object planeGrObject;
+extern Object planeGraphicObject;
 extern vector<vec3> mTeapotColors;
 extern vector<shared_ptr<Mesh>> Meshes;
 extern vector< shared_ptr <PhongMaterial>> Materials;

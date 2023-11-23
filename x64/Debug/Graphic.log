@@ -1,4 +1,3 @@
-﻿  Data.cpp
-  GameObject.cpp
-  Создание кода...
+﻿  GameObjectFactory.cpp
+C:\STUDY\АОКГ\Graphic\GameObjectFactory.cpp(55): warning C4715: GameObjectFactory::init: значение возвращается не при всех путях выполнения
   Graphic.vcxproj -> C:\STUDY\АОКГ\Graphic\x64\Debug\Graphic.exe

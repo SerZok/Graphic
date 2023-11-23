@@ -24,7 +24,7 @@ void display(){
 
 	cam1.apply();
 	mLight.apply(GL_LIGHT0);
-	planeGrObject.draw();
+	//planeGrObject.draw();
 
 	
 	//for (auto& obj : GrObjects) { obj.draw(); }
