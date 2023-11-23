@@ -62,6 +62,10 @@ void Mesh::load(std::string filename) {
 							indexes.push_back(it->second);
 						}
 						else {
+							//Если не нашли, то
+							//Записываем новый индекс в массив индексов,
+							//Создаем вершину
+							//Записываем в массив вершин
 							index++;
 							indexes.push_back(index);
 							vertexToIndexTable.insert(pair<string, int>(keyV, index));
