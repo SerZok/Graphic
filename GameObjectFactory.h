@@ -3,7 +3,7 @@
 #include <fstream>	
 
 #include "GameObject.h"
-#include "rapidjson-master/include/rapidjson/document.h"
+#include "rapidjson/document.h"
 
 using namespace rapidjson;
 

@@ -2,7 +2,7 @@
 
 Mesh::Mesh(){}
 
-//show vertex info (coord/tex.coord/normal)
+//show vertex info (№verterx/coord/tex.coord/normal)
 void Mesh::Show() {
 	for (int i = 0; i < vertices.size(); i++) {
 		cout << "Vertex: #" << i <<"\nID: "<<indexes[i] << endl;
@@ -21,8 +21,6 @@ void Mesh::load(std::string filename) {
 	std::vector<vec3> n;
 	// вектор для хранения текстурных координат
 	std::vector<vec2> t;
-	// вектор для хранения индексов атрибутов, для построения вершин
-	//std::vector<ivec3> fPoints;
 
 	//example: key=(1/2/3) value(id vertex) =1
 	int index=0;
@@ -103,40 +101,9 @@ void Mesh::load(std::string filename) {
 						}
 					}
 				}
-	
-				//fPoints.push_back(ivec3(num11, num12, num13));
-				//fPoints.push_back(ivec3(num21, num22, num23));
-				//fPoints.push_back(ivec3(num31, num32, num33));
 			}
 		}
 		ifile.close();
-		//for (int i = 0; i < indexes.size(); i++) {
-		//	cout << indexes[i] <<endl;
-		//}
-		//Show();
-
-		
-		/*for (auto it = vertexToIndexTable.begin(); it != vertexToIndexTable.end(); it++) {
-			istringstream isst(it->first);
-			int n1, n2, n3;
-			char cd;
-			isst >> n1 >> cd >> n2 >> cd >> n3;
-
-		}*/
-		//for (int i = 0; i < fPoints.size(); i++) { //все вершин fPoints.size() для fPoints.size()/3 полигонов
-		//	for (int j =0; j < 3; j++) { //индексы для вершин (координаты, нормали, координаты текстур)
-		//		vert.coord[0] = v[fPoints[i].x - 1].x;
-		//		vert.coord[1] = v[fPoints[i].x - 1].y;
-		//		vert.coord[2] = v[fPoints[i].x - 1].z;
-		//		vert.texCoord[0] = t[fPoints[i].y - 1].x;
-		//		vert.texCoord[1] = t[fPoints[i].y - 1].y;
-		//		vert.normal[0] = n[fPoints[i].z - 1].x;
-		//		vert.normal[1] = n[fPoints[i].z - 1].y;
-		//		vert.normal[2] = n[fPoints[i].z - 1].z;
-		//	}
-		//	vertices.push_back(vert);
-		//}
-
 	}
 	else {
 		cout << "Error: can't open file! (meshes)" << endl;
@@ -154,7 +121,6 @@ void Mesh::draw() {
 	glNormalPointer		(GL_FLOAT, sizeof(Vertex), &vertices[0].normal[0]);
 	glTexCoordPointer	(2, GL_FLOAT, sizeof(Vertex), &vertices[0].texCoord[0]);
 
-	//glDrawArrays		(GL_TRIANGLES,0,vertices.size());
 	glDrawElements(GL_TRIANGLES, indexes.size(), GL_UNSIGNED_INT, indexes.data());
 
 	glDisableClientState(GL_VERTEX_ARRAY);

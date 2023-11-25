@@ -1,2 +1,10 @@
-﻿  Data.cpp
+﻿  Display.cpp
+C:\Projects\AOKG\Graphic\Display.cpp(5,15): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
+C:\Projects\AOKG\Graphic\Display.cpp(8,19): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
+C:\Projects\AOKG\Graphic\Display.cpp(10,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\AOKG\Graphic\Display.cpp(20,25): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+C:\Projects\AOKG\Graphic\Display.cpp(20,20): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+C:\Projects\AOKG\Graphic\Display.cpp(20,15): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+  main.cpp
+  Generating Code...
   Graphic.vcxproj -> C:\Projects\AOKG\Graphic\x64\Debug\Graphic.exe
