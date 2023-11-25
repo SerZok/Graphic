@@ -2,27 +2,18 @@
 
 Mesh::Mesh(){}
 
-//show vertex info (coord/tex.coord/normal)
-void Mesh::Show() {
-	for (int i = 0; i < vertices.size(); i++) {
-		cout << "Vertex: #" << i <<"\nID: "<<indexes[i] << endl;
-		cout <<"Coord: "<< vertices[i].coord[0] << ' ' << vertices[i].coord[1] << ' ' << vertices[i].coord[2] << endl;
-		cout << "Texture: " << vertices[i].texCoord[0] << ' ' << vertices[i].texCoord[1] << endl;
-		cout <<"Normal: "<< vertices[i].normal[0] << ' ' << vertices[i].normal[1] << ' ' << vertices[i].normal[2]<< endl;
-		cout << endl;
-	}
-	cout << "*************************************" << endl;
-}
-
 void Mesh::load(std::string filename) {
+
+	//массив вершин
+	std::vector<Vertex>vertices;
+	std::vector<GLuint>indexes;
+
 	// вектор дл€ хранени€ геометрических координат
 	std::vector<vec3> v;
 	// вектор дл€ хранени€ нормалей
 	std::vector<vec3> n;
 	// вектор дл€ хранени€ текстурных координат
 	std::vector<vec2> t;
-	// вектор дл€ хранени€ индексов атрибутов, дл€ построени€ вершин
-	//std::vector<ivec3> fPoints;
 
 	//example: key=(1/2/3) value(id vertex) =1
 	int index=0;
@@ -103,45 +94,27 @@ void Mesh::load(std::string filename) {
 						}
 					}
 				}
-	
-				//fPoints.push_back(ivec3(num11, num12, num13));
-				//fPoints.push_back(ivec3(num21, num22, num23));
-				//fPoints.push_back(ivec3(num31, num32, num33));
 			}
 		}
 		ifile.close();
-		//for (int i = 0; i < indexes.size(); i++) {
-		//	cout << indexes[i] <<endl;
-		//}
-		//Show();
-
-		
-		/*for (auto it = vertexToIndexTable.begin(); it != vertexToIndexTable.end(); it++) {
-			istringstream isst(it->first);
-			int n1, n2, n3;
-			char cd;
-			isst >> n1 >> cd >> n2 >> cd >> n3;
-
-		}*/
-		//for (int i = 0; i < fPoints.size(); i++) { //все вершин fPoints.size() дл€ fPoints.size()/3 полигонов
-		//	for (int j =0; j < 3; j++) { //индексы дл€ вершин (координаты, нормали, координаты текстур)
-		//		vert.coord[0] = v[fPoints[i].x - 1].x;
-		//		vert.coord[1] = v[fPoints[i].x - 1].y;
-		//		vert.coord[2] = v[fPoints[i].x - 1].z;
-		//		vert.texCoord[0] = t[fPoints[i].y - 1].x;
-		//		vert.texCoord[1] = t[fPoints[i].y - 1].y;
-		//		vert.normal[0] = n[fPoints[i].z - 1].x;
-		//		vert.normal[1] = n[fPoints[i].z - 1].y;
-		//		vert.normal[2] = n[fPoints[i].z - 1].z;
-		//	}
-		//	vertices.push_back(vert);
-		//}
-
 	}
 	else {
 		cout << "Error: can't open file! (meshes)" << endl;
 		exit(-3);
 	}
+
+
+	glGenBuffers(1, &bufferIds[0]);// —оздать буфер
+	glBindBuffer(GL_ARRAY_BUFFER, bufferIds[0]);//—делать буфер текущим
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * vertices.size(), vertices.data(), GL_STATIC_DRAW);//ѕередать данные
+
+	glGenBuffers(1, &bufferIds[1]);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufferIds[1]);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * indexes.size(), indexes.data(), GL_STATIC_DRAW);
+
+	indexCount = indexes.size();
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 }
 
@@ -149,14 +122,19 @@ void Mesh::draw() {
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+ 
+	glBindBuffer(GL_ARRAY_BUFFER, bufferIds[0]); //¬ыбираем буфер
+	glVertexPointer		(3, GL_FLOAT, sizeof(Vertex), (void*)offsetof(Vertex, coord));
+	glNormalPointer		(GL_FLOAT, sizeof(Vertex), (void*)offsetof(Vertex, normal));
+	glTexCoordPointer	(2, GL_FLOAT, sizeof(Vertex), (void*)offsetof(Vertex, texCoord));
 
-	glVertexPointer		(3, GL_FLOAT, sizeof(Vertex), &vertices[0].coord[0]);
-	glNormalPointer		(GL_FLOAT, sizeof(Vertex), &vertices[0].normal[0]);
-	glTexCoordPointer	(2, GL_FLOAT, sizeof(Vertex), &vertices[0].texCoord[0]);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufferIds[1]);
+	glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, 0);
 
-	//glDrawArrays		(GL_TRIANGLES,0,vertices.size());
-	glDrawElements(GL_TRIANGLES, indexes.size(), GL_UNSIGNED_INT, indexes.data());
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
+	//glDrawElements(GL_TRIANGLES, indexes.size(), GL_UNSIGNED_INT, indexes.data());
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_NORMAL_ARRAY);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);

@@ -1,5 +1,5 @@
-#include "Display.h"
 #include "Data.h"
+#include "Display.h"
 
 
 int init_time = time(NULL),final_time, FPS;
@@ -14,6 +14,8 @@ void getFPS() {
 }
 
 void display(){
+
+
 	// отчищаем буфер цвета и буфер глубины
 	glClearColor(0.7, 0.7, 0.7, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -26,8 +28,6 @@ void display(){
 	mLight.apply(GL_LIGHT0);
 	planeGraphicObject.draw();
 
-	
-	//for (auto& obj : GrObjects) { obj.draw(); }
 	for (int i = 0; i < 21; i++) {
 		for (int j = 0; j < 21; j++) {
 			if (mapObjects[i][j] != nullptr)
@@ -39,5 +39,6 @@ void display(){
 
 	// смена переднего и заднего буферов
 	glutSwapBuffers();
+
 	mCurrentTick++;
 };

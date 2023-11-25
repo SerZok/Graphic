@@ -1,15 +1,19 @@
 #include <iostream>
 #include <windows.h>
 #include <vector>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <map>
+#include <stddef.h>
+
+#include <glew.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include "GL/freeglut.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp> 
-#include <fstream>
-#include <string>
-#include <sstream>
-#include <map>
+
 
 using namespace glm;
 using namespace std;
@@ -28,7 +32,9 @@ public:
 	void load(std::string);
 	void draw();
 private:
-	//массив вершин
-	std::vector<Vertex>vertices;
-	std::vector<GLuint>indexes;
+
+	int indexCount;
+	//0-Вершины, 1-Индексы
+	GLuint bufferIds[2];
+
 };

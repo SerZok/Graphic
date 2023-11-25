@@ -2,8 +2,9 @@
 #include <memory>
 #include <fstream>	
 
+#include "glew.h"
 #include "GameObject.h"
-#include "rapidjson-master/include/rapidjson/document.h"
+#include "rapidjson/document.h"
 
 using namespace rapidjson;
 

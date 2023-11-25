@@ -1,19 +1,13 @@
 ﻿#include <windows.h>
 #include <iostream>
 #include <vector>
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include "GL/freeglut.h"
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp> 
+#include "glew.h"
 
-#include "Display.h"
 #include "Data.h"
+#include "Display.h"
 #include "Simulation.h"
 
 using namespace std;
-using namespace glm;
 
 // функция, вызываемая при изменении размеров окна
 void reshape(int w, int h){
@@ -38,13 +32,25 @@ int main(int argc, char** argv){
 	glutInitWindowSize(SizeWindowX, SizeWindowY);
 	glutCreateWindow("AOKG");
 
+	GLenum err = glewInit();
+	if (GLEW_OK != err)
+	{
+		printf("Error: %s\n", glewGetErrorString(err));
+	}
+	printf("Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
+	// проверка поддержки расширения для работы с буфером VBO
+	if (GLEW_ARB_vertex_buffer_object) {
+		printf("VBO is supported");
+	};
+
 	initData();
 
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutIdleFunc(simulation);
-
 	glutMainLoop();
+
+
 
 	return 0;
 };

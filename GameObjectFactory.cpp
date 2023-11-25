@@ -35,13 +35,6 @@ bool GameObjectFactory:: init(std::string filename) {
 		pMaterial->setShininess(shin);
 		pMaterial->setSpecular(spec);
 		materials.push_back(pMaterial);
-
-		/*materials.push_back(make_shared<PhongMaterial>());
-		materials[materials.size() - 1]->setAmbient(amb);
-		materials[materials.size() - 1]->setDiffuse(dif);
-		materials[materials.size() - 1]->setEmission(emis);
-		materials[materials.size() - 1]->setShininess(shin);
-		materials[materials.size() - 1]->setSpecular(spec);*/
 	}
 }
 
