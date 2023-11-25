@@ -80,45 +80,4 @@ void initData() {
 	planeMaterial->load("data\\materials\\PlaneMaterial.txt");
 	planeGraphicObject.set_material(planeMaterial);
 
-
-	/*
-	pmat1->load("data//Materials//Border.txt");			0
-	pmat2->load("data//Materials//Box.txt");			1
-	pmat3->load("data//Materials//ChamferBox.txt");		2
-	pmat4->load("data//Materials//Plane.txt");			3
-	pmat5->load("data//Materials//Sphere.txt");			4
-
-	else if (passabilityMap[i][j] == 4) {
-				mapObjects[i][j] = make_shared<GameObject>();
-				mapObjects[i][j]->setGraphicObject(Sphere);
-				mapObjects[i][j]->setPosition(j, i);
-			}
-	*/
-
-	//for (int i = 0; i < 21; i++) {
-	//	for (int j = 0; j < 21; j++) {
-	//		if (passabilityMap[i][j] == 0) {
-	//			mapObjects[i][j] = nullptr;
-	//			planeGrObject.set_material(Materials[3]);
-	//		}
-	//		else if (passabilityMap[i][j] == 1) {//ChamferBox
-	//			mapObjects[i][j] = make_shared<GameObject>();
-	//			ChamferBox.set_material(Materials[2]);
-	//			mapObjects[i][j]->setGraphicObject(ChamferBox);
-	//			mapObjects[i][j]->setPosition(i, j);
-	//		}
-	//		else if(passabilityMap[i][j] == 2){//simple box
-	//			mapObjects[i][j] = make_shared<GameObject>();
-	//			Box.set_material(Materials[1]);
-	//			mapObjects[i][j]->setGraphicObject(Box);
-	//			mapObjects[i][j]->setPosition(i, j);
-	//		}
-	//		else if (passabilityMap[i][j] == 3) {//crainiy box
-	//			mapObjects[i][j] = make_shared<GameObject>();
-	//			Box.set_material(Materials[0]);
-	//			mapObjects[i][j]->setGraphicObject(Box);
-	//			mapObjects[i][j]->setPosition(i, j);
-	//		}
-	//		
-	//	}
 }
