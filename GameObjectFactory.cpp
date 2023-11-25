@@ -1,60 +1,105 @@
 #include "GameObjectFactory.h"
 
 bool GameObjectFactory:: init(std::string filename) {
-	
 	ifstream f(filename);
 	string jsonString;
-	if (f.is_open()) {
-		getline(f, jsonString, static_cast<char>(0));
-	}
-	else{
-		cout << "Не уадется найти файл " << filename << endl;
+	if (!f) return false;
+	getline(f, jsonString, static_cast<char>(0));
+	f.close();
+	Document document;
+	document.Parse(jsonString.c_str());
+
+	if (document.GetParseError() != 0) {
+		cout << "неверный формат файла\n";
 		return false;
 	}
-	f.close();
 
-	cout << "JSON string: " << jsonString<<endl;
+	for (auto& m : document.GetObject()) {
+		string MeshFileName = document[m.name.GetString()]["mesh"].GetString();
+		meshes.push_back(make_shared<Mesh>());
+		meshes[meshes.size() - 1]->load(MeshFileName);
 
+		const Value& material = document[m.name.GetString()]["material"];
+		vec4 dif, amb, spec, emis;
+		float shin = material["shininess"].GetFloat();
+		for (int i = 0; i < 4; i++) {
+			dif[i] = material["diffuse"][i].GetFloat();
+			amb[i] = material["ambient"][i].GetFloat();
+			spec[i] = material["specular"][i].GetFloat();
+			emis[i] = material["emission"][i].GetFloat();
+		}
+		shared_ptr<PhongMaterial>pMaterial = make_shared<PhongMaterial>();
+		pMaterial->setAmbient(amb);
+		pMaterial->setDiffuse(dif);
+		pMaterial->setEmission(emis);
+		pMaterial->setShininess(shin);
+		pMaterial->setSpecular(spec);
+		materials.push_back(pMaterial);
 
-	//shared_ptr <PhongMaterial> pmat1, pmat2, pmat3, pmat4, pmat5;
-	//pmat1 = make_shared <PhongMaterial>();
-	//pmat2 = make_shared <PhongMaterial>();
-	//pmat3 = make_shared <PhongMaterial>();
-	//pmat4 = make_shared <PhongMaterial>();
-	//pmat5 = make_shared <PhongMaterial>();
-	//pmat1->load("data//Materials//Border.txt");
-	//pmat2->load("data//Materials//Box.txt");
-	//pmat3->load("data//Materials//ChamferBox.txt");
-	//pmat4->load("data//Materials//Plane.txt");
-	//pmat5->load("data//Materials//Sphere.txt");
-	//materials.push_back(pmat1);
-	//materials.push_back(pmat2);
-	//materials.push_back(pmat3);
-	//materials.push_back(pmat4);
-	//materials.push_back(pmat5);
-
-	////Меши
-	//shared_ptr <Mesh> mesh1, mesh2, mesh3, mesh4;
-	//mesh1 = make_shared <Mesh>();
-	//mesh2 = make_shared <Mesh>();
-	//mesh3 = make_shared <Mesh>();
-	//mesh4 = make_shared <Mesh>();
-	//mesh1->load("data//Meshes//Box.obj");
-	//mesh2->load("data//Meshes//ChamferBox.obj");
-	//mesh3->load("data//Meshes//SimplePlane.obj");
-	//mesh4->load("data//Meshes//Sphere.obj");
-	//meshes.push_back(mesh1);
-	//meshes.push_back(mesh2);
-	//meshes.push_back(mesh3);
-	//meshes.push_back(mesh4);
-
-	//Object Box, ChamferBox, Sphere;
-
-	//Box.set_mesh(meshes[0]);
-	//ChamferBox.set_mesh(meshes[1]);
+		/*materials.push_back(make_shared<PhongMaterial>());
+		materials[materials.size() - 1]->setAmbient(amb);
+		materials[materials.size() - 1]->setDiffuse(dif);
+		materials[materials.size() - 1]->setEmission(emis);
+		materials[materials.size() - 1]->setShininess(shin);
+		materials[materials.size() - 1]->setSpecular(spec);*/
+	}
 }
 
 std::shared_ptr<GameObject> GameObjectFactory:: create(GameObjectType type, int x, int y) {
-	shared_ptr<GameObject> obj;
-	return obj;
+	shared_ptr<GameObject> GameObjP=make_shared<GameObject>();
+	switch (type)
+	{
+	case GameObjectType::LIGHT_OBJECT: {
+		Object obj;
+		obj.set_material(materials[0]);
+		obj.set_mesh(meshes[0]);
+		GameObjP->setGraphicObject(obj);
+		GameObjP->setPosition(x, y);
+		break;
+	}
+	case GameObjectType::HEAVY_OBJECT: {
+		Object obj;
+		obj.set_material(materials[1]);
+		obj.set_mesh(meshes[1]);
+		GameObjP->setGraphicObject(obj);
+		GameObjP->setPosition(x, y);
+		break;
+	}
+	case GameObjectType::BORDER_OBJECT: {
+		Object obj;
+		obj.set_material(materials[2]);
+		obj.set_mesh(meshes[2]);
+		GameObjP->setGraphicObject(obj);
+		GameObjP->setPosition(x, y);
+		break;
+	}
+	case GameObjectType::PLAYER: {
+		Object obj;
+		obj.set_material(materials[2]);
+		obj.set_mesh(meshes[2]);
+		GameObjP->setGraphicObject(obj);
+		GameObjP->setPosition(x, y);
+		break;
+	}
+	case GameObjectType::BOMB: {
+		Object obj;
+		obj.set_material(materials[3]);
+		obj.set_mesh(meshes[3]);
+		GameObjP->setGraphicObject(obj);
+		GameObjP->setPosition(x, y);
+		break;
+	}
+	case GameObjectType::MONSTER: {
+		Object obj;
+		obj.set_material(materials[4]);
+		obj.set_mesh(meshes[4]);
+		GameObjP->setGraphicObject(obj);
+		GameObjP->setPosition(x, y);
+		break;
+	}
+	default:
+		break;
+	}
+
+	return GameObjP;
 }
