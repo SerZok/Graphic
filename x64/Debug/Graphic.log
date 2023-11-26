@@ -6,6 +6,11 @@ C:\Projects\AOKG\Graphic\Display.cpp(10,22): warning C4244: '=': conversion from
 C:\Projects\AOKG\Graphic\Display.cpp(20,25): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
 C:\Projects\AOKG\Graphic\Display.cpp(20,20): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
 C:\Projects\AOKG\Graphic\Display.cpp(20,15): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+<<<<<<< HEAD
+=======
+  GameObject.cpp
+  GameObjectFactory.cpp
+>>>>>>> d2cff792af28f03083d51bcd2d8458e9fb660179
   MAIN.cpp
   Mesh.cpp
 C:\Projects\AOKG\Graphic\Mesh.cpp(115,27): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
@@ -26,4 +31,8 @@ C:\Projects\AOKG\Graphic\Simulation.cpp(25,52): warning C4305: 'argument': trunc
 C:\Projects\AOKG\Graphic\Simulation.cpp(26,51): warning C4305: 'argument': truncation from 'double' to 'float'
 C:\Projects\AOKG\Graphic\Simulation.cpp(27,52): warning C4305: 'argument': truncation from 'double' to 'float'
   Generating Code...
+<<<<<<< HEAD
+=======
+C:\Projects\AOKG\Graphic\GameObjectFactory.cpp(39): warning C4715: 'GameObjectFactory::init': not all control paths return a value
+>>>>>>> d2cff792af28f03083d51bcd2d8458e9fb660179
   Graphic.vcxproj -> C:\Projects\AOKG\Graphic\x64\Debug\Graphic.exe
