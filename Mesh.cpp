@@ -103,7 +103,6 @@ void Mesh::load(std::string filename) {
 		exit(-3);
 	}
 
-
 	glGenBuffers(1, &bufferIds[0]);// Создать буфер
 	glBindBuffer(GL_ARRAY_BUFFER, bufferIds[0]);//Сделать буфер текущим
 	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * vertices.size(), vertices.data(), GL_STATIC_DRAW);//Передать данные
