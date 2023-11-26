@@ -6,11 +6,15 @@ C:\Projects\AOKG\Graphic\Display.cpp(10,22): warning C4244: '=': conversion from
 C:\Projects\AOKG\Graphic\Display.cpp(20,25): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
 C:\Projects\AOKG\Graphic\Display.cpp(20,20): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
 C:\Projects\AOKG\Graphic\Display.cpp(20,15): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-  GameObject.cpp
-  GameObjectFactory.cpp
   MAIN.cpp
-  Object.cpp
-C:\Projects\AOKG\Graphic\Object.cpp(35,12): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Mesh.cpp
+C:\Projects\AOKG\Graphic\Mesh.cpp(115,27): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Projects\AOKG\Graphic\Mesh.cpp(29,42): warning C4101: 'num23': unreferenced local variable
+C:\Projects\AOKG\Graphic\Mesh.cpp(29,63): warning C4101: 'num33': unreferenced local variable
+C:\Projects\AOKG\Graphic\Mesh.cpp(29,28): warning C4101: 'num21': unreferenced local variable
+C:\Projects\AOKG\Graphic\Mesh.cpp(29,56): warning C4101: 'num32': unreferenced local variable
+C:\Projects\AOKG\Graphic\Mesh.cpp(29,49): warning C4101: 'num31': unreferenced local variable
+C:\Projects\AOKG\Graphic\Mesh.cpp(29,35): warning C4101: 'num22': unreferenced local variable
   Simulation.cpp
 C:\Projects\AOKG\Graphic\Simulation.cpp(11,17): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
 C:\Projects\AOKG\Graphic\Simulation.cpp(12,17): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
@@ -22,5 +26,4 @@ C:\Projects\AOKG\Graphic\Simulation.cpp(25,52): warning C4305: 'argument': trunc
 C:\Projects\AOKG\Graphic\Simulation.cpp(26,51): warning C4305: 'argument': truncation from 'double' to 'float'
 C:\Projects\AOKG\Graphic\Simulation.cpp(27,52): warning C4305: 'argument': truncation from 'double' to 'float'
   Generating Code...
-C:\Projects\AOKG\Graphic\GameObjectFactory.cpp(39): warning C4715: 'GameObjectFactory::init': not all control paths return a value
   Graphic.vcxproj -> C:\Projects\AOKG\Graphic\x64\Debug\Graphic.exe
