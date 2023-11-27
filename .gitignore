@@ -22,6 +22,7 @@
 *.lai
 *.la
 *.a
+*.log
 
 # Executables
 *.exe
