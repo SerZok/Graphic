@@ -8,6 +8,8 @@
 
 #include "Object.h"
 
+enum class MoveDirection { STOP, LEFT, RIGHT, UP, DOWN };
+
 class GameObject {
 public:
 	GameObject();
@@ -22,9 +24,17 @@ public:
 	// получение текущих логических координат
 	ivec2 getPosition();
 
+	void move(MoveDirection dir, float speed = 3.0f);
+	const bool isMoving();
+	void simulate(float sec);
+
 	// вывод игрового объекта на экран
 	void draw();
 private:
+	MoveDirection sost;
+	//от 0 до 1
+	float progress;
+	float speed;
 	// логические координаты игрового объекта
 	ivec2 position;
 	// графический объект (для вывода на экран)

@@ -25,6 +25,9 @@ void display(){
 	getFPS();
 
 	cam1.apply();
+
+	
+
 	mLight.apply(GL_LIGHT0);
 	planeGraphicObject.draw();
 
