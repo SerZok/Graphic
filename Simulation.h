@@ -2,8 +2,9 @@
 #include <windows.h>
 #include <iostream>
 #include <vector>
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include "GL/freeglut.h"
 
 void simulation();
+float getSimulationTime();
+void cameraSimulation(float simulationTime);
+void gameObjectSimulation(float simulationTime);
+void movePlayer();

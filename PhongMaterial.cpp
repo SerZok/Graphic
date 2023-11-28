@@ -39,7 +39,7 @@ void PhongMaterial::load(std::string filename) {
 		ifile.close();
 	}
 	else {
-		cout << "Error: can't open file! (ifstrem)" << endl;
+		cout << "Error: can't open file! (material)" << endl;
 		exit(-2);
 	}
 }

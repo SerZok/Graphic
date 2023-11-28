@@ -1,6 +1,6 @@
-#include "Display.h"
 #include "Data.h"
-#include <string>
+#include "Display.h"
+
 
 int init_time = time(NULL),final_time, FPS;
 
@@ -14,8 +14,10 @@ void getFPS() {
 }
 
 void display(){
+
+
 	// отчищаем буфер цвета и буфер глубины
-	glClearColor(0.1, 0.1, 0.2, 0.3);
+	glClearColor(0.7, 0.7, 0.7, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
@@ -23,11 +25,23 @@ void display(){
 	getFPS();
 
 	cam1.apply();
-	mLight.apply(GL_LIGHT0);
 
-	for (auto& obj : GrObjects) { obj.draw(); }
+
+	mLight.apply(GL_LIGHT0);
+	planeGraphicObject.draw();
+	player->draw();
+
+	for (int i = 0; i < 21; i++) {
+		for (int j = 0; j < 21; j++) {
+			if (mapObjects[i][j] != nullptr)
+			{
+				mapObjects[i][j]->draw();
+			}
+		}
+	}
 
 	// смена переднего и заднего буферов
 	glutSwapBuffers();
+
 	mCurrentTick++;
 };

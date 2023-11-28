@@ -6,19 +6,23 @@ Object::Object() {
 	color = vec3(0, 0, 0);
 }
 
-void Object:: set_material( shared_ptr <PhongMaterial> mat) {
-	material = mat;
+void Object:: set_material( shared_ptr <PhongMaterial> material) {
+	this->material = material;
+}
+
+void Object::set_mesh(shared_ptr <Mesh> mesh) {
+	this->mesh = mesh;
 }
 
 void Object::draw() {
 	glColor3f(color.r, color.g, color.b);
 
+	recalculateModelMatrix();
 	if (material!=nullptr) material->apply();
 
 	glPushMatrix();
-	recalculateModelMatrix();
 	glMultMatrixf(modelMatrix);
-	glutSolidTeapot(1.0);
+	if (mesh != nullptr)   mesh->draw();
 	glPopMatrix();
 }
 
@@ -46,7 +50,7 @@ void Object::set_color(vec3 color) {
 
 void Object::set_position(vec3 position) {
 	Object::position = position;
-	recalculateModelMatrix();
+	//recalculateModelMatrix();
 }
 
 float Object::get_angle() {
