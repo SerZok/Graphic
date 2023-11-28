@@ -2,7 +2,7 @@
 
 int SizeWindowX=800;
 int SizeWindowY=600;
-float mCurrentTick=0.0;
+int mCurrentTick=0;
 int myTick = 0;
 Camera cam1(vec3(50,1,0));
 vector<vec3> mTeapotColors;

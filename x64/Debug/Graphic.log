@@ -1,2 +1,21 @@
 ﻿  Data.cpp
-  Graphic.vcxproj -> C:\Projects\AOKG\Graphic\x64\Debug\Graphic.exe
+  Display.cpp
+C:\STUDY\АОКГ\7\Graphic\Display.cpp(5,32): warning C4244: инициализация: преобразование "time_t" в "int", возможна потеря данных
+C:\STUDY\АОКГ\7\Graphic\Display.cpp(9,18): warning C4244: =: преобразование "time_t" в "int", возможна потеря данных
+C:\STUDY\АОКГ\7\Graphic\Display.cpp(18,25): warning C4305: аргумент: усечение из "double" в "GLclampf"
+C:\STUDY\АОКГ\7\Graphic\Display.cpp(18,20): warning C4305: аргумент: усечение из "double" в "GLclampf"
+C:\STUDY\АОКГ\7\Graphic\Display.cpp(18,15): warning C4305: аргумент: усечение из "double" в "GLclampf"
+C:\STUDY\АОКГ\7\Graphic\Display.cpp(44,19): warning C4244: =: преобразование "time_t" в "int", возможна потеря данных
+  Graphic.cpp
+  Simulation.cpp
+C:\STUDY\АОКГ\7\Graphic\Simulation.cpp(11,17): warning C4244: инициализация: преобразование "LONG" в "float", возможна потеря данных
+C:\STUDY\АОКГ\7\Graphic\Simulation.cpp(12,17): warning C4244: инициализация: преобразование "LONG" в "float", возможна потеря данных
+C:\STUDY\АОКГ\7\Graphic\Simulation.cpp(13,15): warning C4305: инициализация: усечение из "double" в "float"
+C:\STUDY\АОКГ\7\Graphic\Simulation.cpp(22,55): warning C4305: аргумент: усечение из "double" в "float"
+C:\STUDY\АОКГ\7\Graphic\Simulation.cpp(23,57): warning C4305: аргумент: усечение из "double" в "float"
+C:\STUDY\АОКГ\7\Graphic\Simulation.cpp(24,49): warning C4305: аргумент: усечение из "double" в "float"
+C:\STUDY\АОКГ\7\Graphic\Simulation.cpp(25,52): warning C4305: аргумент: усечение из "double" в "float"
+C:\STUDY\АОКГ\7\Graphic\Simulation.cpp(26,51): warning C4305: аргумент: усечение из "double" в "float"
+C:\STUDY\АОКГ\7\Graphic\Simulation.cpp(27,52): warning C4305: аргумент: усечение из "double" в "float"
+  Создание кода...
+  Graphic.vcxproj -> C:\STUDY\АОКГ\7\Graphic\x64\Debug\Graphic.exe

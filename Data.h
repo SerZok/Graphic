@@ -14,7 +14,7 @@
 #include "Light.h"
 #include "GameObjectFactory.h"
 
-extern float mCurrentTick;
+extern int mCurrentTick;
 extern int SizeWindowX;
 extern int SizeWindowY;
 extern int myTick;
