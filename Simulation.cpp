@@ -3,10 +3,12 @@
 #include <time.h>
 
 
+int last_time=0.001f;
 float getSimulationTime() {
-	int last_time = clock();
-	float simulationTime = float(clock() - last_time) / CLOCKS_PER_SEC;
-	last_time = clock();
+	float simulationTime = float(last_time-time(NULL)) / CLOCKS_PER_SEC;
+	if (simulationTime>0.0001)
+		cout << simulationTime<<endl;
+	last_time = time(NULL);
 	return simulationTime;
 }
 
@@ -47,7 +49,7 @@ void gameObjectSimulation(float simulationTime) {
 }
 
 void movePlayer() {
-	float speed = 1.0f;
+	float speed = 5.0f;
 	ivec2 curPosPlayer = player->getPosition();
 	if ((GetAsyncKeyState(87)) && (!player->isMoving())) {	//	W
 		if (passabilityMap[curPosPlayer.x][curPosPlayer.y - 1] == 0) {
@@ -67,12 +69,11 @@ void movePlayer() {
 		}
 	}
 
-	if ((GetAsyncKeyState(68)) && (!player->isMoving())) {	//	W
+	if ((GetAsyncKeyState(68)) && (!player->isMoving())) {	//	D
 		if (passabilityMap[curPosPlayer.x+1][curPosPlayer.y] == 0) {
 			player->move(MoveDirection::RIGHT,speed);
 		}
 	}
-
 }
 
 

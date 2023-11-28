@@ -2,30 +2,29 @@
 #include "Display.h"
 
 
-int init_time = time(NULL),final_time, FPS;
+int final_time, FPS, init_time = time(NULL);
 
 void getFPS() {
-	final_time = time(NULL);
-	if ((final_time - init_time) > 0.0) 
-		FPS = mCurrentTick / (final_time - init_time);
+	FPS = mCurrentTick / (final_time - init_time);
+	init_time = time(NULL);
 	char windowTitle[15];
-	sprintf_s(windowTitle, 15, "FPS : %i", FPS);
+	sprintf_s(windowTitle, 15, "FPS : %i", mCurrentTick);
 	glutSetWindowTitle(windowTitle);
+	mCurrentTick = 0;
 }
-
 void display(){
-
-
 	// отчищаем буфер цвета и буфер глубины
 	glClearColor(0.7, 0.7, 0.7, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	
-	getFPS();
+	mCurrentTick++;
+	if ((final_time - init_time) >= 1) {
+		getFPS();
+	}
 
 	cam1.apply();
-
 
 	mLight.apply(GL_LIGHT0);
 	planeGraphicObject.draw();
@@ -42,6 +41,5 @@ void display(){
 
 	// смена переднего и заднего буферов
 	glutSwapBuffers();
-
-	mCurrentTick++;
+	final_time = time(NULL);
 };
