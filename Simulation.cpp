@@ -3,10 +3,11 @@
 #include <time.h>
 
 
+float last_time=0.0;
 float getSimulationTime() {
-	int last_time = clock();
-	float simulationTime = float(clock() - last_time) / CLOCKS_PER_SEC;
-	last_time = clock();
+	clock_t current_time = clock();
+	float simulationTime = float(current_time - last_time) / CLOCKS_PER_SEC;
+	last_time = current_time;
 	return simulationTime;
 }
 
@@ -17,20 +18,24 @@ void cameraSimulation(float simulationTime) {
 
 		float mAngleX = CenterW - MouseXY.x;
 		float mAngleY = CenertH - MouseXY.y;
-		float speed = 0.003;
+		float speedMouse = simulationTime/5;
 
 		if (GetCursorPos(&MouseXY)) {
-			cam1.rotateLeftRight(mAngleX * speed);
-			cam1.rotateUpDown(mAngleY * speed);
+			cam1.rotateLeftRight(mAngleX * speedMouse);
+			cam1.rotateUpDown(mAngleY * speedMouse);
 			SetCursorPos(MouseXY.x, MouseXY.y);
 		}
 	}
-	if (GetAsyncKeyState(VK_LEFT))		cam1.rotateLeftRight(0.3);
-	if (GetAsyncKeyState(VK_RIGHT))		cam1.rotateLeftRight(-0.3);
-	if (GetAsyncKeyState(VK_ADD))		cam1.zoomInOut(-0.2);
-	if (GetAsyncKeyState(VK_SUBTRACT))	cam1.zoomInOut(0.2);
-	if (GetAsyncKeyState(VK_UP))		cam1.rotateUpDown(-0.2);
-	if (GetAsyncKeyState(VK_DOWN))		cam1.rotateUpDown(0.2);
+
+	float speedKey = simulationTime*20;
+	cout << speedKey*20 << endl;
+
+	if (GetAsyncKeyState(VK_LEFT))		cam1.rotateLeftRight(speedKey);
+	if (GetAsyncKeyState(VK_RIGHT))		cam1.rotateLeftRight(-speedKey);
+	if (GetAsyncKeyState(VK_ADD))		cam1.zoomInOut(-speedKey);
+	if (GetAsyncKeyState(VK_SUBTRACT))	cam1.zoomInOut(speedKey);
+	if (GetAsyncKeyState(VK_UP))		cam1.rotateUpDown(-speedKey);
+	if (GetAsyncKeyState(VK_DOWN))		cam1.rotateUpDown(speedKey);
 }
 
 //simualtion all objects
@@ -47,7 +52,7 @@ void gameObjectSimulation(float simulationTime) {
 }
 
 void movePlayer() {
-	float speed = 1.0f;
+	float speed = 5.0f;
 	ivec2 curPosPlayer = player->getPosition();
 	if ((GetAsyncKeyState(87)) && (!player->isMoving())) {	//	W
 		if (passabilityMap[curPosPlayer.x][curPosPlayer.y - 1] == 0) {
@@ -67,12 +72,11 @@ void movePlayer() {
 		}
 	}
 
-	if ((GetAsyncKeyState(68)) && (!player->isMoving())) {	//	W
+	if ((GetAsyncKeyState(68)) && (!player->isMoving())) {	//	D
 		if (passabilityMap[curPosPlayer.x+1][curPosPlayer.y] == 0) {
 			player->move(MoveDirection::RIGHT,speed);
 		}
 	}
-
 }
 
 

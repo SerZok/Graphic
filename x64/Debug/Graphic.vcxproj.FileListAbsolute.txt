@@ -3,3 +3,4 @@ C:\STUDY\АОКГ\4\GL\Graphic\x64\Debug\Graphic.exe
 C:\Projects\AOKG\Graphic\x64\Debug\Graphic.exe
 C:\STUDY\АОКГ\Graphic\x64\Debug\Graphic.exe
 C:\STUDY\АОКГ\Graphic\Graphic\x64\Debug\Graphic.exe
+C:\Projects\Graphic\x64\Debug\Graphic.exe

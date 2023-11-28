@@ -5,6 +5,7 @@ GameObject::GameObject() {
 	position.x = 0;
 	position.y = 0;
 	graphicObject.set_position(vec3(-10,0,-10));
+	sost = MoveDirection::STOP;
 }
 
 void GameObject::setGraphicObject(const Object& graphicObject) {this->graphicObject = graphicObject;}
@@ -25,7 +26,9 @@ void GameObject::draw() {
 }
 
 const bool GameObject::isMoving() {
-	return (sost != MoveDirection::STOP);
+	if (sost == MoveDirection::STOP)
+		return false;
+	return true;
 }
 
 void GameObject:: move(MoveDirection dir, float speed_){
@@ -60,7 +63,7 @@ void GameObject::simulate(float sec) {
 	float dist = speed * sec;
 	progress+=dist;
 	vec3 currentPos = graphicObject.get_position();
-	if ((progress < 1) && (!isMoving())) {//Если движется и не стоит
+	if (progress < 1) {
 		switch (sost) {
 		case MoveDirection::LEFT: {
 			currentPos.x -= dist;
@@ -81,6 +84,9 @@ void GameObject::simulate(float sec) {
 			currentPos.z += dist;
 			break;
 		}
+		case MoveDirection::STOP:
+			break;
+
 		default:
 			break;
 		}
