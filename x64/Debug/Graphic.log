@@ -1,14 +1,3 @@
 ﻿  GameObject.cpp
 C:\Projects\AOKG\Graphic\GameObject.cpp(4,10): warning C4305: '=': truncation from 'double' to 'float'
-  Simulation.cpp
-C:\Projects\AOKG\Graphic\Simulation.cpp(12,17): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
-C:\Projects\AOKG\Graphic\Simulation.cpp(13,17): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
-C:\Projects\AOKG\Graphic\Simulation.cpp(14,15): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Projects\AOKG\Graphic\Simulation.cpp(23,55): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Projects\AOKG\Graphic\Simulation.cpp(24,57): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Projects\AOKG\Graphic\Simulation.cpp(25,49): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Projects\AOKG\Graphic\Simulation.cpp(26,52): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Projects\AOKG\Graphic\Simulation.cpp(27,51): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Projects\AOKG\Graphic\Simulation.cpp(28,52): warning C4305: 'argument': truncation from 'double' to 'float'
-  Generating Code...
   Graphic.vcxproj -> C:\Projects\AOKG\Graphic\x64\Debug\Graphic.exe

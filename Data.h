@@ -23,5 +23,6 @@ extern vector<vec3> mTeapotColors;
 extern vector<shared_ptr<Mesh>> Meshes;
 extern vector< shared_ptr <PhongMaterial>> Materials;
 extern shared_ptr<GameObject>mapObjects[21][21];
+extern shared_ptr<GameObject>player;
 
 void initData();

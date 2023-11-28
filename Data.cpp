@@ -5,7 +5,7 @@ int SizeWindowX=800;
 int SizeWindowY=600;
 float mCurrentTick=0.0;
 int myTick = 0;
-Camera cam1(vec3(50,1,0));
+Camera cam1(vec3(0,1,50));
 vector<vec3> mTeapotColors;
 POINT MouseXY;
 Light mLight;
@@ -15,6 +15,7 @@ shared_ptr<GameObject>mapObjects[21][21];
 shared_ptr<GameObject>player;
 
 Object planeGraphicObject;//Для полскости
+GameObjectFactory gameObjectFactory;
 
 	// карта проходимости
 int passabilityMap[21][21] = {
@@ -40,7 +41,6 @@ int passabilityMap[21][21] = {
 	 3,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,3,
 	 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
 	};
-GameObjectFactory gameObjectFactory;
 
 void initData() {
 
@@ -77,7 +77,7 @@ void initData() {
 		}
 	}
 	// инициализация главного героя
-	player = gameObjectFactory.create(GameObjectType::PLAYER, 19, 1);
+	player = gameObjectFactory.create(GameObjectType::PLAYER, 1, 1);
 	// инициализация плоскости
 	planeGraphicObject.set_position(vec3(0, 0, 0));
 	shared_ptr<Mesh> planeMesh = make_shared<Mesh>();

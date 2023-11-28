@@ -26,10 +26,10 @@ void display(){
 
 	cam1.apply();
 
-	
 
 	mLight.apply(GL_LIGHT0);
 	planeGraphicObject.draw();
+	player->draw();
 
 	for (int i = 0; i < 21; i++) {
 		for (int j = 0; j < 21; j++) {

@@ -68,24 +68,24 @@ std::shared_ptr<GameObject> GameObjectFactory:: create(GameObjectType type, int 
 	}
 	case GameObjectType::PLAYER: {
 		Object obj;
-		obj.set_material(materials[2]);
-		obj.set_mesh(meshes[2]);
-		GameObjP->setGraphicObject(obj);
-		GameObjP->setPosition(x, y);
-		break;
-	}
-	case GameObjectType::BOMB: {
-		Object obj;
 		obj.set_material(materials[3]);
 		obj.set_mesh(meshes[3]);
 		GameObjP->setGraphicObject(obj);
 		GameObjP->setPosition(x, y);
 		break;
 	}
-	case GameObjectType::MONSTER: {
+	case GameObjectType::BOMB: {
 		Object obj;
 		obj.set_material(materials[4]);
 		obj.set_mesh(meshes[4]);
+		GameObjP->setGraphicObject(obj);
+		GameObjP->setPosition(x, y);
+		break;
+	}
+	case GameObjectType::MONSTER: {
+		Object obj;
+		obj.set_material(materials[5]);
+		obj.set_mesh(meshes[5]);
 		GameObjP->setGraphicObject(obj);
 		GameObjP->setPosition(x, y);
 		break;

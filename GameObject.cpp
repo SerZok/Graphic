@@ -1,7 +1,7 @@
 #include "GameObject.h"
 
 GameObject::GameObject() {
-	speed = 0.1;
+	speed = 0.01;
 	position.x = 0;
 	position.y = 0;
 	graphicObject.set_position(vec3(-10,0,-10));
@@ -28,33 +28,25 @@ const bool GameObject::isMoving() {
 	return (sost != MoveDirection::STOP);
 }
 
-void GameObject:: move(MoveDirection dir, float speed) {
-	if (!isMoving()) {
+void GameObject:: move(MoveDirection dir, float speed_){
+	speed = speed_;
+	sost = dir;
+	progress = 0;
+	if (sost!= MoveDirection::STOP) {
 		switch (dir){
 		case MoveDirection::LEFT: {
-			sost = MoveDirection::LEFT;
-			progress = 0;
 			position.x -= 1;
 			break;
 		}
-
 		case MoveDirection::RIGHT: {
-			sost = MoveDirection::RIGHT;
-			progress = 0;
 			position.x += 1;
 			break;
 		}
-
 		case MoveDirection::UP: {
-			sost = MoveDirection::UP;
-			progress = 0;
 			position.y -= 1;
 			break;
 		}
-
 		case MoveDirection::DOWN: {
-			sost = MoveDirection::DOWN;
-			progress = 0;
 			position.y += 1;
 			break;
 		}
@@ -68,7 +60,7 @@ void GameObject::simulate(float sec) {
 	float dist = speed * sec;
 	progress+=dist;
 	vec3 currentPos = graphicObject.get_position();
-	if ((progress < 1) &&(!isMoving())) {//Если движется
+	if ((progress < 1) && (!isMoving())) {//Если движется и не стоит
 		switch (sost) {
 		case MoveDirection::LEFT: {
 			currentPos.x -= dist;
@@ -99,5 +91,4 @@ void GameObject::simulate(float sec) {
 		currentPos = vec3(position.x - 10, 0.5, position.y - 10);
 	}
 	graphicObject.set_position(currentPos);
-	
 }

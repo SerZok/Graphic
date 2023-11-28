@@ -24,7 +24,7 @@ public:
 	// получение текущих логических координат
 	ivec2 getPosition();
 
-	void move(MoveDirection dir, float speed = 3.0f);
+	void move(MoveDirection dir, float speed);
 	const bool isMoving();
 	void simulate(float sec);
 
