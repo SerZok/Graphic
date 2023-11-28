@@ -12,4 +12,6 @@
 using namespace std;
 using namespace glm;
 
+extern int init_time,final_time;
+
 void display(void);

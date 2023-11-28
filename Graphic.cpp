@@ -35,17 +35,13 @@ void keyboardFunc(unsigned char key, int x, int y) {
 int main(int argc, char** argv){
 	setlocale(LC_ALL, "ru");
 
-	//PhongMaterial  mat1;
-	//mat1.load("Materials\\test.txt");
-	//mat1.apply();
-
 	// инициализация библиотеки GLUT
 	glutInit(&argc, argv);
 	// инициализация дисплея (формат вывода)
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);
 
 	glutInitWindowPosition(50, 50);
-	glutInitWindowSize(SizeWindowX, SizeWindowY);
+	glutInitWindowSize(500, 500);
 	glutCreateWindow("AOKG");
 
 	initData();
