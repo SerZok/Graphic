@@ -5,7 +5,6 @@
 *.slo
 *.lo
 *.o
-*.obj
 
 # Precompiled Headers
 *.gch
@@ -14,7 +13,6 @@
 # Compiled Dynamic libraries
 *.so
 *.dylib
-*.dll
 
 # Fortran module files
 *.mod
@@ -24,7 +22,7 @@
 *.lai
 *.la
 *.a
-*.lib
+*.log
 
 # Executables
 *.exe
@@ -34,3 +32,17 @@
 /.vs/Graphic/v17/ipch/AutoPCH/a305529036c67e80/OBJECT.ipch
 /.vs/Graphic/v17/Browse.VC.opendb
 *.ipch
+*.vsidx
+/.vs/Graphic/v17/.suo
+/.vs/Graphic/v17/Browse.VC.db
+/.vs/Graphic/v17/Browse.VC.db-shm
+/x64/Debug/Graphic.tlog/CL.command.1.tlog
+/x64/Debug/Graphic.tlog/Cl.items.tlog
+/x64/Debug/Graphic.tlog/CL.read.1.tlog
+/x64/Debug/Graphic.tlog/CL.write.1.tlog
+/x64/Debug/Graphic.tlog/Graphic.lastbuildstate
+/x64/Debug/Graphic.tlog/link.command.1.tlog
+/x64/Debug/Graphic.tlog/link.read.1.tlog
+/x64/Debug/Graphic.tlog/link.write.1.tlog
+/.vs/Graphic/v17/Browse.VC.db-wal
+/.vs/Graphic/v17/fileList.bin

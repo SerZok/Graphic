@@ -1,5 +1,0 @@
-diffuse: 0.0 0.0 0.0 1.0
-ambient: 0.4 0.0 0.0 1.0
-specular: 1.0 1.0 1.0 1.0
-emission: 1.0 0.0 0.0 1.0
-shininess: 128.0

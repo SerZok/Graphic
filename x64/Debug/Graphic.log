@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+﻿  GameObject.cpp
+C:\Projects\AOKG\Graphic\GameObject.cpp(4,10): warning C4305: '=': truncation from 'double' to 'float'
+  Graphic.vcxproj -> C:\Projects\AOKG\Graphic\x64\Debug\Graphic.exe
+=======
 ﻿  Data.cpp
   Display.cpp
 C:\STUDY\АОКГ\4\GL\Graphic\Display.cpp(5,15): warning C4244: инициализация: преобразование "time_t" в "int", возможна потеря данных
@@ -17,3 +22,4 @@ C:\STUDY\АОКГ\4\GL\Graphic\Simulation.cpp(20,52): warning C4305: аргум�
   Создание кода...
   LINK : не найден или не выполнена сборка C:\STUDY\АОКГ\4\GL\Graphic\x64\Debug\Graphic.exe при последней инкрементной компоновке; выполняется полная компоновка
   Graphic.vcxproj -> C:\STUDY\АОКГ\4\GL\Graphic\x64\Debug\Graphic.exe
+>>>>>>> main

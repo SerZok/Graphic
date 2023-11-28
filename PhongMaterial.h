@@ -1,6 +1,6 @@
 #include <windows.h>
 #include <iostream>
-#include <GL/gl.h>
+
 #include <GL/glu.h>
 #include "GL/freeglut.h"
 #include <glm/glm.hpp>
@@ -35,8 +35,5 @@ public:
 		cout << diffuse.r << ' ' << diffuse.g << ' ' << diffuse.b << ' ' << diffuse.a<<endl;
 		cout << specular.r << ' ' << specular.g << ' ' << specular.b << ' ' << specular.a<<endl;
 		cout << emission.r << ' ' << emission.g << ' ' << emission.b << ' ' << emission.a << endl;
-	}
-	~PhongMaterial() {
-		cout << "Distructor material" << endl;
 	}
 };
