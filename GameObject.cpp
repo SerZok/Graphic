@@ -69,17 +69,14 @@ void GameObject::simulate(float sec) {
 			currentPos.x -= dist;
 			break;
 		}
-
 		case MoveDirection::RIGHT: {
 			currentPos.x += dist;
 			break;
 		}
-
 		case MoveDirection::UP: {
 			currentPos.z -= dist;
 			break;
 		}
-
 		case MoveDirection::DOWN: {
 			currentPos.z += dist;
 			break;

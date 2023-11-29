@@ -1,5 +1,5 @@
 ﻿  Simulation.cpp
 C:\Projects\Graphic\Simulation.cpp(10,14): warning C4244: '=': conversion from 'clock_t' to 'float', possible loss of data
+C:\Projects\Graphic\Simulation.cpp(18,17): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
 C:\Projects\Graphic\Simulation.cpp(19,17): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
-C:\Projects\Graphic\Simulation.cpp(20,17): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
   Graphic.vcxproj -> C:\Projects\Graphic\x64\Debug\Graphic.exe
