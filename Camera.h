@@ -12,14 +12,16 @@ using namespace glm;
 
 class Camera {
 	vec3 position;
+	vec3 Point;
 	float r, angleX, angleY;
 	void recalculatePosition();
 public:
 	Camera();
 	Camera(vec3 pos);
 	void apply();
-	void setPosition(vec3 pos);
 	vec3 getPostion() { return position; };
+	void setPosition(vec3 pos);
+	void setPoint(vec3 point);
 
 	void rotateLeftRight(float degree);
 	void rotateUpDown(float degree);

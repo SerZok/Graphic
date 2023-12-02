@@ -2,6 +2,7 @@
 
 Camera::Camera(){
 	position = vec3(0, 0, 0);
+	Point = vec3(10, 0, 0);
 	r = 1.0f;
 	angleX = 0.0f;
 	angleY = 0.0f;
@@ -14,7 +15,11 @@ Camera::Camera(vec3 pos) {
 void Camera::apply() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	gluLookAt(position.x, position.y, position.z, 0, 0, 0, 0, 1, 0);
+	gluLookAt(position.x, position.y, position.z, Point.x, Point.y, Point.z, 0, 1, 0);
+}
+
+void Camera::setPoint(vec3 point) {
+	Point = point;
 }
 
 void Camera::recalculatePosition(){

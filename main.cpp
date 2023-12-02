@@ -2,14 +2,14 @@
 #include <iostream>
 #include <vector>
 #include "glew.h"
+#include "Il/il.h"
+#include "Il/ilu.h"
+#include "Il/ilut.h"
 
 #include "Data.h"
 #include "Display.h"
 #include "Simulation.h"
 
-#include "Il/il.h"
-#include "Il/ilu.h"
-#include "Il/ilut.h"
 
 using namespace std;
 
@@ -31,30 +31,6 @@ int main(int argc, char** argv){
 	ilInit();
 	iluInit();
 	ilutInit();
-
-	// создаем новое "изображение"
-	ILuint imageId = ilGenImage();
-	// задаем текущее "изображение"
-	ilBindImage(imageId);
-	// удаляем "изображением"
-	ilDeleteImage(imageId);
-
-
-	// загружаем изображение
-	string fileName = "data\\textures\\plane.jpg";
-	wchar_t unicodeString[256];
-	wsprintf(unicodeString, L"%S", fileName.c_str());
-	bool result = ilLoadImage(unicodeString);
-
-	// получение параметров загруженной текстуры
-	int width = ilGetInteger(IL_IMAGE_WIDTH);
-	int height = ilGetInteger(IL_IMAGE_HEIGHT);
-	int format = ilGetInteger(IL_IMAGE_FORMAT);
-	int type = ilGetInteger(IL_IMAGE_TYPE);
-
-	cout << "W:" << width << endl << "H:" << height << endl << "F:" << format << endl << "T: " << type << endl;
-
-	ilCopyPixels();
 
 		// иниtype =циализация библиотеки GLUT
 	glutInit(&argc, argv);

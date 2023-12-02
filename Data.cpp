@@ -1,6 +1,5 @@
 #include "Data.h"
 
-
 int SizeWindowX=800;
 int SizeWindowY=600;
 int mCurrentTick=0;
@@ -12,15 +11,18 @@ Light mLight;
 
 // список игровых объектов расположенных на карте
 shared_ptr<GameObject>mapObjects[21][21];
+vector<shared_ptr<GameObject>>monsters;
 shared_ptr<GameObject>player;
 
 Object planeGraphicObject;//Для полскости
 GameObjectFactory gameObjectFactory;
 
+Texture planeTexture;
+
 	// карта проходимости
 int passabilityMap[21][21] = {
 	 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
-	 3,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,4,0,3,
+	 3,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,0,0,3,
 	 3,0,2,1,2,0,2,0,2,2,2,1,2,0,2,0,2,0,2,2,3,
 	 3,0,2,0,2,0,0,0,2,0,2,0,0,0,2,0,1,0,0,0,3,
 	 3,0,1,0,2,2,1,2,2,0,2,0,2,2,2,1,2,0,2,0,3,
@@ -40,9 +42,35 @@ int passabilityMap[21][21] = {
 	 3,0,2,1,2,0,2,2,2,2,2,0,2,0,2,0,2,2,2,2,3,
 	 3,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,3,
 	 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
-	};
+};
+
+
+
+static ivec2 rand_pos_monst() {
+	int i = rand() % 20;
+	int j = rand() % 20;
+	if (passabilityMap[i][j] != 0)
+		return rand_pos_monst();
+	else
+		return ivec2(i, j);
+}
+
+//void rand_map(int height, int width, int** Map) {
+//	for (int i = 1; i < height - 1; i++) {
+//		for (int j = 1; j < width - 1; j++) {
+//			if ((i % 2 != 0 && j % 2 != 0) && //если ячейка нечетная по x и y, 
+//				(i < height && j < width - 1))   //и при этом находится в пределах стен лабиринта
+//				passabilityMap[i][j] = 0;       //то это КЛЕТКА
+//			else passabilityMap[i][j] = 1;           //в остальных случаях это СТЕНА.
+//		}
+//	}
+//
+//}
 
 void initData() {
+	srand(time(0));
+	//rand_map(21, 21, passabilityMap);
+
 
 	// ПОЛУЧЕНИЕ ИНФОРМАЦИИ ОБ OPENGL
 	printf("GL_VENDOR = %s\n", glGetString(GL_VENDOR));
@@ -55,6 +83,7 @@ void initData() {
 	mLight.setSpecular(vec4(0, 0, 0, 1));
 	mLight.setPosition(vec4(20, 30, 0, 1));
 
+	planeTexture.load("data\\Textures\\vlcsnap_2023_12_01_10h37m31s394.0.jpg");
 	// инициализация фабрики (в дальнейшем на основе json-файла)
 	gameObjectFactory.init("data//GameObjectsDescription.json");
 	// инициализация объектов сцены
@@ -77,7 +106,15 @@ void initData() {
 		}
 	}
 	// инициализация главного героя
-	player = gameObjectFactory.create(GameObjectType::PLAYER, 1, 1);
+	ivec2 pcPos = rand_pos_monst();
+	player = gameObjectFactory.create(GameObjectType::PLAYER, pcPos.x, pcPos.y);
+
+	shared_ptr<GameObject>monster;
+	while(monsters.size()!=3){
+		ivec2 mPos = rand_pos_monst();
+		monster= gameObjectFactory.create(GameObjectType::MONSTER, mPos.x, mPos.y);
+		monsters.push_back(monster);
+	}
 	// инициализация плоскости
 	planeGraphicObject.set_position(vec3(0, 0, 0));
 	shared_ptr<Mesh> planeMesh = make_shared<Mesh>();
@@ -86,5 +123,4 @@ void initData() {
 	shared_ptr<PhongMaterial> planeMaterial = make_shared<PhongMaterial>();
 	planeMaterial->load("data\\materials\\PlaneMaterial.txt");
 	planeGraphicObject.set_material(planeMaterial);
-
 }

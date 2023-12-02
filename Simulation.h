@@ -5,6 +5,7 @@
 
 void simulation();
 float getSimulationTime();
-void cameraSimulation(float simulationTime);
-void gameObjectSimulation(float simulationTime);
+void cameraSimulation(float);
+void gameObjectSimulation(float);
+void monstersSimulation(float);
 void movePlayer();

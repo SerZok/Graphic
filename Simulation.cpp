@@ -11,18 +11,22 @@ float getSimulationTime() {
 	return simulationTime;
 }
 void cameraSimulation(float simulationTime) {
-	if (GetAsyncKeyState(VK_LBUTTON)){
-		int CenterW = glutGet(GLUT_WINDOW_WIDTH) / 2;
-		int CenertH = glutGet(GLUT_WINDOW_HEIGHT) / 2;
+	if (GetAsyncKeyState(VK_SHIFT)) {
+		if (GetAsyncKeyState(VK_LBUTTON)) {
+			int CenterW = glutGet(GLUT_WINDOW_WIDTH) / 2;
+			int CenertH = glutGet(GLUT_WINDOW_HEIGHT) / 2;
+			int CurPosX = glutGet(GLUT_WINDOW_X);
+			int CurPosY = glutGet(GLUT_WINDOW_Y);
 
-		float mAngleX = CenterW - MouseXY.x;
-		float mAngleY = CenertH - MouseXY.y;
-		float speedMouse = simulationTime/5;
+			float mAngleX = CenterW - MouseXY.x;
+			float mAngleY = CenertH - MouseXY.y;
+			float speedMouse = simulationTime / 5;
 
-		if (GetCursorPos(&MouseXY)) {
-			cam1.rotateLeftRight(mAngleX * speedMouse);
-			cam1.rotateUpDown(mAngleY * speedMouse);
-			SetCursorPos(MouseXY.x, MouseXY.y);
+			if (GetCursorPos(&MouseXY)) {
+				cam1.rotateLeftRight((mAngleX + CurPosX) * speedMouse);
+				cam1.rotateUpDown((mAngleY + CurPosY) * speedMouse);
+				SetCursorPos(MouseXY.x, MouseXY.y);
+			}
 		}
 	}
 	float speedKey = simulationTime * 20;
@@ -49,9 +53,10 @@ void gameObjectSimulation(float simulationTime) {
 }
 
 void movePlayer() {
-	float speed = 4.0f;
+	float speed = 5.5f;
 	ivec2 curPosPlayer = player->getPosition();
 	//W
+
 	if ((GetAsyncKeyState(87)) && (!player->isMoving())) {
 		if (passabilityMap[curPosPlayer.x][curPosPlayer.y - 1] == 0) {
 			player->move(MoveDirection::UP,speed);
@@ -170,11 +175,85 @@ void movePlayer() {
 	}
 }
 
+void monstersMove(float simulationTime) {
+	for (int i = 0; i < monsters.size(); i++) {
+		ivec2 pos = monsters[i]->getPosition();
+		if (monstersLastDirection[i] == -1)
+			monstersLastDirection[i] = rand() % 4;
+		if (!monsters[i]->isMoving()) {
+			bool result = true;
+			int direction;
+			vector<int> availableDirections;
+			if ((passabilityMap[pos.x][pos.y - 1] == 0) && (monstersLastDirection[i] != 1)) availableDirections.push_back(0);
+			if ((passabilityMap[pos.x][pos.y + 1] == 0) && (monstersLastDirection[i] != 0)) availableDirections.push_back(1);
+			if ((passabilityMap[pos.x - 1][pos.y] == 0) && (monstersLastDirection[i] != 3)) availableDirections.push_back(2);
+			if ((passabilityMap[pos.x + 1][pos.y] == 0) && (monstersLastDirection[i] != 2)) availableDirections.push_back(3);
+			if (availableDirections.size() == 0) {
+
+				switch (monstersLastDirection[i]){
+				case 0: {
+					direction = 1;
+					break;
+				}
+				case 1: {
+					direction = 0;
+					break;
+				}
+				case 2: {
+					direction = 3;
+					break;
+				}
+				case 3: {
+					direction = 2;
+					break;
+				}
+				default:
+					break;
+				}
+			}
+			else {
+				direction = availableDirections[rand() % availableDirections.size()];
+			}
+			switch (direction)
+			{
+			case 0: {
+				result = monsterMoveUp(monsters[i], pos);
+				monstersLastDirection[i] = 0;
+				break;
+			}
+			case 1: {
+				result = monsterMoveDown(monsters[i], pos);
+				monstersLastDirection[i] = 1;
+				break;
+			}
+			case 2: {
+				result = monsterMoveLeft(monsters[i], pos);
+				monstersLastDirection[i] = 2;
+				break;
+			}
+			case 3: {
+				result = monsterMoveRight(monsters[i], pos);
+				monstersLastDirection[i] = 3;
+				break;
+			}
+			default:
+				break;
+			}
+			if (player != nullptr) {
+				if (monsters[i]->getPosition() == player->getPosition()) {
+					player = nullptr;
+				}
+			}
+		}
+
+	}
+}
 
 void simulation() {
-	float simualtionTime = getSimulationTime();
-	cameraSimulation(simualtionTime);
-	gameObjectSimulation(simualtionTime);
+	float simulationTime = getSimulationTime();
+	cameraSimulation(simulationTime);
+	gameObjectSimulation(simulationTime);
+	monstersSimulation(simulationTime);
 	movePlayer();
 	glutPostRedisplay();
 };

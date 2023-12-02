@@ -153,6 +153,7 @@
     <ClCompile Include="Simulation.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="PhongMaterial.cpp" />
+    <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="PhongMaterial.h" />
     <ClInclude Include="Simulation.h" />
+    <ClInclude Include="Texture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
