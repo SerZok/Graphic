@@ -8,6 +8,7 @@
 #include "Camera.h"
 #include "Light.h"
 #include "GameObjectFactory.h"
+#include "Texture.h"
 
 extern int mCurrentTick;
 extern int SizeWindowX;
@@ -19,6 +20,7 @@ extern Camera cam1;
 extern POINT MouseXY;
 extern Light mLight;
 extern Object planeGraphicObject;
+extern Texture planeTexture;
 extern vector<vec3> mTeapotColors;
 extern vector<shared_ptr<Mesh>> Meshes;
 extern vector< shared_ptr <PhongMaterial>> Materials;

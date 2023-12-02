@@ -17,6 +17,8 @@ shared_ptr<GameObject>player;
 Object planeGraphicObject;//Для полскости
 GameObjectFactory gameObjectFactory;
 
+Texture planeTexture;
+
 	// карта проходимости
 int passabilityMap[21][21] = {
 	 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
@@ -42,12 +44,16 @@ int passabilityMap[21][21] = {
 	 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
 	};
 
-void initData() {
 
+
+void initData() {
 	// ПОЛУЧЕНИЕ ИНФОРМАЦИИ ОБ OPENGL
 	printf("GL_VENDOR = %s\n", glGetString(GL_VENDOR));
 	printf("GL_RENDERER = %s\n", glGetString(GL_RENDERER));
 	printf("GL_VERSION = %s\n\n", glGetString(GL_VERSION));
+
+	planeTexture.load("data\\Textures\\vlcsnap_2023_12_01_10h37m31s394.0.jpg");
+
 
 	//Свет
 	mLight.setAmbient(vec4(0, 0, 0, 1));
