@@ -45,7 +45,7 @@ void display(){
 	//planeGraphicObject.draw();
 
 	player->draw();
-	for (auto mons : monstres) {
+	for (auto mons : monsters) {
 		mons->draw();
 	}
 

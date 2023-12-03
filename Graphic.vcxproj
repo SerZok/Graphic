@@ -116,7 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Projects\Graphic\DevIL\include;$(SolutionDir)\freeglut\include;$(SolutionDir)\glm;$(SolutionDir)\glew-2.1.0\include\GL;$(SolutionDir)\rapidjson-master\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)DevIL\include;$(SolutionDir)\freeglut\include;$(SolutionDir)\glm;$(SolutionDir)\glew-2.1.0\include\GL;$(SolutionDir)\rapidjson-master\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

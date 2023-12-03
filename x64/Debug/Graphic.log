@@ -1,8 +1,3 @@
-﻿  Display.cpp
-C:\Projects\Graphic\Display.cpp(5,32): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
-C:\Projects\Graphic\Display.cpp(25,18): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
-C:\Projects\Graphic\Display.cpp(33,25): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-C:\Projects\Graphic\Display.cpp(33,20): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-C:\Projects\Graphic\Display.cpp(33,15): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-C:\Projects\Graphic\Display.cpp(62,19): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
-  Graphic.vcxproj -> C:\Projects\Graphic\x64\Debug\Graphic.exe
+﻿  Data.cpp
+C:\STUDY\АОКГ\Graphic\Data.cpp(72,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Graphic.vcxproj -> C:\STUDY\АОКГ\Graphic\x64\Debug\Graphic.exe

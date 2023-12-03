@@ -175,85 +175,84 @@ void movePlayer() {
 	}
 }
 
-void monstersMove(float simulationTime) {
-	for (int i = 0; i < monsters.size(); i++) {
-		ivec2 pos = monsters[i]->getPosition();
-		if (monstersLastDirection[i] == -1)
-			monstersLastDirection[i] = rand() % 4;
-		if (!monsters[i]->isMoving()) {
-			bool result = true;
-			int direction;
-			vector<int> availableDirections;
-			if ((passabilityMap[pos.x][pos.y - 1] == 0) && (monstersLastDirection[i] != 1)) availableDirections.push_back(0);
-			if ((passabilityMap[pos.x][pos.y + 1] == 0) && (monstersLastDirection[i] != 0)) availableDirections.push_back(1);
-			if ((passabilityMap[pos.x - 1][pos.y] == 0) && (monstersLastDirection[i] != 3)) availableDirections.push_back(2);
-			if ((passabilityMap[pos.x + 1][pos.y] == 0) && (monstersLastDirection[i] != 2)) availableDirections.push_back(3);
-			if (availableDirections.size() == 0) {
-
-				switch (monstersLastDirection[i]){
-				case 0: {
-					direction = 1;
-					break;
-				}
-				case 1: {
-					direction = 0;
-					break;
-				}
-				case 2: {
-					direction = 3;
-					break;
-				}
-				case 3: {
-					direction = 2;
-					break;
-				}
-				default:
-					break;
-				}
-			}
-			else {
-				direction = availableDirections[rand() % availableDirections.size()];
-			}
-			switch (direction)
-			{
-			case 0: {
-				result = monsterMoveUp(monsters[i], pos);
-				monstersLastDirection[i] = 0;
-				break;
-			}
-			case 1: {
-				result = monsterMoveDown(monsters[i], pos);
-				monstersLastDirection[i] = 1;
-				break;
-			}
-			case 2: {
-				result = monsterMoveLeft(monsters[i], pos);
-				monstersLastDirection[i] = 2;
-				break;
-			}
-			case 3: {
-				result = monsterMoveRight(monsters[i], pos);
-				monstersLastDirection[i] = 3;
-				break;
-			}
-			default:
-				break;
-			}
-			if (player != nullptr) {
-				if (monsters[i]->getPosition() == player->getPosition()) {
-					player = nullptr;
-				}
-			}
-		}
-
-	}
-}
+//void monstersMove(float simulationTime) {
+//	for (int i = 0; i < monsters.size(); i++) {
+//		ivec2 pos = monsters[i]->getPosition();
+//		if (monstersLastDirection[i] == -1)
+//			monstersLastDirection[i] = rand() % 4;
+//		if (!monsters[i]->isMoving()) {
+//			bool result = true;
+//			int direction;
+//			vector<int> availableDirections;
+//			if ((passabilityMap[pos.x][pos.y - 1] == 0) && (monstersLastDirection[i] != 1)) availableDirections.push_back(0);
+//			if ((passabilityMap[pos.x][pos.y + 1] == 0) && (monstersLastDirection[i] != 0)) availableDirections.push_back(1);
+//			if ((passabilityMap[pos.x - 1][pos.y] == 0) && (monstersLastDirection[i] != 3)) availableDirections.push_back(2);
+//			if ((passabilityMap[pos.x + 1][pos.y] == 0) && (monstersLastDirection[i] != 2)) availableDirections.push_back(3);
+//			if (availableDirections.size() == 0) {
+//				switch (monstersLastDirection[i]){
+//				case 0: {
+//					direction = 1;
+//					break;
+//				}
+//				case 1: {
+//					direction = 0;
+//					break;
+//				}
+//				case 2: {
+//					direction = 3;
+//					break;
+//				}
+//				case 3: {
+//					direction = 2;
+//					break;
+//				}
+//				default:
+//					break;
+//				}
+//			}
+//			else {
+//				direction = availableDirections[rand() % availableDirections.size()];
+//			}
+//			switch (direction)
+//			{
+//			case 0: {
+//				result = monsterMoveUp(monsters[i], pos);
+//				monstersLastDirection[i] = 0;
+//				break;
+//			}
+//			case 1: {
+//				result = monsterMoveDown(monsters[i], pos);
+//				monstersLastDirection[i] = 1;
+//				break;
+//			}
+//			case 2: {
+//				result = monsterMoveLeft(monsters[i], pos);
+//				monstersLastDirection[i] = 2;
+//				break;
+//			}
+//			case 3: {
+//				result = monsterMoveRight(monsters[i], pos);
+//				monstersLastDirection[i] = 3;
+//				break;
+//			}
+//			default:
+//				break;
+//			}
+//			if (player != nullptr) {
+//				if (monsters[i]->getPosition() == player->getPosition()) {
+//					player = nullptr;
+//				}
+//			}
+//		}
+//
+//	}
+//}
 
 void simulation() {
 	float simulationTime = getSimulationTime();
 	cameraSimulation(simulationTime);
 	gameObjectSimulation(simulationTime);
-	monstersSimulation(simulationTime);
+	//monstersSimulation(simulationTime);
 	movePlayer();
 	glutPostRedisplay();
 };

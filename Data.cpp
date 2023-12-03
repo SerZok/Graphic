@@ -18,6 +18,7 @@ Object planeGraphicObject;//Для полскости
 GameObjectFactory gameObjectFactory;
 
 Texture planeTexture;
+unsigned int monsters_size=10;
 
 	// карта проходимости
 int passabilityMap[21][21] = {
@@ -83,7 +84,7 @@ void initData() {
 	mLight.setSpecular(vec4(0, 0, 0, 1));
 	mLight.setPosition(vec4(20, 30, 0, 1));
 
-	planeTexture.load("data\\Textures\\vlcsnap_2023_12_01_10h37m31s394.0.jpg");
+	planeTexture.load("data\\Textures\\maxresdefault.jpg");
 	// инициализация фабрики (в дальнейшем на основе json-файла)
 	gameObjectFactory.init("data//GameObjectsDescription.json");
 	// инициализация объектов сцены
@@ -110,7 +111,7 @@ void initData() {
 	player = gameObjectFactory.create(GameObjectType::PLAYER, pcPos.x, pcPos.y);
 
 	shared_ptr<GameObject>monster;
-	while(monsters.size()!=3){
+	while(monsters.size()!= monsters_size){
 		ivec2 mPos = rand_pos_monst();
 		monster= gameObjectFactory.create(GameObjectType::MONSTER, mPos.x, mPos.y);
 		monsters.push_back(monster);
