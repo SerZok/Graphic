@@ -41,9 +41,9 @@ void cameraSimulation(float simulationTime) {
 
 //simualtion all objects
 void gameObjectSimulation(float simulationTime) {
-	if (player!=nullptr) {
+	if (player!=nullptr) 
 		player->simulate(simulationTime);
-	}
+
 	for (int i = 0; i < 21; i++) {
 		for (int j = 0; j < 21; j++) {
 			if (mapObjects[i][j] != nullptr)
@@ -54,205 +54,254 @@ void gameObjectSimulation(float simulationTime) {
 
 void movePlayer() {
 	float speed = 5.5f;
-	ivec2 curPosPlayer = player->getPosition();
-	//W
-
-	if ((GetAsyncKeyState(87)) && (!player->isMoving())) {
-		if (passabilityMap[curPosPlayer.x][curPosPlayer.y - 1] == 0) {
-			player->move(MoveDirection::UP,speed);
-		}
-		else if ((passabilityMap[curPosPlayer.x][curPosPlayer.y - 1] == 1) and
-			(passabilityMap[curPosPlayer.x][curPosPlayer.y - 2] == 0)) {
+	if (player != nullptr) {
+		ivec2 curPosPlayer = player->getPosition();
+		//W
+		if ((GetAsyncKeyState(87)) && (!player->isMoving())) {
+			if (passabilityMap[curPosPlayer.x][curPosPlayer.y - 1] == 0) {
+				player->move(MoveDirection::UP, speed);
+			}
+			else if ((passabilityMap[curPosPlayer.x][curPosPlayer.y - 1] == 1) and
+				(passabilityMap[curPosPlayer.x][curPosPlayer.y - 2] == 0)) {
 				passabilityMap[curPosPlayer.x][curPosPlayer.y - 1] = 0;
 				passabilityMap[curPosPlayer.x][curPosPlayer.y - 2] = 1;
-				mapObjects[curPosPlayer.x][curPosPlayer.y - 1]->move(MoveDirection::UP, speed/2);
+				mapObjects[curPosPlayer.x][curPosPlayer.y - 1]->move(MoveDirection::UP, speed / 2);
 				mapObjects[curPosPlayer.x][curPosPlayer.y - 2] = mapObjects[curPosPlayer.x][curPosPlayer.y - 1];
 				mapObjects[curPosPlayer.x][curPosPlayer.y - 1] = nullptr;
-				player->move(MoveDirection::UP, speed/2);
-		}
-		else if ((passabilityMap[curPosPlayer.x][curPosPlayer.y - 1] == 1) and
-			(passabilityMap[curPosPlayer.x][curPosPlayer.y - 2] == 1) and
-			(passabilityMap[curPosPlayer.x][curPosPlayer.y - 3] == 0)) {
-			passabilityMap[curPosPlayer.x][curPosPlayer.y - 1] = 0;
-			passabilityMap[curPosPlayer.x][curPosPlayer.y - 2] = 1;
-			passabilityMap[curPosPlayer.x][curPosPlayer.y - 3] = 1;
-			mapObjects[curPosPlayer.x][curPosPlayer.y - 2]->move(MoveDirection::UP, speed / 4);
-			mapObjects[curPosPlayer.x][curPosPlayer.y - 1]->move(MoveDirection::UP, speed / 4);
-			mapObjects[curPosPlayer.x][curPosPlayer.y - 3] = mapObjects[curPosPlayer.x][curPosPlayer.y - 2];
-			mapObjects[curPosPlayer.x][curPosPlayer.y - 2] = mapObjects[curPosPlayer.x][curPosPlayer.y - 1];
-			mapObjects[curPosPlayer.x][curPosPlayer.y - 1] = nullptr;
-			player->move(MoveDirection::UP, speed / 4);
-		}
-	}
-	//S
-	if ((GetAsyncKeyState(83)) && (!player->isMoving())) {
-		if (passabilityMap[curPosPlayer.x][curPosPlayer.y + 1] == 0) {
-			player->move(MoveDirection::DOWN,speed);
-		}
-		else if ((passabilityMap[curPosPlayer.x][curPosPlayer.y + 1] == 1) and
-			(passabilityMap[curPosPlayer.x][curPosPlayer.y + 2] == 0)) {
-			passabilityMap[curPosPlayer.x][curPosPlayer.y + 1] = 0;
-			passabilityMap[curPosPlayer.x][curPosPlayer.y + 2] = 1;
-			mapObjects[curPosPlayer.x][curPosPlayer.y + 1]->move(MoveDirection::DOWN, speed / 2);
-			mapObjects[curPosPlayer.x][curPosPlayer.y + 2] = mapObjects[curPosPlayer.x][curPosPlayer.y + 1];
-			mapObjects[curPosPlayer.x][curPosPlayer.y + 1] = nullptr;
-			player->move(MoveDirection::DOWN, speed / 2);
-		}
-		//Двигаем 2 кубика
-		else if ((passabilityMap[curPosPlayer.x][curPosPlayer.y+1] == 1) and
-			(passabilityMap[curPosPlayer.x][curPosPlayer.y+2] == 1) and
-			(passabilityMap[curPosPlayer.x][curPosPlayer.y+3] == 0)) {
-			passabilityMap[curPosPlayer.x][curPosPlayer.y+1] = 0;
-			passabilityMap[curPosPlayer.x][curPosPlayer.y+2] = 1;
-			passabilityMap[curPosPlayer.x][curPosPlayer.y+3] = 1;
-			mapObjects[curPosPlayer.x][curPosPlayer.y+2]->move(MoveDirection::DOWN, speed / 4);
-			mapObjects[curPosPlayer.x][curPosPlayer.y+1]->move(MoveDirection::DOWN, speed / 4);
-			mapObjects[curPosPlayer.x][curPosPlayer.y+3] = mapObjects[curPosPlayer.x][curPosPlayer.y+2];
-			mapObjects[curPosPlayer.x][curPosPlayer.y+2] = mapObjects[curPosPlayer.x][curPosPlayer.y+1];
-			mapObjects[curPosPlayer.x][curPosPlayer.y+1] = nullptr;
-			player->move(MoveDirection::DOWN, speed / 4);
-		}
-	}
-	//A
-	if ((GetAsyncKeyState(65)) && (!player->isMoving())) {	//	A
-		if (passabilityMap[curPosPlayer.x-1][curPosPlayer.y] == 0) {
-			player->move(MoveDirection::LEFT,speed);
-		}
-		else if ((passabilityMap[curPosPlayer.x-1][curPosPlayer.y] == 1) and
-			(passabilityMap[curPosPlayer.x-2][curPosPlayer.y] == 0)) {
-			passabilityMap[curPosPlayer.x-1][curPosPlayer.y] = 0;
-			passabilityMap[curPosPlayer.x-2][curPosPlayer.y] = 1;
-			mapObjects[curPosPlayer.x-1][curPosPlayer.y]->move(MoveDirection::LEFT, speed / 2);
-			mapObjects[curPosPlayer.x-2][curPosPlayer.y] = mapObjects[curPosPlayer.x-1][curPosPlayer.y];
-			mapObjects[curPosPlayer.x-1][curPosPlayer.y] = nullptr;
-			player->move(MoveDirection::LEFT, speed / 2);
+				player->move(MoveDirection::UP, speed / 2);
 			}
-		//Двигаем 2 кубика
-		else if ((passabilityMap[curPosPlayer.x - 1][curPosPlayer.y] == 1) and
-			(passabilityMap[curPosPlayer.x - 2][curPosPlayer.y] == 1) and
-			(passabilityMap[curPosPlayer.x - 3][curPosPlayer.y] == 0)) {
-			passabilityMap[curPosPlayer.x - 1][curPosPlayer.y] = 0;
-			passabilityMap[curPosPlayer.x - 2][curPosPlayer.y] = 1;
-			passabilityMap[curPosPlayer.x - 3][curPosPlayer.y] = 1;
-			mapObjects[curPosPlayer.x - 2][curPosPlayer.y]->move(MoveDirection::LEFT, speed / 4);
-			mapObjects[curPosPlayer.x - 1][curPosPlayer.y]->move(MoveDirection::LEFT, speed / 4);
-			mapObjects[curPosPlayer.x - 3][curPosPlayer.y] = mapObjects[curPosPlayer.x - 2][curPosPlayer.y];
-			mapObjects[curPosPlayer.x - 2][curPosPlayer.y] = mapObjects[curPosPlayer.x - 1][curPosPlayer.y];
-			mapObjects[curPosPlayer.x - 1][curPosPlayer.y] = nullptr;
-			player->move(MoveDirection::LEFT, speed / 4);
+			else if ((passabilityMap[curPosPlayer.x][curPosPlayer.y - 1] == 1) and
+				(passabilityMap[curPosPlayer.x][curPosPlayer.y - 2] == 1) and
+				(passabilityMap[curPosPlayer.x][curPosPlayer.y - 3] == 0)) {
+				passabilityMap[curPosPlayer.x][curPosPlayer.y - 1] = 0;
+				passabilityMap[curPosPlayer.x][curPosPlayer.y - 2] = 1;
+				passabilityMap[curPosPlayer.x][curPosPlayer.y - 3] = 1;
+				mapObjects[curPosPlayer.x][curPosPlayer.y - 2]->move(MoveDirection::UP, speed / 4);
+				mapObjects[curPosPlayer.x][curPosPlayer.y - 1]->move(MoveDirection::UP, speed / 4);
+				mapObjects[curPosPlayer.x][curPosPlayer.y - 3] = mapObjects[curPosPlayer.x][curPosPlayer.y - 2];
+				mapObjects[curPosPlayer.x][curPosPlayer.y - 2] = mapObjects[curPosPlayer.x][curPosPlayer.y - 1];
+				mapObjects[curPosPlayer.x][curPosPlayer.y - 1] = nullptr;
+				player->move(MoveDirection::UP, speed / 4);
+			}
 		}
-	}
-	//D
-	if ((GetAsyncKeyState(68)) && (!player->isMoving())) {
-		if (passabilityMap[curPosPlayer.x+1][curPosPlayer.y] == 0) {
-			player->move(MoveDirection::RIGHT,speed);
+		//S
+		if ((GetAsyncKeyState(83)) && (!player->isMoving())) {
+			if (passabilityMap[curPosPlayer.x][curPosPlayer.y + 1] == 0) {
+				player->move(MoveDirection::DOWN, speed);
+			}
+			else if ((passabilityMap[curPosPlayer.x][curPosPlayer.y + 1] == 1) and
+				(passabilityMap[curPosPlayer.x][curPosPlayer.y + 2] == 0)) {
+				passabilityMap[curPosPlayer.x][curPosPlayer.y + 1] = 0;
+				passabilityMap[curPosPlayer.x][curPosPlayer.y + 2] = 1;
+				mapObjects[curPosPlayer.x][curPosPlayer.y + 1]->move(MoveDirection::DOWN, speed / 2);
+				mapObjects[curPosPlayer.x][curPosPlayer.y + 2] = mapObjects[curPosPlayer.x][curPosPlayer.y + 1];
+				mapObjects[curPosPlayer.x][curPosPlayer.y + 1] = nullptr;
+				player->move(MoveDirection::DOWN, speed / 2);
+			}
+			//Двигаем 2 кубика
+			else if ((passabilityMap[curPosPlayer.x][curPosPlayer.y + 1] == 1) and
+				(passabilityMap[curPosPlayer.x][curPosPlayer.y + 2] == 1) and
+				(passabilityMap[curPosPlayer.x][curPosPlayer.y + 3] == 0)) {
+				passabilityMap[curPosPlayer.x][curPosPlayer.y + 1] = 0;
+				passabilityMap[curPosPlayer.x][curPosPlayer.y + 2] = 1;
+				passabilityMap[curPosPlayer.x][curPosPlayer.y + 3] = 1;
+				mapObjects[curPosPlayer.x][curPosPlayer.y + 2]->move(MoveDirection::DOWN, speed / 4);
+				mapObjects[curPosPlayer.x][curPosPlayer.y + 1]->move(MoveDirection::DOWN, speed / 4);
+				mapObjects[curPosPlayer.x][curPosPlayer.y + 3] = mapObjects[curPosPlayer.x][curPosPlayer.y + 2];
+				mapObjects[curPosPlayer.x][curPosPlayer.y + 2] = mapObjects[curPosPlayer.x][curPosPlayer.y + 1];
+				mapObjects[curPosPlayer.x][curPosPlayer.y + 1] = nullptr;
+				player->move(MoveDirection::DOWN, speed / 4);
+			}
 		}
-		//Двигаем 1 кубик
-		else if ((passabilityMap[curPosPlayer.x + 1][curPosPlayer.y] == 1) and
-			(passabilityMap[curPosPlayer.x + 2][curPosPlayer.y] == 0)) {
+		//A
+		if ((GetAsyncKeyState(65)) && (!player->isMoving())) {	//	A
+			if (passabilityMap[curPosPlayer.x - 1][curPosPlayer.y] == 0) {
+				player->move(MoveDirection::LEFT, speed);
+			}
+			else if ((passabilityMap[curPosPlayer.x - 1][curPosPlayer.y] == 1) and
+				(passabilityMap[curPosPlayer.x - 2][curPosPlayer.y] == 0)) {
+				passabilityMap[curPosPlayer.x - 1][curPosPlayer.y] = 0;
+				passabilityMap[curPosPlayer.x - 2][curPosPlayer.y] = 1;
+				mapObjects[curPosPlayer.x - 1][curPosPlayer.y]->move(MoveDirection::LEFT, speed / 2);
+				mapObjects[curPosPlayer.x - 2][curPosPlayer.y] = mapObjects[curPosPlayer.x - 1][curPosPlayer.y];
+				mapObjects[curPosPlayer.x - 1][curPosPlayer.y] = nullptr;
+				player->move(MoveDirection::LEFT, speed / 2);
+			}
+			//Двигаем 2 кубика
+			else if ((passabilityMap[curPosPlayer.x - 1][curPosPlayer.y] == 1) and
+				(passabilityMap[curPosPlayer.x - 2][curPosPlayer.y] == 1) and
+				(passabilityMap[curPosPlayer.x - 3][curPosPlayer.y] == 0)) {
+				passabilityMap[curPosPlayer.x - 1][curPosPlayer.y] = 0;
+				passabilityMap[curPosPlayer.x - 2][curPosPlayer.y] = 1;
+				passabilityMap[curPosPlayer.x - 3][curPosPlayer.y] = 1;
+				mapObjects[curPosPlayer.x - 2][curPosPlayer.y]->move(MoveDirection::LEFT, speed / 4);
+				mapObjects[curPosPlayer.x - 1][curPosPlayer.y]->move(MoveDirection::LEFT, speed / 4);
+				mapObjects[curPosPlayer.x - 3][curPosPlayer.y] = mapObjects[curPosPlayer.x - 2][curPosPlayer.y];
+				mapObjects[curPosPlayer.x - 2][curPosPlayer.y] = mapObjects[curPosPlayer.x - 1][curPosPlayer.y];
+				mapObjects[curPosPlayer.x - 1][curPosPlayer.y] = nullptr;
+				player->move(MoveDirection::LEFT, speed / 4);
+			}
+		}
+		//D
+		if ((GetAsyncKeyState(68)) && (!player->isMoving())) {
+			if (passabilityMap[curPosPlayer.x + 1][curPosPlayer.y] == 0) {
+				player->move(MoveDirection::RIGHT, speed);
+			}
+			//Двигаем 1 кубик
+			else if ((passabilityMap[curPosPlayer.x + 1][curPosPlayer.y] == 1) and
+				(passabilityMap[curPosPlayer.x + 2][curPosPlayer.y] == 0)) {
 
-			passabilityMap[curPosPlayer.x + 1][curPosPlayer.y] = 0;
-			passabilityMap[curPosPlayer.x + 2][curPosPlayer.y] = 1;
-			mapObjects[curPosPlayer.x + 1][curPosPlayer.y]->move(MoveDirection::RIGHT, speed / 2);
-			mapObjects[curPosPlayer.x + 2][curPosPlayer.y] = mapObjects[curPosPlayer.x + 1][curPosPlayer.y];
-			mapObjects[curPosPlayer.x + 1][curPosPlayer.y] = nullptr;
-			player->move(MoveDirection::RIGHT, speed / 2);
-		}
-		//Двигаем 2 кубика
-		else if ((passabilityMap[curPosPlayer.x + 1][curPosPlayer.y] == 1) and
-			(passabilityMap[curPosPlayer.x + 2][curPosPlayer.y] == 1) and
-			(passabilityMap[curPosPlayer.x + 3][curPosPlayer.y] == 0)) {
-			passabilityMap[curPosPlayer.x + 1][curPosPlayer.y] = 0;
-			passabilityMap[curPosPlayer.x + 2][curPosPlayer.y] = 1;
-			passabilityMap[curPosPlayer.x + 3][curPosPlayer.y] = 1;
-			mapObjects[curPosPlayer.x + 2][curPosPlayer.y]->move(MoveDirection::RIGHT, speed / 4);
-			mapObjects[curPosPlayer.x + 1][curPosPlayer.y]->move(MoveDirection::RIGHT, speed / 4);
-			mapObjects[curPosPlayer.x + 3][curPosPlayer.y] = mapObjects[curPosPlayer.x + 2][curPosPlayer.y];
-			mapObjects[curPosPlayer.x + 2][curPosPlayer.y] = mapObjects[curPosPlayer.x + 1][curPosPlayer.y];
-			mapObjects[curPosPlayer.x + 1][curPosPlayer.y] = nullptr;
-			player->move(MoveDirection::RIGHT, speed / 4);
+				passabilityMap[curPosPlayer.x + 1][curPosPlayer.y] = 0;
+				passabilityMap[curPosPlayer.x + 2][curPosPlayer.y] = 1;
+				mapObjects[curPosPlayer.x + 1][curPosPlayer.y]->move(MoveDirection::RIGHT, speed / 2);
+				mapObjects[curPosPlayer.x + 2][curPosPlayer.y] = mapObjects[curPosPlayer.x + 1][curPosPlayer.y];
+				mapObjects[curPosPlayer.x + 1][curPosPlayer.y] = nullptr;
+				player->move(MoveDirection::RIGHT, speed / 2);
+			}
+			//Двигаем 2 кубика
+			else if ((passabilityMap[curPosPlayer.x + 1][curPosPlayer.y] == 1) and
+				(passabilityMap[curPosPlayer.x + 2][curPosPlayer.y] == 1) and
+				(passabilityMap[curPosPlayer.x + 3][curPosPlayer.y] == 0)) {
+				passabilityMap[curPosPlayer.x + 1][curPosPlayer.y] = 0;
+				passabilityMap[curPosPlayer.x + 2][curPosPlayer.y] = 1;
+				passabilityMap[curPosPlayer.x + 3][curPosPlayer.y] = 1;
+				mapObjects[curPosPlayer.x + 2][curPosPlayer.y]->move(MoveDirection::RIGHT, speed / 4);
+				mapObjects[curPosPlayer.x + 1][curPosPlayer.y]->move(MoveDirection::RIGHT, speed / 4);
+				mapObjects[curPosPlayer.x + 3][curPosPlayer.y] = mapObjects[curPosPlayer.x + 2][curPosPlayer.y];
+				mapObjects[curPosPlayer.x + 2][curPosPlayer.y] = mapObjects[curPosPlayer.x + 1][curPosPlayer.y];
+				mapObjects[curPosPlayer.x + 1][curPosPlayer.y] = nullptr;
+				player->move(MoveDirection::RIGHT, speed / 4);
+			}
 		}
 	}
+	return;
 }
 
-//void monstersMove(float simulationTime) {
-//	for (int i = 0; i < monsters.size(); i++) {
-//		ivec2 pos = monsters[i]->getPosition();
-//		if (monstersLastDirection[i] == -1)
-//			monstersLastDirection[i] = rand() % 4;
-//		if (!monsters[i]->isMoving()) {
-//			bool result = true;
-//			int direction;
-//			vector<int> availableDirections;
-//			if ((passabilityMap[pos.x][pos.y - 1] == 0) && (monstersLastDirection[i] != 1)) availableDirections.push_back(0);
-//			if ((passabilityMap[pos.x][pos.y + 1] == 0) && (monstersLastDirection[i] != 0)) availableDirections.push_back(1);
-//			if ((passabilityMap[pos.x - 1][pos.y] == 0) && (monstersLastDirection[i] != 3)) availableDirections.push_back(2);
-//			if ((passabilityMap[pos.x + 1][pos.y] == 0) && (monstersLastDirection[i] != 2)) availableDirections.push_back(3);
-//			if (availableDirections.size() == 0) {
-//				switch (monstersLastDirection[i]){
-//				case 0: {
-//					direction = 1;
-//					break;
-//				}
-//				case 1: {
-//					direction = 0;
-//					break;
-//				}
-//				case 2: {
-//					direction = 3;
-//					break;
-//				}
-//				case 3: {
-//					direction = 2;
-//					break;
-//				}
-//				default:
-//					break;
-//				}
-//			}
-//			else {
-//				direction = availableDirections[rand() % availableDirections.size()];
-//			}
-//			switch (direction)
-//			{
-//			case 0: {
-//				result = monsterMoveUp(monsters[i], pos);
-//				monstersLastDirection[i] = 0;
-//				break;
-//			}
-//			case 1: {
-//				result = monsterMoveDown(monsters[i], pos);
-//				monstersLastDirection[i] = 1;
-//				break;
-//			}
-//			case 2: {
-//				result = monsterMoveLeft(monsters[i], pos);
-//				monstersLastDirection[i] = 2;
-//				break;
-//			}
-//			case 3: {
-//				result = monsterMoveRight(monsters[i], pos);
-//				monstersLastDirection[i] = 3;
-//				break;
-//			}
-//			default:
-//				break;
-//			}
-//			if (player != nullptr) {
-//				if (monsters[i]->getPosition() == player->getPosition()) {
-//					player = nullptr;
-//				}
-//			}
-//		}
-//
-//	}
-//}
+float MONSTER_SPEED = 10.0f;
+bool monsterMoveUp(shared_ptr<GameObject> monster, ivec2 pos) {
+	if (passabilityMap[pos.x][pos.y - 1] == 0) {
+		monster->move(MoveDirection::UP, MONSTER_SPEED);
+		passabilityMap[pos.x][pos.y - 1] = 4;
+		passabilityMap[pos.x][pos.y] = 0;
+		mapObjects[pos.x][pos.y - 1] = mapObjects[pos.x][pos.y];
+		mapObjects[pos.x][pos.y] = nullptr;
+		return true;
+	}
+	else return false;
+}
+bool monsterMoveDown(shared_ptr<GameObject> monster, ivec2 pos) {
+	if (passabilityMap[pos.x][pos.y + 1] == 0) {
+		monster->move(MoveDirection::DOWN, MONSTER_SPEED);
+		passabilityMap[pos.x][pos.y + 1] = 4;
+		passabilityMap[pos.x][pos.y] = 0;
+		mapObjects[pos.x][pos.y + 1] = mapObjects[pos.x][pos.y];
+		mapObjects[pos.x][pos.y] = nullptr;
+		return true;
+	}
+	else return false;
+}
+bool monsterMoveLeft(shared_ptr<GameObject> monster, ivec2 pos) {
+	if (passabilityMap[pos.x - 1][pos.y] == 0) {
+		monster->move(MoveDirection::LEFT, MONSTER_SPEED);
+		passabilityMap[pos.x - 1][pos.y] = 4;
+		passabilityMap[pos.x][pos.y] = 0;
+		mapObjects[pos.x - 1][pos.y] = mapObjects[pos.x][pos.y];
+		mapObjects[pos.x][pos.y] = nullptr;
+		return true;
+	}
+	else return false;
+}
+bool monsterMoveRight(shared_ptr<GameObject> monster, ivec2 pos) {
+	if (passabilityMap[pos.x + 1][pos.y] == 0) {
+		monster->move(MoveDirection::RIGHT, MONSTER_SPEED);
+		passabilityMap[pos.x + 1][pos.y] = 4;
+		passabilityMap[pos.x][pos.y] = 0;
+		mapObjects[pos.x + 1][pos.y] = mapObjects[pos.x][pos.y];
+		mapObjects[pos.x][pos.y] = nullptr;
+		return true;
+	}
+	else return false;
+}
+
+void monstersSimulation(float simulationTime) {
+	for (int i = 0; i < monsters.size(); i++) {
+		ivec2 pos = monsters[i]->getPosition();
+		if (monstersLastDirection[i] == -1) monstersLastDirection[i] = rand() % 4;
+		if (!monsters[i]->isMoving()) {
+			bool result = true;
+			int direction;
+			vector<int> availableDirections;
+			if ((passabilityMap[pos.x][pos.y - 1] == 0) && (monstersLastDirection[i] != 1)) availableDirections.push_back(0);
+			if ((passabilityMap[pos.x][pos.y + 1] == 0) && (monstersLastDirection[i] != 0)) availableDirections.push_back(1);
+			if ((passabilityMap[pos.x - 1][pos.y] == 0) && (monstersLastDirection[i] != 3)) availableDirections.push_back(2);
+			if ((passabilityMap[pos.x + 1][pos.y] == 0) && (monstersLastDirection[i] != 2)) availableDirections.push_back(3);
+			if (availableDirections.size() == 0) {
+				switch (monstersLastDirection[i])
+				{
+				case 0: {
+					direction = 1;
+					break;
+				}
+				case 1: {
+					direction = 0;
+					break;
+				}
+				case 2: {
+					direction = 3;
+					break;
+				}
+				case 3: {
+					direction = 2;
+					break;
+				}
+				default:
+					break;
+				}
+			}
+			else {
+				direction = availableDirections[rand() % availableDirections.size()];
+			}
+			switch (direction)
+			{
+			case 0: {
+				result = monsterMoveUp(monsters[i], pos);
+				monstersLastDirection[i] = 0;
+				break;
+			}
+			case 1: {
+				result = monsterMoveDown(monsters[i], pos);
+				monstersLastDirection[i] = 1;
+				break;
+			}
+			case 2: {
+				result = monsterMoveLeft(monsters[i], pos);
+				monstersLastDirection[i] = 2;
+				break;
+			}
+			case 3: {
+				result = monsterMoveRight(monsters[i], pos);
+				monstersLastDirection[i] = 3;
+				break;
+			}
+			default:
+				break;
+			}
+			if (player != nullptr) {
+				if (monsters[i]->getPosition() == player->getPosition()) {
+					cout << "Game over!\n";
+					player = nullptr;
+				}
+			}
+		}
+
+	}
+}
 
 void simulation() {
 	float simulationTime = getSimulationTime();
 	cameraSimulation(simulationTime);
 	gameObjectSimulation(simulationTime);
-	//monstersSimulation(simulationTime);
+	monstersSimulation(simulationTime);
 	movePlayer();
 	glutPostRedisplay();
 };

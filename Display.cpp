@@ -43,8 +43,8 @@ void display(){
 	mLight.apply(GL_LIGHT0);
 	drawPlane();
 	//planeGraphicObject.draw();
+	if (player!=nullptr) player->draw();
 
-	player->draw();
 	for (auto mons : monsters) {
 		mons->draw();
 	}

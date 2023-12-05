@@ -28,5 +28,6 @@ extern vector< shared_ptr <PhongMaterial>> Materials;
 extern shared_ptr<GameObject>mapObjects[21][21];
 extern shared_ptr<GameObject>player;
 extern vector<shared_ptr<GameObject>>monsters;
+extern vector <int> monstersLastDirection;
 
 void initData();

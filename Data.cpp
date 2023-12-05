@@ -20,6 +20,8 @@ GameObjectFactory gameObjectFactory;
 Texture planeTexture;
 unsigned int monsters_size=10;
 
+vector <int> monstersLastDirection;
+
 	// карта проходимости
 int passabilityMap[21][21] = {
 	 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
@@ -87,6 +89,17 @@ void initData() {
 	planeTexture.load("data\\Textures\\maxresdefault.jpg");
 	// инициализация фабрики (в дальнейшем на основе json-файла)
 	gameObjectFactory.init("data//GameObjectsDescription.json");
+
+	shared_ptr<GameObject>monster;
+	int i = 0;
+	while (i != monsters_size) {
+		monstersLastDirection.push_back(-1);
+		ivec2 mPos = rand_pos_monst();
+		passabilityMap[mPos.x][mPos.y] = 4;
+		//monster = gameObjectFactory.create(GameObjectType::MONSTER, mPos.x, mPos.y);
+		//monsters.push_back(monster);
+		i++;
+	}
 	// инициализация объектов сцены
 	for (int i = 0; i < 21; i++) {
 		for (int j = 0; j < 21; j++) {
@@ -100,6 +113,10 @@ void initData() {
 			case 3:
 				mapObjects[i][j] = gameObjectFactory.create(GameObjectType::BORDER_OBJECT, i, j);
 				break;
+			case 4:
+				mapObjects[i][j]= gameObjectFactory.create(GameObjectType::MONSTER, i, j);
+				monsters.push_back(mapObjects[i][j]);
+				break;
 			default:
 				mapObjects[i][j] = nullptr;
 				break;
@@ -110,12 +127,6 @@ void initData() {
 	ivec2 pcPos = rand_pos_monst();
 	player = gameObjectFactory.create(GameObjectType::PLAYER, pcPos.x, pcPos.y);
 
-	shared_ptr<GameObject>monster;
-	while(monsters.size()!= monsters_size){
-		ivec2 mPos = rand_pos_monst();
-		monster= gameObjectFactory.create(GameObjectType::MONSTER, mPos.x, mPos.y);
-		monsters.push_back(monster);
-	}
 	// инициализация плоскости
 	planeGraphicObject.set_position(vec3(0, 0, 0));
 	shared_ptr<Mesh> planeMesh = make_shared<Mesh>();
