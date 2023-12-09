@@ -9,12 +9,10 @@
 #include "Camera.h"
 #include "Light.h"
 #include "GameObjectFactory.h"
-#include "Texture.h"
 
 extern int mCurrentTick;
 extern int SizeWindowX;
 extern int SizeWindowY;
-extern int myTick;
 extern int passabilityMap[21][21];
 
 extern Camera cam1;

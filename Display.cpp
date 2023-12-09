@@ -28,6 +28,7 @@ void getFPS() {
 	glutSetWindowTitle(windowTitle);
 	mCurrentTick = 0;
 }
+
 void display(){
 	// отчищаем буфер цвета и буфер глубины
 	glClearColor(0.7, 0.7, 0.7, 1);

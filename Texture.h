@@ -16,9 +16,10 @@ enum class TextureFilter {
 };
 
 // КЛАСС ДЛЯ РАБОТЫ С ТЕКСТУРОЙ
-class Texture
-{
+class Texture{
 public:
+	Texture();
+
 	// загрузка текстуры из внешнего файла
 	void load(std::string filename);
 

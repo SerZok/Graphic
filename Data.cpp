@@ -3,7 +3,6 @@
 int SizeWindowX=800;
 int SizeWindowY=600;
 int mCurrentTick=0;
-int myTick = 0;
 Camera cam1(vec3(0,1,50));
 vector<vec3> mTeapotColors;
 POINT MouseXY;
@@ -92,8 +91,6 @@ void initData() {
 		monstersLastDirection.push_back(-1);
 		ivec2 mPos = rand_pos_monst();
 		passabilityMap[mPos.x][mPos.y] = 4;
-		//monster = gameObjectFactory.create(GameObjectType::MONSTER, mPos.x, mPos.y);
-		//monsters.push_back(monster);
 		i++;
 	}
 	// инициализация объектов сцены
@@ -119,6 +116,7 @@ void initData() {
 			}
 		}
 	}
+
 	// инициализация главного героя
 	ivec2 pcPos = rand_pos_monst();
 	player = gameObjectFactory.create(GameObjectType::PLAYER, pcPos.x, pcPos.y);
@@ -128,7 +126,7 @@ void initData() {
 	shared_ptr<Mesh> planeMesh = make_shared<Mesh>();
 	planeMesh->load("data\\meshes\\HighPolyPlane.obj");
 	planeGraphicObject.set_mesh(planeMesh);
-	shared_ptr<PhongMaterial> planeMaterial = make_shared<PhongMaterial>();
+	shared_ptr<PhongMaterialWithTexture> planeMaterial = make_shared<PhongMaterialWithTexture>();
 	planeMaterial->load("data\\materials\\PlaneMaterial.txt");
 	planeGraphicObject.set_material(planeMaterial);
 }

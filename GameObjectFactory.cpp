@@ -1,5 +1,10 @@
 #include "GameObjectFactory.h"
 
+#ifdef _MSC_VER
+#undef GetObject
+#endif
+
+
 bool GameObjectFactory:: init(std::string filename) {
 	ifstream f(filename);
 	string jsonString;
@@ -14,6 +19,7 @@ bool GameObjectFactory:: init(std::string filename) {
 		return false;
 	}
 
+	//m-объект
 	for (auto& m : document.GetObject()) {
 		string MeshFileName = document[m.name.GetString()]["mesh"].GetString();
 		meshes.push_back(make_shared<Mesh>());
@@ -28,20 +34,37 @@ bool GameObjectFactory:: init(std::string filename) {
 			spec[i] = material["specular"][i].GetFloat();
 			emis[i] = material["emission"][i].GetFloat();
 		}
-		shared_ptr<PhongMaterial>pMaterial = make_shared<PhongMaterial>();
-		pMaterial->setAmbient(amb);
-		pMaterial->setDiffuse(dif);
-		pMaterial->setEmission(emis);
-		pMaterial->setShininess(shin);
-		pMaterial->setSpecular(spec);
-		materials.push_back(pMaterial);
+		
+		string type = material["type"].GetString();
+		if (type == "PhongMaterialWithTexture") {//с материалом
+			string TexturePath = material["texture"].GetString();
+			shared_ptr<PhongMaterialWithTexture>pMaterial = make_shared<PhongMaterialWithTexture>();
+			shared_ptr<Texture> pTexture = make_shared<Texture>();
+			pTexture->load(TexturePath);
+			pMaterial->setTexture(pTexture);
+
+			pMaterial->setAmbient(amb);
+			pMaterial->setDiffuse(dif);
+			pMaterial->setEmission(emis);
+			pMaterial->setShininess(shin);
+			pMaterial->setSpecular(spec);
+			materials.push_back(pMaterial);
+		}
+		else {//без материала
+			shared_ptr<PhongMaterial>pMaterial = make_shared<PhongMaterial>();
+			pMaterial->setAmbient(amb);
+			pMaterial->setDiffuse(dif);
+			pMaterial->setEmission(emis);
+			pMaterial->setShininess(shin);
+			pMaterial->setSpecular(spec);
+			materials.push_back(pMaterial);
+		}
 	}
 }
 
 std::shared_ptr<GameObject> GameObjectFactory:: create(GameObjectType type, int x, int y) {
 	shared_ptr<GameObject> GameObjP=make_shared<GameObject>();
-	switch (type)
-	{
+	switch (type){
 	case GameObjectType::LIGHT_OBJECT: {
 		Object obj;
 		obj.set_material(materials[0]);

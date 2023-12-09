@@ -1,10 +1,13 @@
 #include <iostream>
 #include <memory>
 #include <fstream>	
-
 #include "glew.h"
-#include "GameObject.h"
 #include "rapidjson/document.h"
+
+
+#include "GameObject.h"
+#include "PhongMaterialWithTexture.h"
+#include "PhongMaterial.h"
 
 using namespace rapidjson;
 
@@ -28,5 +31,5 @@ private:
 	// меши для каждого типа объекта
 	std::vector<std::shared_ptr<Mesh>> meshes;
 	// материалы для каждого типа объекта
-	std::vector<std::shared_ptr<PhongMaterial>> materials;
+	std::vector<std::shared_ptr<Material>> materials;
 };

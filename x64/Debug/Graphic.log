@@ -1,5 +1,2 @@
-﻿  Data.cpp
-C:\Projects\Graphic\Data.cpp(71,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  PhongMaterialWithTexture.cpp
-  Generating Code...
+﻿  Texture.cpp
   Graphic.vcxproj -> C:\Projects\Graphic\x64\Debug\Graphic.exe

@@ -2,6 +2,7 @@
 
 GameObject::GameObject() {
 	speed = 0.01;
+	progress = 0.0f;
 	position.x = 0;
 	position.y = 0;
 	graphicObject.set_position(vec3(-10,0,-10));
@@ -17,12 +18,8 @@ void GameObject::setPosition(ivec2 pos) {
 	position = pos;
 	graphicObject.set_position(vec3(pos.x - 10, 0.52, pos.y - 10));
 }
-
 ivec2 GameObject::getPosition() {return position;}
-
-void GameObject::draw() {
-	graphicObject.draw();
-}
+void GameObject::draw() {graphicObject.draw();}
 
 const bool GameObject::isMoving() {
 	if (sost == MoveDirection::STOP)

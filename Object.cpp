@@ -6,7 +6,7 @@ Object::Object() {
 	color = vec3(0, 0, 0);
 }
 
-void Object:: set_material( shared_ptr <PhongMaterial> material) {
+void Object:: set_material( shared_ptr <Material> material) {
 	this->material = material;
 }
 
@@ -18,11 +18,12 @@ void Object::draw() {
 	glColor3f(color.r, color.g, color.b);
 
 	recalculateModelMatrix();
-	if (material!=nullptr) material->apply();
-
+	if (material!=nullptr)
+		material->apply();
 	glPushMatrix();
 	glMultMatrixf(modelMatrix);
-	if (mesh != nullptr)   mesh->draw();
+	if (mesh != nullptr)
+		mesh->draw();
 	glPopMatrix();
 }
 

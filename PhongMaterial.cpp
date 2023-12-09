@@ -15,7 +15,6 @@ void PhongMaterial::setEmission(vec4 emiss) {emission = emiss;}
 void PhongMaterial::setShininess(float sh)	{shininess = sh;}
 
 void PhongMaterial::load(std::string filename) {
-	//string path(filename);
 	ifstream ifile;
 	ifile.open(filename);
 
@@ -28,8 +27,6 @@ void PhongMaterial::load(std::string filename) {
 			getline(ifile, s);
   			istringstream ss(s);
 			ss>> key >> r >> g >> b >> a;
-			//cout << key<<' ' << r <<' '<< g<<' ' << b<<' ' << a << endl;
-
 			if (key == "ambient:")			ambient=(vec4(r, g, b, a));
 			else if (key == "diffuse:")		diffuse=(vec4(r, g, b, a));
 			else if (key == "specular:")	specular=(vec4(r, g, b, a));
@@ -45,8 +42,7 @@ void PhongMaterial::load(std::string filename) {
 }
 
 void PhongMaterial::apply() {
-	//Show();
-
+	glBindTexture(GL_TEXTURE_2D, 0);
 	GLfloat AMBIENT[4] = { ambient.r, ambient.g, ambient.b, ambient.a };
 	GLfloat DIFFUSE[4] = { diffuse.r, diffuse.g, diffuse.b, diffuse.a };
 	GLfloat SPECULAR[4] ={ specular.r, specular.g, specular.b, specular.a };
@@ -58,5 +54,4 @@ void PhongMaterial::apply() {
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, SPECULAR);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, EMISSION);
 	glMaterialf	(GL_FRONT_AND_BACK, GL_SHININESS,SHININESS);
-
 }

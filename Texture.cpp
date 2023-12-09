@@ -1,5 +1,7 @@
 #include "Texture.h"
 
+Texture::Texture(){}
+
 //Создание и инициализация текстурного объекта
 void Texture::load(std::string filename) {
 	// создаем новое "изображение"
@@ -10,7 +12,7 @@ void Texture::load(std::string filename) {
 	wchar_t unicodeString[256];
 	wsprintf(unicodeString, L"%S", filename.c_str());
 	if (ilLoadImage(unicodeString))
-		std::cout << "Texture open OK\n";
+		std::cout <<std::endl<< filename<<"\nTexture open OK\n";
 	else std::cout << "Texture open ERROR\n";
 
 	int width = ilGetInteger(IL_IMAGE_WIDTH);
@@ -51,8 +53,41 @@ void Texture::load(std::string filename) {
 
 }
 
-void Texture::apply(TextureFilter) {
+void Texture::apply(TextureFilter texFilter) {
 	glBindTexture(GL_TEXTURE_2D, texIndex);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	switch (texFilter)
+	{
+	case TextureFilter::POINT: {
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, 1);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		break;
+	}
+	case TextureFilter::BILINEAR: {
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, 1);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		break;
+	}
+	case TextureFilter::TRILINEAR: {
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, 1);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		break;
+	}
+	case TextureFilter::ANISOTROPIC: {
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, 0.0);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		break;
+	}
+	default:
+		break;
+	}
 
 }
 

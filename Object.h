@@ -1,3 +1,4 @@
+#pragma once
 #include <windows.h>
 #include <stdio.h>
 #include <iostream>
@@ -10,7 +11,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "Mesh.h"
-#include "PhongMaterial.h"
+#include "Material.h"
 
 using namespace glm;
 
@@ -20,7 +21,7 @@ private:
 	vec3 position;
 	float angle;
 	vec3 color;
-	shared_ptr <PhongMaterial> material;
+	shared_ptr <Material> material;
 	shared_ptr <Mesh> mesh;
 
 	GLfloat modelMatrix[16] = {
@@ -40,6 +41,6 @@ public:
 	float get_angle();
 	vec3 get_position();
 	vec3 get_color();
-	void set_material(shared_ptr <PhongMaterial>);
+	void set_material(shared_ptr <Material>);
 	void set_mesh(shared_ptr <Mesh>);
 };

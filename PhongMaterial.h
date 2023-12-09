@@ -8,10 +8,12 @@
 #include <string>
 #include <sstream>
 
+#include "Material.h"
+
 using namespace std;
 using namespace glm;
 
-class PhongMaterial{
+class PhongMaterial: public Material{
 private:
 	vec4 ambient;	// фонова€ составл€юща€
 	vec4 diffuse;	// диффузна€ составл€юща€
@@ -27,7 +29,7 @@ public:
 	void setEmission(vec4);
 	void setShininess(float );
 	void load(std::string filename);
-	void apply(void);
+	void apply();
 
 	void Show() {
 		cout << this << endl;
