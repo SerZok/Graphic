@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <iostream>
+#include <cstdlib>
 #include <vector>
 #include <string>
 #include <memory>
@@ -13,7 +14,8 @@
 extern int mCurrentTick;
 extern int SizeWindowX;
 extern int SizeWindowY;
-extern int passabilityMap[21][21];
+//extern int passabilityMap[21][21];
+extern int** passabilityMap;
 
 extern Camera cam1;
 extern POINT MouseXY;
