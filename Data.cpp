@@ -18,8 +18,7 @@ Object planeGraphicObject;//Для полскости
 GameObjectFactory gameObjectFactory;
 
 Texture planeTexture;
-unsigned int monsters_size=10;
-
+unsigned int monsters_size=4;
 vector <int> monstersLastDirection;
 
 	// карта проходимости
@@ -47,8 +46,6 @@ int passabilityMap[21][21] = {
 	 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
 };
 
-
-
 static ivec2 rand_pos_monst() {
 	int i = rand() % 20;
 	int j = rand() % 20;
@@ -58,22 +55,21 @@ static ivec2 rand_pos_monst() {
 		return ivec2(i, j);
 }
 
-//void rand_map(int height, int width, int** Map) {
-//	for (int i = 1; i < height - 1; i++) {
-//		for (int j = 1; j < width - 1; j++) {
-//			if ((i % 2 != 0 && j % 2 != 0) && //если ячейка нечетная по x и y, 
-//				(i < height && j < width - 1))   //и при этом находится в пределах стен лабиринта
-//				passabilityMap[i][j] = 0;       //то это КЛЕТКА
-//			else passabilityMap[i][j] = 1;           //в остальных случаях это СТЕНА.
-//		}
-//	}
-//
-//}
+void rand_map(int height, int width) {
+	for (int i = 1; i < height - 1; i++) {
+		for (int j = 1; j < width - 1; j++) {
+			if ((i % 2 != 0 && j % 2 != 0) && //если ячейка нечетная по x и y, 
+				(i < height && j < width - 1))   //и при этом находится в пределах стен лабиринта
+				passabilityMap[i][j] = 1;       //то это КЛЕТКА
+			else passabilityMap[i][j] = 0;           //в остальных случаях это СТЕНА.
+		}
+	}
+
+}
 
 void initData() {
 	srand(time(0));
-	//rand_map(21, 21, passabilityMap);
-
+	rand_map(2, 2);
 
 	// ПОЛУЧЕНИЕ ИНФОРМАЦИИ ОБ OPENGL
 	printf("GL_VENDOR = %s\n", glGetString(GL_VENDOR));

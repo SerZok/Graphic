@@ -177,7 +177,7 @@ void movePlayer() {
 	return;
 }
 
-float MONSTER_SPEED = 10.0f;
+float MONSTER_SPEED = 3.0f;
 bool monsterMoveUp(shared_ptr<GameObject> monster, ivec2 pos) {
 	if (passabilityMap[pos.x][pos.y - 1] == 0) {
 		monster->move(MoveDirection::UP, MONSTER_SPEED);

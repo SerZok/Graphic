@@ -1,8 +1,5 @@
-﻿  Display.cpp
-C:\STUDY\АОКГ\Graphic\Display.cpp(5,32): warning C4244: инициализация: преобразование "time_t" в "int", возможна потеря данных
-C:\STUDY\АОКГ\Graphic\Display.cpp(25,18): warning C4244: =: преобразование "time_t" в "int", возможна потеря данных
-C:\STUDY\АОКГ\Graphic\Display.cpp(33,25): warning C4305: аргумент: усечение из "double" в "GLclampf"
-C:\STUDY\АОКГ\Graphic\Display.cpp(33,20): warning C4305: аргумент: усечение из "double" в "GLclampf"
-C:\STUDY\АОКГ\Graphic\Display.cpp(33,15): warning C4305: аргумент: усечение из "double" в "GLclampf"
-C:\STUDY\АОКГ\Graphic\Display.cpp(62,19): warning C4244: =: преобразование "time_t" в "int", возможна потеря данных
-  Graphic.vcxproj -> C:\STUDY\АОКГ\Graphic\x64\Debug\Graphic.exe
+﻿  Data.cpp
+C:\Projects\Graphic\Data.cpp(71,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  PhongMaterialWithTexture.cpp
+  Generating Code...
+  Graphic.vcxproj -> C:\Projects\Graphic\x64\Debug\Graphic.exe
