@@ -11,7 +11,7 @@ Light mLight;
 // список игровых объектов расположенных на карте
 shared_ptr<GameObject>mapObjects[21][21];
 vector<shared_ptr<GameObject>>monsters;
-shared_ptr<GameObject>player;
+shared_ptr<GameObject>player,bomb;
 
 Object planeGraphicObject;//Для полскости
 GameObjectFactory gameObjectFactory;
@@ -19,33 +19,137 @@ GameObjectFactory gameObjectFactory;
 Texture planeTexture;
 unsigned int monsters_size=4;
 vector <int> monstersLastDirection;
+const int heightWall = 2, wall = 1, pass = 0;
 
-	// карта проходимости
-int passabilityMap[21][21] = {
-	 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
-	 3,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,0,0,3,
-	 3,0,2,1,2,0,2,0,2,2,2,1,2,0,2,0,2,0,2,2,3,
-	 3,0,2,0,2,0,0,0,2,0,2,0,0,0,2,0,1,0,0,0,3,
-	 3,0,1,0,2,2,1,2,2,0,2,0,2,2,2,1,2,0,2,0,3,
-	 3,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,2,0,2,0,3,
-	 3,0,2,2,1,1,2,0,2,0,2,2,2,2,2,0,2,2,2,0,3,
-	 3,0,2,0,0,0,2,0,2,0,0,0,0,0,2,0,0,0,0,0,3,
-	 3,0,2,0,2,2,2,0,2,0,2,2,1,2,2,2,1,2,2,0,3,
-	 3,0,0,0,2,0,0,0,2,0,2,0,0,0,0,0,0,0,1,0,3,
-	 3,2,2,2,2,0,2,2,2,0,2,0,2,2,2,2,2,2,2,0,3,
-	 3,0,0,0,2,0,0,0,1,0,2,0,0,0,2,0,0,0,0,0,3,
-	 3,0,2,0,2,2,2,0,2,1,2,0,2,2,2,0,2,2,2,2,3,
-	 3,0,2,0,0,0,2,0,0,0,2,0,0,0,2,0,2,0,0,0,3,
-	 3,2,2,2,2,0,2,2,2,0,2,2,2,0,1,0,2,2,2,0,3,
-	 3,0,0,0,0,0,2,0,2,0,0,0,2,0,1,0,0,0,2,0,3,
-	 3,0,2,0,2,1,2,0,2,0,2,2,2,0,2,2,2,0,2,0,3,
-	 3,0,1,0,1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,3,
-	 3,0,2,1,2,0,2,2,2,2,2,0,2,0,2,0,2,2,2,2,3,
-	 3,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,3,
-	 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
-};
+bool deadend(int x, int y, int** maze, int height, int width) {
+	int a = 0;
+	if (x != 1) {
+		if (maze[y][x - 2] == pass)
+			a += 1;
+	}
+	else a += 1;
 
-static ivec2 rand_pos_monst() {
+	if (y != 1) {
+		if (maze[y - 2][x] == pass)
+			a += 1;
+	}
+	else a += 1;
+
+	if (x != width - 2) {
+		if (maze[y][x + 2] == pass)
+			a += 1;
+	}
+	else a += 1;
+
+	if (y != height - 2) {
+		if (maze[y + 2][x] == pass)
+			a += 1;
+	}
+	else a += 1;
+
+	if (a == 4) return 1;
+	else return 0;
+}
+
+//карта проходимости
+int** passabilityMap;
+//int passabilityMap[21][21] = {
+//	 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
+//	 3,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,0,0,3,
+//	 3,0,2,1,2,0,2,0,2,2,2,1,2,0,2,0,2,0,2,2,3,
+//	 3,0,2,0,2,0,0,0,2,0,2,0,0,0,2,0,1,0,0,0,3,
+//	 3,0,1,0,2,2,1,2,2,0,2,0,2,2,2,1,2,0,2,0,3,
+//	 3,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,2,0,2,0,3,
+//	 3,0,2,2,1,1,2,0,2,0,2,2,2,2,2,0,2,2,2,0,3,
+//	 3,0,2,0,0,0,2,0,2,0,0,0,0,0,2,0,0,0,0,0,3,
+//	 3,0,2,0,2,2,2,0,2,0,2,2,1,2,2,2,1,2,2,0,3,
+//	 3,0,0,0,2,0,0,0,2,0,2,0,0,0,0,0,0,0,1,0,3,
+//	 3,2,2,2,2,0,2,2,2,0,2,0,2,2,2,2,2,2,2,0,3,
+//	 3,0,0,0,2,0,0,0,1,0,2,0,0,0,2,0,0,0,0,0,3,
+//	 3,0,2,0,2,2,2,0,2,1,2,0,2,2,2,0,2,2,2,2,3,
+//	 3,0,2,0,0,0,2,0,0,0,2,0,0,0,2,0,2,0,0,0,3,
+//	 3,2,2,2,2,0,2,2,2,0,2,2,2,0,1,0,2,2,2,0,3,
+//	 3,0,0,0,0,0,2,0,2,0,0,0,2,0,1,0,0,0,2,0,3,
+//	 3,0,2,0,2,1,2,0,2,0,2,2,2,0,2,2,2,0,2,0,3,
+//	 3,0,1,0,1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,3,
+//	 3,0,2,1,2,0,2,2,2,2,2,0,2,0,2,0,2,2,2,2,3,
+//	 3,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,3,
+//	 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
+//};
+
+void mazemake(int** maze, int height, int width) {
+	int x, y, c, a;
+	bool b;
+	int generateWall;
+
+	for (int i = 0; i < height; i++) // Массив заполняется стенами
+		for (int j = 0; j < width; j++){
+			if (i == 0 || j == 0 || i == 20 || j == 20){
+				maze[i][j] = 3;
+			}
+			else{
+				do{
+					generateWall = rand() % 3;
+				} while (generateWall == 0);
+
+				if (generateWall == 1){
+					int switchBlock = rand() % 5;
+					if (switchBlock == 1 || switchBlock == 2 || switchBlock == 3)
+						maze[i][j] = heightWall;
+					else
+						maze[i][j] = wall;
+				}
+				else if (generateWall == 2){
+					maze[i][j] = heightWall;
+				}
+			}
+		}
+
+	x = 3; y = 3; a = 0;
+	while (a < 1000) {
+		maze[y][x] = pass; a++;
+		while (1) { // Бесконечный цикл, который прерывается только тупиком
+			c = rand() % 4;
+			switch (c) {
+			case 0: if (y != 1)
+				if (maze[y - 2][x] == wall || maze[y - 2][x] == heightWall) { // Вверх
+					maze[y - 1][x] = pass;
+					maze[y - 2][x] = pass;
+					y -= 2;
+				}
+			case 1: if (y != height - 2)
+				if (maze[y + 2][x] == wall || maze[y + 2][x] == heightWall) { // Вниз
+					maze[y + 1][x] = pass;
+					maze[y + 2][x] = pass;
+					y += 2;
+				}
+			case 2: if (x != 1)
+				if (maze[y][x - 2] == wall || maze[y][x - 2] == heightWall) { // Налево
+					maze[y][x - 1] = pass;
+					maze[y][x - 2] = pass;
+					x -= 2;
+				}
+			case 3: if (x != width - 2)
+				if (maze[y][x + 2] == wall || maze[y][x + 2] == heightWall) { // Направо
+					maze[y][x + 1] = pass;
+					maze[y][x + 2] = pass;
+					x += 2;
+				}
+			}
+			if (deadend(x, y, maze, height, width))
+				break;
+		}
+
+		if (deadend(x, y, maze, height, width)) // Вытаскиваем крота из тупика
+			do {
+				x = 2 * (rand() % ((width - 1) / 2)) + 1;
+				y = 2 * (rand() % ((height - 1) / 2)) + 1;
+			} while (maze[y][x] != pass);
+	}
+}
+
+//рандомизация позиции монстров и героя
+ivec2 rand_pos_monst() {
 	int i = rand() % 20;
 	int j = rand() % 20;
 	if (passabilityMap[i][j] != 0)
@@ -54,21 +158,12 @@ static ivec2 rand_pos_monst() {
 		return ivec2(i, j);
 }
 
-void rand_map(int height, int width) {
-	for (int i = 1; i < height - 1; i++) {
-		for (int j = 1; j < width - 1; j++) {
-			if ((i % 2 != 0 && j % 2 != 0) && //если ячейка нечетная по x и y, 
-				(i < height && j < width - 1))   //и при этом находится в пределах стен лабиринта
-				passabilityMap[i][j] = 1;       //то это КЛЕТКА
-			else passabilityMap[i][j] = 0;           //в остальных случаях это СТЕНА.
-		}
-	}
-
-}
-
 void initData() {
 	srand(time(0));
-	rand_map(2, 2);
+	passabilityMap = new int* [21];
+	for (int i = 0; i < 21; i++)
+		passabilityMap[i] = new int[21];
+	mazemake(passabilityMap, 21, 21);
 
 	// ПОЛУЧЕНИЕ ИНФОРМАЦИИ ОБ OPENGL
 	printf("GL_VENDOR = %s\n", glGetString(GL_VENDOR));
@@ -120,6 +215,7 @@ void initData() {
 	// инициализация главного героя
 	ivec2 pcPos = rand_pos_monst();
 	player = gameObjectFactory.create(GameObjectType::PLAYER, pcPos.x, pcPos.y);
+	bomb = gameObjectFactory.create(GameObjectType::BOMB,0,0);
 
 	// инициализация плоскости
 	planeGraphicObject.set_position(vec3(0, 0, 0));

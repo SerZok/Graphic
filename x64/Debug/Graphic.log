@@ -1,2 +1,4 @@
-﻿  Texture.cpp
+﻿  Data.cpp
+C:\Projects\Graphic\Data.cpp(82,7): warning C4101: 'b': unreferenced local variable
+C:\Projects\Graphic\Data.cpp(162,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Graphic.vcxproj -> C:\Projects\Graphic\x64\Debug\Graphic.exe

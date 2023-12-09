@@ -177,6 +177,11 @@ void movePlayer() {
 	return;
 }
 
+void bombSimulation(float simulationTime) {
+	//...
+}
+
+
 float MONSTER_SPEED = 3.0f;
 bool monsterMoveUp(shared_ptr<GameObject> monster, ivec2 pos) {
 	if (passabilityMap[pos.x][pos.y - 1] == 0) {
