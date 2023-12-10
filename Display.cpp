@@ -43,12 +43,15 @@ void display(){
 	cam1.apply();
 	mLight.apply(GL_LIGHT0);
 	drawPlane();
-	//planeGraphicObject.draw();
-	if (player!=nullptr) player->draw();
 
-	for (auto mons : monsters) {
-		mons->draw();
-	}
+	if (player!=nullptr)
+		player->draw();
+
+	if (drawBomb)
+		bomb->draw();
+
+	/*for (auto mons : monsters)
+		mons->draw();*/
 
 	for (int i = 0; i < 21; i++) {
 		for (int j = 0; j < 21; j++) {

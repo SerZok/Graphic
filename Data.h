@@ -30,4 +30,7 @@ extern shared_ptr<GameObject>player,bomb;
 extern vector<shared_ptr<GameObject>>monsters;
 extern vector <int> monstersLastDirection;
 
+extern bool drawBomb;
+extern float bombTimer;
+
 void initData();

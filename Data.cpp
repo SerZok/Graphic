@@ -158,8 +158,12 @@ ivec2 rand_pos_monst() {
 		return ivec2(i, j);
 }
 
-void initData() {
+bool drawBomb = false;
+float bombTimer = 0;
+
+void initData(){
 	srand(time(0));
+
 	passabilityMap = new int* [21];
 	for (int i = 0; i < 21; i++)
 		passabilityMap[i] = new int[21];

@@ -52,10 +52,18 @@ void gameObjectSimulation(float simulationTime) {
 	}
 }
 
-void movePlayer() {
+
+void movePlayer(){
 	float speed = 5.5f;
 	if (player != nullptr) {
 		ivec2 curPosPlayer = player->getPosition();
+		if (GetAsyncKeyState(32) && !drawBomb) {
+			bomb->setPosition(curPosPlayer);
+			drawBomb = true;
+			bombTimer = 3;
+			passabilityMap[curPosPlayer.x][curPosPlayer.y] = 5;
+		}
+
 		//W
 		if ((GetAsyncKeyState(87)) && (!player->isMoving())) {
 			if (passabilityMap[curPosPlayer.x][curPosPlayer.y - 1] == 0) {
@@ -177,8 +185,103 @@ void movePlayer() {
 	return;
 }
 
-void bombSimulation(float simulationTime) {
-	//...
+void bombSimulate(float simulationTime) {
+	if (drawBomb) {
+		bombTimer -= simulationTime;
+		if (bombTimer <= 0) {
+			bombTimer = 0;
+			ivec2 pos = bomb->getPosition();
+			ivec2 playerPos;
+			if (player != nullptr)
+				playerPos = player->getPosition();
+			passabilityMap[pos.x][pos.y] = 0;
+			drawBomb = false;
+			if (playerPos == pos)
+				player = nullptr;
+			if (playerPos == pos - ivec2(0, 1))
+				player = nullptr;
+			if (playerPos == pos - ivec2(0, -1))
+				player = nullptr;
+			if (playerPos == pos - ivec2(1, 0))
+				player = nullptr;
+			if (playerPos == pos - ivec2(-1, 0))
+				player = nullptr;
+
+			if (passabilityMap[pos.x - 1][pos.y] == 0 &&
+				playerPos == pos - ivec2(2, 0)) {
+				player = nullptr;
+			}
+			if (passabilityMap[pos.x + 1][pos.y] == 0 &&
+				playerPos == pos - ivec2(-2, 0)) {
+				player = nullptr;
+			}
+			if (passabilityMap[pos.x][pos.y - 1] == 0 &&
+				playerPos == pos - ivec2(0, 2)) {
+				player = nullptr;
+			}
+			if (passabilityMap[pos.x][pos.y + 1] == 0 &&
+				playerPos == pos - ivec2(0, -2)) {
+				player = nullptr;
+			}
+
+			if (pos.x < 19) {
+				if (passabilityMap[pos.x + 1][pos.y] == 0 &&
+					(passabilityMap[pos.x + 2][pos.y] == 1 ||
+						passabilityMap[pos.x + 2][pos.y] == 4) &&
+					playerPos != pos - ivec2(-1, 0)) {
+					passabilityMap[pos.x + 2][pos.y] = 0;
+					mapObjects[pos.x + 2][pos.y] = nullptr;
+				}
+			}
+			if (pos.x > 1) {
+				if (passabilityMap[pos.x - 1][pos.y] == 0 &&
+					(passabilityMap[pos.x - 2][pos.y] == 1 ||
+						passabilityMap[pos.x - 2][pos.y] == 4) &&
+					playerPos != pos - ivec2(1, 0)) {
+					passabilityMap[pos.x - 2][pos.y] = 0;
+					mapObjects[pos.x - 2][pos.y] = nullptr;
+				}
+			}
+			if (pos.y < 19) {
+				if (passabilityMap[pos.x][pos.y + 1] == 0 &&
+					(passabilityMap[pos.x][pos.y + 2] == 1 ||
+						passabilityMap[pos.x][pos.y + 2] == 4) &&
+					playerPos != pos - ivec2(0, -1)) {
+					passabilityMap[pos.x][pos.y + 2] = 0;
+					mapObjects[pos.x][pos.y + 2] = nullptr;
+				}
+			}
+			if (pos.y > 1) {
+				if (passabilityMap[pos.x][pos.y - 1] == 0 &&
+					(passabilityMap[pos.x][pos.y - 2] == 1 ||
+						passabilityMap[pos.x][pos.y + 2] == 4) &&
+					playerPos != pos - ivec2(0, 1)) {
+					passabilityMap[pos.x][pos.y - 2] = 0;
+					mapObjects[pos.x][pos.y - 2] = nullptr;
+				}
+			}
+			if (passabilityMap[pos.x - 1][pos.y] == 1 ||
+				passabilityMap[pos.x - 1][pos.y] == 4) {
+				passabilityMap[pos.x - 1][pos.y] = 0;
+				mapObjects[pos.x - 1][pos.y] = nullptr;
+			}
+			if (passabilityMap[pos.x + 1][pos.y] == 1 ||
+				passabilityMap[pos.x + 1][pos.y] == 4) {
+				passabilityMap[pos.x + 1][pos.y] = 0;
+				mapObjects[pos.x + 1][pos.y] = nullptr;
+			}
+			if (passabilityMap[pos.x][pos.y - 1] == 1 ||
+				passabilityMap[pos.x][pos.y - 1] == 4) {
+				passabilityMap[pos.x][pos.y - 1] = 0;
+				mapObjects[pos.x][pos.y - 1] = nullptr;
+			}
+			if (passabilityMap[pos.x][pos.y + 1] == 1 ||
+				passabilityMap[pos.x][pos.y + 1] == 4) {
+				passabilityMap[pos.x][pos.y + 1] = 0;
+				mapObjects[pos.x][pos.y + 1] = nullptr;
+			}
+		}
+	}
 }
 
 
@@ -241,8 +344,7 @@ void monstersSimulation(float simulationTime) {
 			if ((passabilityMap[pos.x - 1][pos.y] == 0) && (monstersLastDirection[i] != 3)) availableDirections.push_back(2);
 			if ((passabilityMap[pos.x + 1][pos.y] == 0) && (monstersLastDirection[i] != 2)) availableDirections.push_back(3);
 			if (availableDirections.size() == 0) {
-				switch (monstersLastDirection[i])
-				{
+				switch (monstersLastDirection[i]){
 				case 0: {
 					direction = 1;
 					break;
@@ -307,6 +409,7 @@ void simulation() {
 	cameraSimulation(simulationTime);
 	gameObjectSimulation(simulationTime);
 	monstersSimulation(simulationTime);
+	bombSimulate(simulationTime);
 	movePlayer();
 	glutPostRedisplay();
 };
