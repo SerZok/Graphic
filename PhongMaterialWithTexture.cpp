@@ -58,7 +58,7 @@ void PhongMaterialWithTexture::apply() {
 	if (texture != nullptr) {
 		glActiveTexture(GL_TEXTURE0);
 		glEnable(GL_TEXTURE_2D);
-		texture->apply();
+		texture->apply(TextureFilter::ANISOTROPIC);
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	}
 

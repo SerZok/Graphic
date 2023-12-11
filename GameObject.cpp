@@ -12,11 +12,11 @@ GameObject::GameObject() {
 void GameObject::setGraphicObject(const Object& graphicObject) {this->graphicObject = graphicObject;}
 void GameObject::setPosition(int x, int y) {
 	position = ivec2(x, y);
-	graphicObject.set_position(vec3(x-10,0.52,y-10));
+	graphicObject.set_position(vec3(x-10,0.55,y-10));
 }
 void GameObject::setPosition(ivec2 pos) {
 	position = pos;
-	graphicObject.set_position(vec3(pos.x - 10, 0.52, pos.y - 10));
+	graphicObject.set_position(vec3(pos.x - 10, 0.5, pos.y - 10));
 }
 ivec2 GameObject::getPosition() {return position;}
 void GameObject::draw() {graphicObject.draw();}
