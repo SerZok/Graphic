@@ -57,6 +57,7 @@ void movePlayer(){
 	float speed = 5.5f;
 	if (player != nullptr) {
 		ivec2 curPosPlayer = player->getPosition();
+		//space
 		if (GetAsyncKeyState(32) && !drawBomb) {
 			bomb->setPosition(curPosPlayer);
 			drawBomb = true;
@@ -191,11 +192,16 @@ void bombSimulate(float simulationTime) {
 		if (bombTimer <= 0) {
 			bombTimer = 0;
 			ivec2 pos = bomb->getPosition();
+
+			Decal dec(ivec2(pos.x,pos.y));
+			decals.push_back(dec);
+
 			ivec2 playerPos;
 			if (player != nullptr)
 				playerPos = player->getPosition();
 			passabilityMap[pos.x][pos.y] = 0;
 			drawBomb = false;
+
 			if (playerPos == pos)
 				player = nullptr;
 			if (playerPos == pos - ivec2(0, 1))
@@ -283,7 +289,6 @@ void bombSimulate(float simulationTime) {
 		}
 	}
 }
-
 
 float MONSTER_SPEED = 3.0f;
 bool monsterMoveUp(shared_ptr<GameObject> monster, ivec2 pos) {

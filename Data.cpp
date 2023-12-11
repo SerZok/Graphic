@@ -161,9 +161,15 @@ ivec2 rand_pos_monst() {
 bool drawBomb = false;
 float bombTimer = 0;
 
+std::shared_ptr<PhongMaterialWithTexture> Decal::material = nullptr;
+std::shared_ptr<Mesh> Decal::mesh = nullptr;
+
+vector<Decal> decals;
+
 void initData(){
 	srand(time(0));
-
+	Decal::init();
+	
 	passabilityMap = new int* [21];
 	for (int i = 0; i < 21; i++)
 		passabilityMap[i] = new int[21];
@@ -180,7 +186,7 @@ void initData(){
 	mLight.setSpecular(vec4(0, 0, 0, 1));
 	mLight.setPosition(vec4(20, 30, 0, 1));
 
-	planeTexture.load("data\\Textures\\maxresdefault.jpg");
+	planeTexture.load("data\\Textures\\plane.jpg");
 	// инициализация фабрики (в дальнейшем на основе json-файла)
 	gameObjectFactory.init("data//GameObjectsDescription.json");
 

@@ -16,12 +16,14 @@ void Object::set_mesh(shared_ptr <Mesh> mesh) {
 
 void Object::draw() {
 	glColor3f(color.r, color.g, color.b);
-
 	recalculateModelMatrix();
+
 	if (material!=nullptr)
 		material->apply();
+
 	glPushMatrix();
 	glMultMatrixf(modelMatrix);
+
 	if (mesh != nullptr)
 		mesh->draw();
 	glPopMatrix();
@@ -41,27 +43,10 @@ void Object::recalculateModelMatrix() {
 	modelMatrix[10] = cos(rad);
 }
 
-void Object::set_angle(float rad) {
-	Object::angle = rad;
-}
+void Object::set_angle(float rad) {Object::angle = rad;}
+void Object::set_color(vec3 color) {Object::color = color;}
+void Object::set_position(vec3 position) {Object::position = position;}
 
-void Object::set_color(vec3 color) {
-	Object::color = color;
-}
-
-void Object::set_position(vec3 position) {
-	Object::position = position;
-	//recalculateModelMatrix();
-}
-
-float Object::get_angle() {
-	return Object::angle;
-}
-
-vec3 Object::get_color() {
-	return Object::color;
-}
-
-vec3 Object::get_position() {
-	return Object::position;
-}
+float Object::get_angle() {return Object::angle;}
+vec3 Object::get_color() {return Object::color;}
+vec3 Object::get_position() {return Object::position;}

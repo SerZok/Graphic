@@ -29,5 +29,5 @@ private:
 	static std::shared_ptr <Mesh> mesh;
 };
 
-std::shared_ptr<PhongMaterialWithTexture> Decal::material = std::make_shared<PhongMaterialWithTexture>();
-std::shared_ptr <Mesh> Decal::mesh = std::make_shared<Mesh>();
+//std::shared_ptr<PhongMaterialWithTexture> Decal::material = std::make_shared<PhongMaterialWithTexture>();
+//std::shared_ptr <Mesh> Decal::mesh = std::make_shared<Mesh>();

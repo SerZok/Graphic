@@ -1,3 +1,4 @@
+#pragma once
 #include <windows.h>
 #include <iostream>
 #include <cstdlib>
@@ -10,6 +11,7 @@
 #include "Camera.h"
 #include "Light.h"
 #include "GameObjectFactory.h"
+#include "Decal.h"
 
 extern int mCurrentTick;
 extern int SizeWindowX;
@@ -29,6 +31,7 @@ extern shared_ptr<GameObject>mapObjects[21][21];
 extern shared_ptr<GameObject>player,bomb;
 extern vector<shared_ptr<GameObject>>monsters;
 extern vector <int> monstersLastDirection;
+extern vector <Decal> decals;
 
 extern bool drawBomb;
 extern float bombTimer;

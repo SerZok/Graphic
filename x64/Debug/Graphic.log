@@ -1,2 +1,8 @@
-﻿  Decal.cpp
-  Graphic.vcxproj -> C:\STUDY\АОКГ\Graphic\x64\Debug\Graphic.exe
+﻿  Display.cpp
+C:\Projects\Graphic\Display.cpp(6,32): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
+C:\Projects\Graphic\Display.cpp(26,18): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
+C:\Projects\Graphic\Display.cpp(35,25): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+C:\Projects\Graphic\Display.cpp(35,20): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+C:\Projects\Graphic\Display.cpp(35,15): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+C:\Projects\Graphic\Display.cpp(87,19): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
+  Graphic.vcxproj -> C:\Projects\Graphic\x64\Debug\Graphic.exe
