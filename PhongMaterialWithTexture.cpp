@@ -6,6 +6,7 @@ PhongMaterialWithTexture::PhongMaterialWithTexture() {
 	specular = vec4(0, 0, 0, 1);
 	emission = vec4(0, 0, 0, 1);
 	shininess = 32;
+	texture = nullptr;
 }
 
 void PhongMaterialWithTexture::setAmbient(vec4 amb) { ambient = amb; }

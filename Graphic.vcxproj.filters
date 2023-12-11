@@ -57,6 +57,9 @@
     <ClCompile Include="Material.h">
       <Filter>Файлы заголовков</Filter>
     </ClCompile>
+    <ClCompile Include="Decal.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Simulation.h">
@@ -93,6 +96,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="PhongMaterialWithTexture.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Decal.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
